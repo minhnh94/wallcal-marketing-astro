@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+import 'aos/dist/aos.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'WallCal - Desktop Calendar for Mac' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <!-- Plausible Analytics -->
+  <script
+    defer
+    data-domain="wallcal.app"
+    data-api="https://plausible.tsukie.com/api/event"
+    src="https://plausible.tsukie.com/js/script.tagged-events.outbound-links.js"
+    is:inline
+  ></script>
+</head>
+<body class="font-inter antialiased bg-gray-50 text-gray-900 tracking-tight">
+  <div class="flex flex-col min-h-screen overflow-hidden supports-[overflow:clip]:overflow-clip">
+    <Header />
+    <main class="grow">
+      <slot />
+    </main>
+    <Footer />
+  </div>
+  <!-- AOS init -->
+  <script>
+    import AOS from 'aos';
+    AOS.init({
+      once: true,
+      disable: 'phone',
+      duration: 700,
+      easing: 'ease-out-cubic',
+    });
+  </script>
+</body>
+</html>

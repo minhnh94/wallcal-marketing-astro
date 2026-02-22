@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const libraries = [
+  { name: 'Defaults', repo: 'https://github.com/sindresorhus/Defaults', author: 'Sindre Sorhus' },
+  { name: 'KeyboardShortcuts', repo: 'https://github.com/sindresorhus/KeyboardShortcuts', author: 'Sindre Sorhus' },
+  { name: 'LaunchAtLogin', repo: 'https://github.com/sindresorhus/LaunchAtLogin', author: 'Sindre Sorhus' },
+  { name: 'Preferences', repo: 'https://github.com/sindresorhus/Preferences', author: 'Sindre Sorhus' },
+  { name: 'SwiftDate', repo: 'https://github.com/malcommac/SwiftDate', author: 'Daniele Margutti' },
+  { name: 'purchases-ios', repo: 'https://github.com/RevenueCat/purchases-ios', author: 'Jacob Eiting' },
+  { name: 'appcenter-sdk-apple', repo: 'https://github.com/microsoft/appcenter-sdk-apple', author: 'Microsoft Corporation' },
+];
+---
+<BaseLayout title="Acknowledgements - WallCal">
+  <section class="relative pt-32 pb-12 md:pt-40 md:pb-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <h1 class="text-4xl md:text-5xl font-bold text-center mb-12" data-aos="zoom-y-out">Acknowledgements</h1>
+      <p class="text-center text-gray-600 mb-10" data-aos="zoom-y-out" data-aos-delay="150">
+        WallCal is built with the help of the following open source projects. We are grateful to their authors.
+      </p>
+      <div class="space-y-4" data-aos="zoom-y-out" data-aos-delay="300">
+        {libraries.map((lib) => (
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <div>
+                <a class="text-lg font-semibold text-gray-900 hover:text-blue-600 transition" href={lib.repo} target="_blank" rel="noopener noreferrer">{lib.name}</a>
+                <p class="text-sm text-gray-500">by {lib.author}</p>
+              </div>
+              <span class="text-xs font-mono bg-gray-100 text-gray-600 rounded-full px-3 py-1">MIT License</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

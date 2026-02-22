@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const features = [
+  {
+    title: 'Weekly Agenda View',
+    description: 'Replace the month view with the weekly agenda view.',
+    gif: 'https://i.imgur.com/sxZBLru.gif',
+    alt: 'WeeklyAgenda WallCal',
+  },
+  {
+    title: 'Adjustable Time Range',
+    description: 'Change the visible time range while in week view mode.',
+    gif: 'https://i.imgur.com/s39T4MX.gif',
+    alt: 'VisiblePeriod WallCal',
+  },
+  {
+    title: 'Variable Day Display',
+    description: 'Change the number of days displayed in week view mode (the leftmost day is today).',
+    gif: 'https://i.imgur.com/opclUZV.gif',
+    alt: 'DayNum WallCal',
+  },
+  {
+    title: 'Calendar Filtering',
+    description: 'Choose which calendar/reminder sets to be displayed on the calendar.',
+    gif: 'https://i.imgur.com/C8KOvE7.gif',
+    alt: 'ToggleCalendarSet WallCal',
+  },
+  {
+    title: 'View Toggle',
+    description: 'Completely hide the to-do list view or the calendar view.',
+    gif: 'https://i.imgur.com/UfuBAR9.gif',
+    alt: 'ToggleHiddenView WallCal',
+  },
+  {
+    title: 'Color Customization',
+    description: "Change the calendar's background color freely.",
+    gif: 'https://i.imgur.com/wznPnyF.gif',
+    alt: 'ChangeColor WallCal',
+  },
+  {
+    title: 'Time Format Selection',
+    description: 'Set the hour indicator between 12-hour or 24-hour format.',
+  },
+];
+---
+<BaseLayout title="Expert Calendar Add-on - WallCal">
+  <section class="relative pt-32 pb-12 md:pt-40 md:pb-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <h1 class="text-4xl md:text-5xl font-bold text-center mb-4" data-aos="zoom-y-out">Expert Calendar Add-on</h1>
+      <p class="text-center text-gray-600 mb-12" data-aos="zoom-y-out" data-aos-delay="150">
+        Unlock advanced features to customize your calendar experience.
+      </p>
+      <div class="space-y-10">
+        {features.map((feature, i) => (
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden" data-aos="zoom-y-out" data-aos-delay={i * 50}>
+            {feature.gif && (
+              <img src={feature.gif} alt={feature.alt} class="w-full" loading="lazy" />
+            )}
+            <div class="p-6">
+              <h2 class="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h2>
+              <p class="text-gray-600">{feature.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

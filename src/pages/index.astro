@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroBackground from '../components/decorative/HeroBackground.astro';
+import Hero from '../components/Hero.astro';
+import FeatureShowcaseLeft from '../components/FeatureShowcaseLeft.astro';
+import FeatureShowcaseRight from '../components/FeatureShowcaseRight.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import SetappBanner from '../components/SetappBanner.astro';
+import FAQ from '../components/FAQ.astro';
+import BottomCTA from '../components/BottomCTA.astro';
+import { getFAQItems } from '../lib/notion';
+
+const faqItems = await getFAQItems();
+---
+<BaseLayout title="WallCal - Desktop Calendar for Mac">
+
+  <!-- Hero -->
+  <section class="relative">
+    <HeroBackground />
+    <Hero />
+  </section>
+
+  <!-- Feature Showcase: Monthly Calendar (image left) -->
+  <FeatureShowcaseLeft
+    title="Your monthly calendar"
+    image="/my-assets/wallcal-monthly-view.png"
+    imageAlt="WallCal monthly calendar view"
+    features={[
+      "Display all events in the current month",
+      "Clean monthly calendar layout on your desktop",
+      "Quickly see your schedule at a glance",
+    ]}
+  />
+
+  <!-- Feature Showcase: Today Agenda (image right) -->
+  <FeatureShowcaseRight
+    title="Your today agenda"
+    image="/my-assets/wallcal-today-agenda.png"
+    imageAlt="WallCal today agenda view"
+    features={[
+      "All your today events in a timeline",
+      "Customizable visible time range",
+      "Can display up to 7 days ahead",
+    ]}
+  />
+
+  <!-- Feature Showcase: To-do List (image left) -->
+  <FeatureShowcaseLeft
+    title="Your to-do list"
+    image="/my-assets/wallcal-todolist.png"
+    imageAlt="WallCal to-do list view"
+    features={[
+      "Mini calendar with indicators for days with to-dos",
+      "All to-dos in the current month, displayed as a list",
+    ]}
+  />
+
+  <!-- Feature Grid -->
+  <FeatureGrid />
+
+  <!-- Setapp Banner -->
+  <SetappBanner />
+
+  <!-- FAQ -->
+  <FAQ items={faqItems} />
+
+  <!-- Bottom CTA -->
+  <BottomCTA />
+
+</BaseLayout>
