@@ -19,12 +19,11 @@ const { title, description = 'WallCal - Desktop Calendar for Mac' } = Astro.prop
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <!-- Plausible Analytics -->
+  <!-- Umami Analytics -->
   <script
     defer
-    data-domain="wallcal.app"
-    data-api="https://plausible.tsukie.com/api/event"
-    src="https://plausible.tsukie.com/js/script.tagged-events.outbound-links.js"
+    src="https://cloud.umami.is/script.js"
+    data-website-id="baeb3274-2eac-4049-99d4-268958b4931f"
     is:inline
   ></script>
 </head>
