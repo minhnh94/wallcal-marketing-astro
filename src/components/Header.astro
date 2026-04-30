@@ -15,16 +15,16 @@ import Logo from './Logo.astro';
       <nav class="hidden md:flex md:grow">
         <ul class="text-sm flex grow justify-center flex-wrap items-center gap-4 lg:gap-8">
           <li class="px-3 py-1">
-            <a class="text-gray-700 hover:text-gray-900 flex items-center transition" href="/">Home</a>
+            <a class="text-gray-700 hover:text-gray-900 flex items-center transition" href="/" data-posthog-event="navigation_link_clicked" data-posthog-location="desktop_header" data-posthog-nav-label="Home">Home</a>
           </li>
           <li class="px-3 py-1">
-            <a class="text-gray-700 hover:text-gray-900 flex items-center transition" href="/contact-us">Contact Us</a>
+            <a class="text-gray-700 hover:text-gray-900 flex items-center transition" href="/contact-us" data-posthog-event="navigation_link_clicked" data-posthog-location="desktop_header" data-posthog-nav-label="Contact Us">Contact Us</a>
           </li>
           <li class="px-3 py-1">
-            <a class="text-gray-700 hover:text-gray-900 flex items-center transition" href="/acknowledgements">Acknowledgements</a>
+            <a class="text-gray-700 hover:text-gray-900 flex items-center transition" href="/acknowledgements" data-posthog-event="navigation_link_clicked" data-posthog-location="desktop_header" data-posthog-nav-label="Acknowledgements">Acknowledgements</a>
           </li>
           <li class="px-3 py-1">
-            <a class="text-gray-700 hover:text-gray-900 flex items-center transition" href="/expert-calendar-addon">Expert Calendar Addon</a>
+            <a class="text-gray-700 hover:text-gray-900 flex items-center transition" href="/expert-calendar-addon" data-posthog-event="navigation_link_clicked" data-posthog-location="desktop_header" data-posthog-nav-label="Expert Calendar Addon">Expert Calendar Addon</a>
           </li>
         </ul>
       </nav>
@@ -32,7 +32,7 @@ import Logo from './Logo.astro';
       <!-- Desktop CTA -->
       <ul class="flex-1 flex justify-end items-center gap-3">
         <li class="hidden md:block">
-          <a class="btn-sm text-gray-200 bg-gray-800 hover:bg-gray-900 shadow-sm" href="https://apps.apple.com/app/wallcal/id1581367286">Download</a>
+          <a class="btn-sm text-gray-200 bg-gray-800 hover:bg-gray-900 shadow-sm" href="https://apps.apple.com/app/wallcal/id1581367286" data-posthog-event="download_cta_clicked" data-posthog-location="desktop_header" data-posthog-provider="app_store" data-posthog-cta-text="Download">Download</a>
         </li>
       </ul>
 
@@ -44,6 +44,8 @@ import Logo from './Logo.astro';
           class="group inline-flex w-8 h-8 text-gray-800 bg-white text-center items-center justify-center transition"
           aria-controls="mobile-nav"
           :aria-expanded="expanded"
+          data-posthog-event="mobile_menu_toggled"
+          data-posthog-location="mobile_header"
           @click.stop="expanded = !expanded"
         >
           <span class="sr-only">Menu</span>
@@ -71,19 +73,19 @@ import Logo from './Logo.astro';
         >
           <ul class="text-sm p-2">
             <li>
-              <a class="flex text-gray-700 hover:bg-gray-100 rounded-lg py-1.5 px-2" href="/">Home</a>
+              <a class="flex text-gray-700 hover:bg-gray-100 rounded-lg py-1.5 px-2" href="/" data-posthog-event="navigation_link_clicked" data-posthog-location="mobile_header" data-posthog-nav-label="Home">Home</a>
             </li>
             <li>
-              <a class="flex text-gray-700 hover:bg-gray-100 rounded-lg py-1.5 px-2" href="/contact-us">Contact Us</a>
+              <a class="flex text-gray-700 hover:bg-gray-100 rounded-lg py-1.5 px-2" href="/contact-us" data-posthog-event="navigation_link_clicked" data-posthog-location="mobile_header" data-posthog-nav-label="Contact Us">Contact Us</a>
             </li>
             <li>
-              <a class="flex text-gray-700 hover:bg-gray-100 rounded-lg py-1.5 px-2" href="/acknowledgements">Acknowledgements</a>
+              <a class="flex text-gray-700 hover:bg-gray-100 rounded-lg py-1.5 px-2" href="/acknowledgements" data-posthog-event="navigation_link_clicked" data-posthog-location="mobile_header" data-posthog-nav-label="Acknowledgements">Acknowledgements</a>
             </li>
             <li>
-              <a class="flex text-gray-700 hover:bg-gray-100 rounded-lg py-1.5 px-2" href="/expert-calendar-addon">Expert Calendar Addon</a>
+              <a class="flex text-gray-700 hover:bg-gray-100 rounded-lg py-1.5 px-2" href="/expert-calendar-addon" data-posthog-event="navigation_link_clicked" data-posthog-location="mobile_header" data-posthog-nav-label="Expert Calendar Addon">Expert Calendar Addon</a>
             </li>
             <li>
-              <a class="flex text-gray-700 hover:bg-gray-100 rounded-lg py-1.5 px-2" href="https://apps.apple.com/app/wallcal/id1581367286">Download</a>
+              <a class="flex text-gray-700 hover:bg-gray-100 rounded-lg py-1.5 px-2" href="https://apps.apple.com/app/wallcal/id1581367286" data-posthog-event="download_cta_clicked" data-posthog-location="mobile_header" data-posthog-provider="app_store" data-posthog-cta-text="Download">Download</a>
             </li>
           </ul>
         </nav>

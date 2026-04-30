@@ -11,7 +11,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="space-y-6" data-aos="zoom-y-out" data-aos-delay="300">
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
           <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500 mb-2">Support</h2>
-          <a class="text-lg text-blue-600 hover:text-blue-700 transition" href="mailto:support@wallcal.app">support@wallcal.app</a>
+          <a
+            class="text-lg text-blue-600 hover:text-blue-700 transition"
+            href="mailto:support@wallcal.app"
+            data-posthog-event="support_email_clicked"
+            data-posthog-location="contact_page"
+            data-posthog-email="support@wallcal.app"
+          >
+            support@wallcal.app
+          </a>
         </div>
       </div>
     </div>

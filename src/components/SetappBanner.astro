@@ -2,12 +2,54 @@
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="py-12 md:py-20" data-aos="fade-up">
       <setapp-custom-banner
+        data-posthog-setapp-banner
         iconUrl="https://store.setapp.com/app/541/6210/icon-1655480536-62aca0d869d85.png"
         appName="WallCal"
         appId="541"
         vendorId="355"
       ></setapp-custom-banner>
       <script is:inline type="text/javascript" src="https://developer.setapp.com/setapp-banner/index.js" async></script>
+      <script is:inline>
+        (() => {
+          const banner = document.querySelector('[data-posthog-setapp-banner]');
+          const bannerScript = document.querySelector('script[src="https://developer.setapp.com/setapp-banner/index.js"]');
+
+          function captureSetappEvent(eventName, properties = {}) {
+            try {
+              window.posthog?.capture(eventName, {
+                page_path: window.location.pathname,
+                page_url: window.location.href,
+                app_id: '541',
+                vendor_id: '355',
+                ...properties,
+              });
+            } catch (error) {
+              window.posthog?.captureException?.(error);
+            }
+          }
+
+          if (banner && 'IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+              if (!entries.some((entry) => entry.isIntersecting)) {
+                return;
+              }
+
+              captureSetappEvent('setapp_banner_viewed');
+              observer.disconnect();
+            }, { threshold: 0.5 });
+
+            observer.observe(banner);
+          }
+
+          bannerScript?.addEventListener('error', () => {
+            const error = new Error('Setapp banner script failed to load');
+            window.posthog?.captureException?.(error);
+            captureSetappEvent('setapp_banner_error', {
+              script_src: 'https://developer.setapp.com/setapp-banner/index.js',
+            });
+          });
+        })();
+      </script>
     </div>
   </div>
 </section>

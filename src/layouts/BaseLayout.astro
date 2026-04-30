@@ -3,6 +3,7 @@ import '../styles/global.css';
 import 'aos/dist/aos.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import PostHog from '../components/posthog.astro';
 
 interface Props {
   title: string;
@@ -26,6 +27,7 @@ const { title, description = 'WallCal - Desktop Calendar for Mac' } = Astro.prop
     data-website-id="baeb3274-2eac-4049-99d4-268958b4931f"
     is:inline
   ></script>
+  <PostHog />
 </head>
 <body class="font-inter antialiased bg-gray-50 text-gray-900 tracking-tight">
   <div class="flex flex-col min-h-screen overflow-hidden supports-[overflow:clip]:overflow-clip">

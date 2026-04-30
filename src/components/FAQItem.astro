@@ -18,6 +18,8 @@ const { question, answer } = Astro.props;
   <h2>
     <button
       class="flex items-center justify-between w-full font-semibold text-left px-4 py-3"
+      data-posthog-event="faq_item_toggled"
+      data-posthog-question={question}
       @click="expanded = !expanded"
       :aria-expanded="expanded"
     >

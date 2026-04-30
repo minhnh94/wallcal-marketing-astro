@@ -32,3 +32,6 @@ public/sitemap.xml
 
 # planning
 .planning/
+/.claude/skills/integration-astro-static
+/.omx
+/.posthog/skills
