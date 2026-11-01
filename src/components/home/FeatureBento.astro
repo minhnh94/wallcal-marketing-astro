@@ -1,5 +1,5 @@
 ---
-import ScreenshotPlaceholder from '../ScreenshotPlaceholder.astro';
+import Screenshot from '../Screenshot.astro';
 
 const appearances = [
   { id: 'glass', file: 'nativeGlass', name: 'Native Glass', note: 'Liquid Glass that refracts your wallpaper' },
@@ -37,7 +37,7 @@ const extras = [
           <p class="mt-2 text-ink-500 max-w-md">Every event across every calendar, laid out on a clean month grid right on your desktop.</p>
         </div>
         <div class="mt-7 mx-7 md:mx-9 rounded-t-2xl overflow-hidden grow">
-          <ScreenshotPlaceholder label="Month view" src="/my-assets/shots/month.jpg" alt="WallCal month view with a sidebar of upcoming events, on a Mac desktop" ratio="3700 / 2320" />
+          <Screenshot src="/my-assets/shots/month.jpg" alt="WallCal month view with a sidebar of upcoming events, on a Mac desktop" ratio="3700 / 2320" />
         </div>
       </article>
 
@@ -48,7 +48,7 @@ const extras = [
           <p class="mt-2 text-ink-500">A mini calendar with an event list next to it. Your to-dos from Reminders show up there too.</p>
         </div>
         <div class="mt-7 mx-7 rounded-t-2xl overflow-hidden grow">
-          <ScreenshotPlaceholder label="Sub calendar + event list" src="/my-assets/shots/sidebar.jpg" alt="WallCal sidebar showing today's date and a mini calendar with event dots" ratio="4 / 5" />
+          <Screenshot src="/my-assets/shots/sidebar.jpg" alt="WallCal sidebar showing today's date and a mini calendar with event dots" ratio="4 / 5" />
         </div>
       </article>
 
@@ -64,7 +64,7 @@ const extras = [
           </a>
         </div>
         <div class="mt-7 mx-7 rounded-t-2xl overflow-hidden grow">
-          <ScreenshotPlaceholder label="Weekly agenda view" src="/my-assets/shots/weekly.jpg" alt="WallCal weekly agenda timeline" ratio="1840 / 2300" />
+          <Screenshot src="/my-assets/shots/weekly.jpg" alt="WallCal weekly agenda timeline" ratio="1840 / 2300" />
         </div>
       </article>
 
@@ -95,7 +95,7 @@ const extras = [
           <div class="relative rounded-2xl overflow-hidden grid bg-ink-900">
             {appearances.map((a) => (
               <div class="[grid-area:1/1] rounded-2xl overflow-hidden" x-show={`mode === '${a.id}'`} x-transition.opacity.duration.300ms x-cloak={a.id !== 'glass' ? '' : undefined}>
-                <ScreenshotPlaceholder label={`${a.name} appearance`} src={`/my-assets/shots/appearance-${a.file}.jpg`} alt={`WallCal ${a.name} appearance`} ratio="4 / 3" class="h-full object-cover" />
+                <Screenshot src={`/my-assets/shots/appearance-${a.file}.jpg`} alt={`WallCal ${a.name} appearance`} ratio="4 / 3" class="h-full object-cover" />
               </div>
             ))}
           </div>

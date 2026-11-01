@@ -11,7 +11,7 @@ layer(base);
   --font-sans: Geist, ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
 
-  /* Brand: the red of the WallCal icon's binding, plus its accent chips */
+  /* Brand: the red of the WallCal icon's binding */
   --color-brand-50: #fef3f1;
   --color-brand-100: #fde3de;
   --color-brand-200: #fbc6bc;
@@ -20,9 +20,6 @@ layer(base);
   --color-brand-500: #e5452c;
   --color-brand-600: #cc3219;
   --color-brand-700: #a92814;
-  --color-chip-cyan: #2fb8cf;
-  --color-chip-orange: #f2683f;
-  --color-chip-yellow: #f7cf33;
 
   --color-ink-950: #0b0b0f;
   --color-ink-900: #15151b;
@@ -38,13 +35,8 @@ layer(base);
   --text-h2--line-height: 1.08;
   --text-h2--letter-spacing: -0.035em;
 
-  --animate-float: float 7s ease-in-out infinite;
   --animate-marquee: marquee 40s linear infinite;
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
@@ -76,7 +68,6 @@ layer(base);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-float,
   .animate-marquee {
     animation: none;
   }

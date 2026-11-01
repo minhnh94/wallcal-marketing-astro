@@ -1,0 +1,13 @@
+---
+// Product screenshot with a fixed aspect ratio, so layout doesn't shift while it loads.
+interface Props {
+  src: string;
+  alt: string;
+  ratio: string;
+  class?: string;
+}
+
+const { src, alt, ratio, class: className } = Astro.props;
+---
+
+<img src={src} alt={alt} class:list={['w-full h-auto rounded-[inherit]', className]} style={`aspect-ratio: ${ratio}`} loading="lazy" />
