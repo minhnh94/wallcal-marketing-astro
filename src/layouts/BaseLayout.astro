@@ -12,9 +12,11 @@ interface Props {
 
 const {
   title,
-  description = 'WallCal puts your calendars and reminders right on your Mac desktop — always visible, never in the way.',
+  description = 'See your week at a glance, right on your Mac desktop. Calendars and reminders behind every window, in native Liquid Glass. Free on the Mac App Store.',
 } = Astro.props;
-const ogImage = new URL('/my-assets/twitter-card.png', Astro.site).href;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/my-assets/og.jpg', Astro.site).href;
+const ogImageAlt = 'WallCal month view on a Mac desktop, next to the headline "Your calendar, right on your wallpaper."';
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -24,12 +26,23 @@ const ogImage = new URL('/my-assets/twitter-card.png', Astro.site).href;
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="theme-color" content="#f7f6f3" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="WallCal" />
+  <meta property="og:url" content={canonical} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImage} />
-  <meta property="og:type" content="website" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={ogImageAlt} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@WallCalApp" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  <meta name="twitter:image:alt" content={ogImageAlt} />
   <PostHog />
 </head>
 <body class="font-sans antialiased bg-paper text-ink-950">
