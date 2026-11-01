@@ -44,6 +44,6 @@ for name, ((cw, ch, cx, cy), label, states) in clips.items():
     total = HOLD * len(states)
     base = ["ffmpeg", "-loglevel", "error", "-y", *inputs, "-filter_complex", fc, "-map", "[out]", "-t", f"{total:.2f}", "-an"]
     run(base + ["-c:v", "libx264", "-crf", "25", "-preset", "slow", "-pix_fmt", "yuv420p", "-movflags", "+faststart", f"{OUT}/{name}.mp4"])
-    run(base + ["-c:v", "libvpx-vp9", "-crf", "38", "-b:v", "0", "-row-mt", "1", "-cpu-used", "2", f"{OUT}/{name}.webm"])
+    run(base + ["-c:v", "libvpx-vp9", "-pix_fmt", "yuv420p", "-crf", "38", "-b:v", "0", "-row-mt", "1", "-cpu-used", "2", f"{OUT}/{name}.webm"])
     run(["ffmpeg", "-loglevel", "error", "-y", "-i", f"{OUT}/{name}.mp4", "-frames:v", "1", "-q:v", "4", f"{OUT}/{name}.jpg"])
     print(name, f"{total:.1f}s")

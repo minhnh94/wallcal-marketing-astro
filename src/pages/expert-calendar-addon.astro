@@ -35,8 +35,8 @@ const features = clips.map((clip) => ({ clip, ...p.features[clip] }));
                 aria-label={p.clipLabel(feature.title)}
                 data-addon-clip
               >
-                <source src={`/my-assets/addon/${feature.clip}.webm`} type="video/webm" />
                 <source src={`/my-assets/addon/${feature.clip}.mp4`} type="video/mp4" />
+                <source src={`/my-assets/addon/${feature.clip}.webm`} type="video/webm" />
               </video>
             </div>
             <div class="p-6 md:p-7">
