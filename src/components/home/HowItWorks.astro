@@ -1,28 +1,15 @@
 ---
-const steps = [
-  {
-    n: '01',
-    title: 'Install and allow access',
-    body: 'Grant Calendar and Reminders access when macOS asks. Your existing accounts show up instantly.',
-  },
-  {
-    n: '02',
-    title: 'Make room for your day',
-    body: 'Bring WallCal to the front from the menu bar, drag it into place and resize its edges.',
-  },
-  {
-    n: '03',
-    title: 'Make it yours',
-    body: 'Choose an appearance, your calendars and a layout in Settings. Then forget it’s there — until you need it.',
-  },
-];
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.url).howItWorks;
+const steps = t.steps.map((s, i) => ({ ...s, n: String(i + 1).padStart(2, '0') }));
 ---
 
 <section class="pt-24 md:pt-36">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
-      <span class="eyebrow">Get going</span>
-      <h2 class="mt-4 text-h2 font-semibold text-balance">Up and running in three steps.</h2>
+      <span class="eyebrow">{t.eyebrow}</span>
+      <h2 class="mt-4 text-h2 font-semibold text-balance">{t.title}</h2>
     </div>
 
     <ol class="mt-14 grid md:grid-cols-3 gap-4 relative">

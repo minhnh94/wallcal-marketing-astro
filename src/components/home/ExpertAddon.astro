@@ -1,14 +1,9 @@
 ---
 import Screenshot from '../Screenshot.astro';
+import { useLocalizePath, useTranslations } from '../../i18n';
 
-const perks = [
-  'Weekly agenda view instead of the month',
-  'Set the visible hours and number of days',
-  'Choose which calendars & reminder lists appear',
-  'Hide the sidebar or the main calendar',
-  'Rolling next-days or fixed-week agenda',
-  '12/24-hour clock, Sunday or Monday week start',
-];
+const t = useTranslations(Astro.url).expert;
+const l = useLocalizePath(Astro.url);
 ---
 
 <section class="pt-24 md:pt-36">
@@ -18,17 +13,17 @@ const perks = [
 
       <div class="relative grid lg:grid-cols-2 gap-10 p-8 md:p-14 items-center">
         <div data-aos="fade-up">
-          <span class="inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-white/15 px-3 py-1 text-xs font-medium uppercase tracking-[0.14em] text-white/80">Optional add-on</span>
+          <span class="inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-white/15 px-3 py-1 text-xs font-medium uppercase tracking-[0.14em] text-white/80">{t.badge}</span>
           <h2 class="mt-5 text-h2 font-semibold text-balance">
-            Expert Calendar,
-            <span class="font-serif italic font-normal text-brand-300">for power planners.</span>
+            {t.titleA}
+            <span class="font-serif italic font-normal text-brand-300">{t.titleEm}</span>
           </h2>
           <p class="mt-5 text-lg text-white/65 max-w-md">
-            WallCal is free. When you want more control, unlock the Expert Calendar add-on with a one-time in-app purchase for lifetime access. No subscription. Or get it included with Setapp.
+            {t.body}
           </p>
 
           <ul class="mt-8 grid sm:grid-cols-2 gap-x-6 gap-y-3">
-            {perks.map((p) => (
+            {t.perks.map((p) => (
               <li class="flex items-start gap-2.5 text-[15px] text-white/85">
                 <svg class="mt-0.5 w-5 h-5 shrink-0 text-brand-300" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 10.5 3.2 3.2L15 7" /></svg>
                 {p}
@@ -38,17 +33,17 @@ const perks = [
 
           <a
             class="btn mt-10 bg-white text-ink-950 hover:bg-white/90 hover:-translate-y-px"
-            href="/expert-calendar-addon"
+            href={l('/expert-calendar-addon')}
             data-posthog-event="navigation_link_clicked"
             data-posthog-location="expert_addon_section"
             data-posthog-nav-label="Expert Calendar Addon"
           >
-            See every add-on feature <span aria-hidden="true">&rarr;</span>
+            {t.cta} <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
 
         <div class="rounded-3xl overflow-hidden ring-1 ring-white/10" data-aos="fade-up" data-aos-delay="150">
-          <Screenshot src="/my-assets/shots/weekly-wide.jpg" alt="WallCal weekly agenda view with visible hours from 7:00 to 21:00" ratio="4 / 3" />
+          <Screenshot src="/my-assets/shots/weekly-wide.jpg" alt={t.alt} ratio="4 / 3" />
         </div>
       </div>
     </div>

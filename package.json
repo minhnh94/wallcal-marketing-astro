@@ -12,7 +12,6 @@
   "dependencies": {
     "@alpinejs/focus": "^3.15.8",
     "@astrojs/alpinejs": "^0.4.9",
-    "@notionhq/client": "^2.3.0",
     "@tailwindcss/vite": "^4.2.0",
     "alpinejs": "^3.15.8",
     "aos": "^2.3.4",

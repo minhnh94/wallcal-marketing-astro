@@ -1,14 +1,21 @@
 ---
 import Logo from './Logo.astro';
+import LanguagePicker from './LanguagePicker.astro';
 import { links } from '../lib/links';
+import { getLocale, localeMeta, locales, localizePath, stripLocale, useLocalizePath, useTranslations } from '../i18n';
+import en from '../i18n/en';
 
-const nav = [
-  { label: 'Features', href: '/#features' },
-  { label: 'Expert Add-on', href: '/expert-calendar-addon' },
-  { label: 'Pricing', href: '/#get-wallcal' },
-  { label: 'FAQ', href: '/#faq' },
-  { label: 'Contact Us', href: '/contact-us' },
-];
+const t = useTranslations(Astro.url);
+const l = useLocalizePath(Astro.url);
+const current = getLocale(Astro.url);
+const basePath = stripLocale(Astro.url.pathname);
+
+// `track` stays English so analytics labels don't split by language.
+const nav = (['features', 'addon', 'pricing', 'faq', 'contact'] as const).map((key) => ({
+  label: t.nav[key],
+  track: en.nav[key],
+  href: l({ features: '/#features', addon: '/expert-calendar-addon', pricing: '/#get-wallcal', faq: '/#faq', contact: '/contact-us' }[key]),
+}));
 ---
 
 <header class="fixed top-3 md:top-5 inset-x-0 z-30">
@@ -25,18 +32,21 @@ const nav = [
           {nav.map((item) => (
             <li>
               <a
-                class="px-3 py-2 rounded-full text-ink-700 hover:text-ink-950 hover:bg-white/70 transition"
+                class="px-2 lg:px-3 py-2 rounded-full text-ink-700 hover:text-ink-950 hover:bg-white/70 transition whitespace-nowrap"
                 href={item.href}
                 data-posthog-event="navigation_link_clicked"
                 data-posthog-location="desktop_header"
-                data-posthog-nav-label={item.label}
+                data-posthog-nav-label={item.track}
               >{item.label}</a>
             </li>
           ))}
         </ul>
       </nav>
 
-      <div class="flex-1 flex justify-end items-center gap-2">
+      <div class="flex-1 flex justify-end items-center gap-1">
+        <div class="hidden md:block">
+          <LanguagePicker location="desktop_header" />
+        </div>
         <a
           class="btn-sm btn-primary hidden md:inline-flex"
           href={links.appStoreShort}
@@ -44,7 +54,7 @@ const nav = [
           data-posthog-location="desktop_header"
           data-posthog-provider="app_store"
           data-posthog-cta-text="Download"
-        >Download free</a>
+        >{t.nav.download}</a>
 
         <!-- Mobile menu -->
         <div class="flex md:hidden" x-data="{ expanded: false }">
@@ -56,7 +66,7 @@ const nav = [
             data-posthog-location="mobile_header"
             @click.stop="expanded = !expanded"
           >
-            <span class="sr-only">Menu</span>
+            <span class="sr-only">{t.nav.menu}</span>
             <svg class="w-4 h-4 fill-current pointer-events-none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
               <rect class="origin-center transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] -translate-y-[5px] translate-x-[7px] group-aria-expanded:rotate-[315deg] group-aria-expanded:translate-y-0 group-aria-expanded:translate-x-0" y="7" width="9" height="2" rx="1"></rect>
               <rect class="origin-center group-aria-expanded:rotate-45 transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.8)]" y="7" width="16" height="2" rx="1"></rect>
@@ -86,10 +96,25 @@ const nav = [
                     href={item.href}
                     data-posthog-event="navigation_link_clicked"
                     data-posthog-location="mobile_header"
-                    data-posthog-nav-label={item.label}
+                    data-posthog-nav-label={item.track}
                   >{item.label}</a>
                 </li>
               ))}
+              <li class="flex flex-wrap gap-1 px-2 pt-2 mt-1 border-t border-black/5">
+                {locales.map((loc) => (
+                  <a
+                    class:list={['rounded-full px-3 py-1.5 text-sm', loc === current ? 'bg-ink-950 text-white' : 'text-ink-700 hover:bg-black/5']}
+                    href={localizePath(basePath, loc)}
+                    hreflang={localeMeta[loc].htmlLang}
+                    lang={localeMeta[loc].htmlLang}
+                    aria-current={loc === current ? 'true' : undefined}
+                    data-posthog-event="language_switched"
+                    data-posthog-location="mobile_header"
+                    data-posthog-from={current}
+                    data-posthog-to={loc}
+                  >{localeMeta[loc].label}</a>
+                ))}
+              </li>
               <li class="p-2">
                 <a
                   class="btn btn-primary w-full"
@@ -98,7 +123,7 @@ const nav = [
                   data-posthog-location="mobile_header"
                   data-posthog-provider="app_store"
                   data-posthog-cta-text="Download"
-                >Download free</a>
+                >{t.nav.download}</a>
               </li>
             </ul>
           </nav>

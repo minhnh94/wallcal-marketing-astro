@@ -27,6 +27,7 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST ?? 'https://us.i.posthog
         const properties = {
           page_path: window.location.pathname,
           page_url: window.location.href,
+          locale: document.documentElement.lang,
         };
 
         if (element instanceof HTMLAnchorElement) {

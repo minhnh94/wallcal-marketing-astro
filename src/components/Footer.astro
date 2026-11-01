@@ -1,28 +1,41 @@
 ---
 import Logo from './Logo.astro';
 import { links } from '../lib/links';
+import { useLocalizePath, useTranslations } from '../i18n';
+import en from '../i18n/en';
+
+const t = useTranslations(Astro.url);
+const l = useLocalizePath(Astro.url);
+
+// `track` stays English so analytics labels don't split by language.
+const page = (key: 'home' | 'features' | 'addon' | 'faq' | 'contact' | 'ack', href: string) => ({
+  label: t.footer[key],
+  track: en.footer[key],
+  href: l(href),
+});
 
 const columns = [
   {
-    title: 'Product',
+    title: t.footer.product,
     items: [
-      { label: 'Home', href: '/' },
-      { label: 'Features', href: '/#features' },
-      { label: 'Expert Calendar Add-on', href: '/expert-calendar-addon' },
-      { label: 'FAQ', href: '/#faq' },
+      page('home', '/'),
+      page('features', '/#features'),
+      page('addon', '/expert-calendar-addon'),
+      page('faq', '/#faq'),
     ],
   },
   {
-    title: 'Download',
+    title: t.footer.download,
     items: [
-      { label: 'Mac App Store', href: links.appStore, provider: 'app_store', external: true },
-      { label: 'Setapp', href: links.setapp, provider: 'setapp', external: true },    ],
+      { label: 'Mac App Store', track: 'Mac App Store', href: links.appStore, provider: 'app_store', external: true },
+      { label: 'Setapp', track: 'Setapp', href: links.setapp, provider: 'setapp', external: true },
+    ],
   },
   {
-    title: 'Company',
+    title: t.footer.company,
     items: [
-      { label: 'Contact Us', href: '/contact-us' },
-      { label: 'Acknowledgements', href: '/acknowledgements' },
+      page('contact', '/contact-us'),
+      page('ack', '/acknowledgements'),
     ],
   },
 ];
@@ -35,17 +48,17 @@ const columns = [
       <div class="space-y-4">
         <Logo />
         <p class="text-sm text-ink-500 max-w-xs">
-          Your calendars and reminders, at home on your Mac desktop.
+          {t.footer.tagline}
         </p>
         <p class="text-sm text-ink-500">
-          Contact us at <a class="text-ink-950 hover:underline" href="mailto:tsukie.studio@gmail.com" data-posthog-event="support_email_clicked" data-posthog-location="footer" data-posthog-email="support@wallcal.app">support@wallcal.app</a>
+          {t.footer.contactPrefix} <a class="text-ink-950 hover:underline" href="mailto:tsukie.studio@gmail.com" data-posthog-event="support_email_clicked" data-posthog-location="footer" data-posthog-email="support@wallcal.app">support@wallcal.app</a>
         </p>
         <a
           class="inline-flex items-center gap-2 text-sm text-ink-700 hover:text-ink-950 transition"
           href={links.twitter}
           target="_blank"
           rel="nofollow noreferrer"
-          aria-label="Follow @WallCalApp on X"
+          aria-label={t.footer.followX}
           data-posthog-event="social_link_clicked"
           data-posthog-location="footer"
           data-posthog-network="twitter"
@@ -74,7 +87,7 @@ const columns = [
                     data-posthog-event="download_cta_clicked"
                     data-posthog-location="footer"
                     data-posthog-provider={item.provider}
-                    data-posthog-cta-text={item.label}
+                    data-posthog-cta-text={item.track}
                   >{item.label}</a>
                 ) : (
                   <a
@@ -82,7 +95,7 @@ const columns = [
                     href={item.href}
                     data-posthog-event="navigation_link_clicked"
                     data-posthog-location="footer"
-                    data-posthog-nav-label={item.label}
+                    data-posthog-nav-label={item.track}
                   >{item.label}</a>
                 )}
               </li>
@@ -94,7 +107,7 @@ const columns = [
 
     <div class="flex flex-col sm:flex-row items-center justify-between gap-2 pb-10 text-xs text-ink-500">
       <span>&copy; tsukie</span>
-      <span>Made for macOS</span>
+      <span>{t.footer.madeFor}</span>
     </div>
   </div>
 

@@ -72,3 +72,27 @@ layer(base);
     animation: none;
   }
 }
+
+/* CJK: Geist and Instrument Serif have no CJK glyphs, and synthetic italics look broken. */
+:lang(ja) {
+  font-family: Geist, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+}
+:lang(zh-Hans) {
+  font-family: Geist, 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+}
+:is(:lang(ja), :lang(zh-Hans)) :is(h1, h2) .font-serif {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+:is(:lang(ja), :lang(zh-Hans)) :is(h1, h2, h3) {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+:lang(ja) :is(h1, h2, h3, p) {
+  word-break: auto-phrase;
+}
+:lang(de) :is(h1, h2, h3) {
+  hyphens: auto;
+}

@@ -2,53 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import { links } from '../lib/links';
+import { useTranslations } from '../i18n';
+
+const t = useTranslations(Astro.url);
+const p = t.addonPage;
 
 // Each clip is a real WallCal capture switching between the setting's values.
-const features = [
-  {
-    clip: 'weekly-agenda',
-    title: 'Weekly Agenda View',
-    description: 'Replace the month view with a timeline of your week.',
-  },
-  {
-    clip: 'time-range',
-    title: 'Adjustable Time Range',
-    description: 'Choose the hours the weekly agenda shows, so your day fills the view.',
-  },
-  {
-    clip: 'days-to-show',
-    title: 'Variable Day Display',
-    description: 'Show anywhere from 1 to 7 days in the weekly agenda, starting today or at the start of the week.',
-  },
-  {
-    clip: 'calendar-filtering',
-    title: 'Calendar Filtering',
-    description: 'Choose which calendars and reminder lists appear on WallCal.',
-  },
-  {
-    clip: 'view-toggle',
-    title: 'View Toggle',
-    description: 'Hide the sidebar or the main calendar for a more minimal desktop.',
-  },
-  {
-    clip: 'time-format',
-    title: 'Time Format Selection',
-    description: 'Switch between 12-hour and 24-hour time.',
-  },
-  {
-    clip: 'week-start',
-    title: 'Week Start Day',
-    description: 'Start your week on Sunday or Monday.',
-  },
-];
+const clips = ['weekly-agenda', 'time-range', 'days-to-show', 'calendar-filtering', 'view-toggle', 'time-format', 'week-start'] as const;
+const features = clips.map((clip) => ({ clip, ...p.features[clip] }));
 ---
-<BaseLayout title="Expert Calendar Add-on — WallCal" description="Weekly agenda, custom visible hours, calendar filtering and more. A one-time purchase for lifetime access, or included with Setapp.">
+<BaseLayout title={t.meta.addonTitle} description={t.meta.addonDescription}>
   <section class="relative isolate pt-36 pb-12 md:pt-44 md:pb-16">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <PageHeader
-        eyebrow="Optional add-on"
-        title="Expert Calendar Add-on"
-        lead="Unlock advanced features to customize your calendar experience."
+        eyebrow={p.eyebrow}
+        title={p.title}
+        lead={p.lead}
       />
 
       <div class="mt-14 grid md:grid-cols-2 gap-4">
@@ -63,7 +32,7 @@ const features = [
                 playsinline
                 preload="metadata"
                 poster={`/my-assets/addon/${feature.clip}-poster.jpg`}
-                aria-label={`${feature.title} in WallCal`}
+                aria-label={p.clipLabel(feature.title)}
                 data-addon-clip
               >
                 <source src={`/my-assets/addon/${feature.clip}.webm`} type="video/webm" />
@@ -91,7 +60,7 @@ const features = [
       </script>
 
       <div class="mt-14 text-center" data-aos="fade-up">
-        <p class="text-ink-500">A one-time in-app purchase for lifetime access, or included with Setapp at no extra cost.</p>
+        <p class="text-ink-500">{p.footnote}</p>
         <div class="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
             class="btn btn-primary w-full sm:w-auto"
@@ -102,7 +71,7 @@ const features = [
             data-posthog-location="addon_page"
             data-posthog-provider="app_store"
             data-posthog-cta-text="App Store"
-          >Get WallCal free</a>
+          >{p.ctaAppStore}</a>
           <a
             class="btn btn-glass w-full sm:w-auto"
             href={links.setapp}
@@ -112,7 +81,7 @@ const features = [
             data-posthog-location="addon_page"
             data-posthog-provider="setapp"
             data-posthog-cta-text="Setapp"
-          >Get it on Setapp</a>
+          >{p.ctaSetapp}</a>
         </div>
       </div>
     </div>

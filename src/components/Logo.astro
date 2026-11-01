@@ -1,11 +1,14 @@
 ---
+import { useLocalizePath } from '../i18n';
+
 interface Props {
   dark?: boolean;
 }
 
 const { dark = false } = Astro.props;
+const l = useLocalizePath(Astro.url);
 ---
-<a class="inline-flex items-center gap-2" href="/" aria-label="WallCal">
+<a class="inline-flex items-center gap-2" href={l('/')} aria-label="WallCal">
   <img src="/my-assets/app-icon.png" alt="" width="28" height="28" />
   <span class:list={['text-[17px] font-semibold tracking-tight', dark ? 'text-white' : 'text-ink-950']}>WallCal</span>
 </a>

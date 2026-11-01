@@ -1,13 +1,12 @@
 ---
-import type { FAQItem } from '../lib/notion';
 import FAQItemComponent from './FAQItem.astro';
 import { links } from '../lib/links';
+import { faq } from '../data/faq';
+import { getLocale, useTranslations } from '../i18n';
 
-interface Props {
-  items: FAQItem[];
-}
-
-const { items } = Astro.props;
+const locale = getLocale(Astro.url);
+const t = useTranslations(Astro.url).faq;
+const items = faq.map((entry) => ({ id: entry.id, ...entry[locale] }));
 // The app's menu bar links to wallcal.app#faq; keep the section id.
 ---
 
@@ -15,22 +14,22 @@ const { items } = Astro.props;
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="grid lg:grid-cols-[1fr_1.6fr] gap-10 lg:gap-16">
       <div data-aos="fade-up">
-        <span class="eyebrow">FAQ</span>
-        <h2 class="mt-4 text-h2 font-semibold">Frequently asked questions</h2>
+        <span class="eyebrow">{t.eyebrow}</span>
+        <h2 class="mt-4 text-h2 font-semibold">{t.title}</h2>
         <p class="mt-4 text-ink-500">
-          Something else on your mind? Email
+          {t.leadBefore}
           <a
             class="text-ink-950 underline decoration-black/20 underline-offset-4 hover:decoration-black/60"
             href={`mailto:${links.supportEmail}`}
             data-posthog-event="support_email_clicked"
             data-posthog-location="faq"
             data-posthog-email={links.supportEmail}
-          >{links.supportEmail}</a>.
+          >{links.supportEmail}</a>{t.leadAfter}
         </p>
       </div>
       <div class="space-y-3" data-aos="fade-up" data-aos-delay="100">
         {items.map((item) => (
-          <FAQItemComponent question={item.question} answer={item.answer} />
+          <FAQItemComponent id={item.id} question={item.question} answer={item.answer} />
         ))}
       </div>
     </div>

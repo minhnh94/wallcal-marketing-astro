@@ -8,11 +8,11 @@ import ExpertAddon from '../components/home/ExpertAddon.astro';
 import GetWallCal from '../components/home/GetWallCal.astro';
 import FAQ from '../components/FAQ.astro';
 import BottomCTA from '../components/BottomCTA.astro';
-import { getFAQItems } from '../lib/notion';
+import { useTranslations } from '../i18n';
 
-const faqItems = await getFAQItems();
+const t = useTranslations(Astro.url);
 ---
-<BaseLayout title="WallCal — Your calendar, right on your Mac wallpaper">
+<BaseLayout title={t.meta.homeTitle}>
 
   <Hero />
   <ValueProps />
@@ -23,7 +23,7 @@ const faqItems = await getFAQItems();
   <!-- Pricing + Setapp affiliate banner -->
   <GetWallCal />
 
-  <FAQ items={faqItems} />
+  <FAQ />
 
   <!-- Discussion -->
   <section class="pt-16 md:pt-20">

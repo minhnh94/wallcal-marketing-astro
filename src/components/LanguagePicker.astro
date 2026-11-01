@@ -1,0 +1,51 @@
+---
+import { getLocale, localeMeta, locales, localizePath, stripLocale, useTranslations } from '../i18n';
+
+interface Props {
+  location: string;
+}
+
+const { location } = Astro.props;
+const current = getLocale(Astro.url);
+const t = useTranslations(Astro.url);
+const basePath = stripLocale(Astro.url.pathname);
+---
+
+<div class="relative" x-data="{ open: false }" @keydown.escape.window="open = false" @click.outside="open = false">
+  <button
+    type="button"
+    class="inline-flex items-center gap-1.5 h-9 px-2.5 lg:px-3 rounded-full text-sm text-ink-700 hover:text-ink-950 hover:bg-white/70 transition"
+    :aria-expanded="open"
+    aria-haspopup="true"
+    aria-label={t.nav.language}
+    @click="open = !open"
+  >
+    <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <circle cx="10" cy="10" r="7.25" />
+      <path d="M2.75 10h14.5M10 2.75c2 2 3 4.4 3 7.25s-1 5.25-3 7.25c-2-2-3-4.4-3-7.25s1-5.25 3-7.25Z" />
+    </svg>
+    <span class="hidden lg:inline">{localeMeta[current].label}</span>
+  </button>
+  <ul
+    class="absolute right-0 top-full mt-2 min-w-36 rounded-2xl bg-white/95 backdrop-blur-xl ring-1 ring-black/5 shadow-xl p-1.5 text-sm"
+    x-show="open"
+    x-transition.opacity.duration.150ms
+    x-cloak
+  >
+    {locales.map((l) => (
+      <li>
+        <a
+          class:list={['flex rounded-xl px-3 py-2 hover:bg-black/5', l === current ? 'font-medium text-ink-950' : 'text-ink-700']}
+          href={localizePath(basePath, l)}
+          hreflang={localeMeta[l].htmlLang}
+          lang={localeMeta[l].htmlLang}
+          aria-current={l === current ? 'true' : undefined}
+          data-posthog-event="language_switched"
+          data-posthog-location={location}
+          data-posthog-from={current}
+          data-posthog-to={l}
+        >{localeMeta[l].label}</a>
+      </li>
+    ))}
+  </ul>
+</div>

@@ -1,36 +1,22 @@
 ---
 import SetappBanner from '../SetappBanner.astro';
 import { links } from '../../lib/links';
+import { useTranslations } from '../../i18n';
+import en from '../../i18n/en';
+
+const t = useTranslations(Astro.url).pricing;
 
 const options = [
-  {
-    name: 'Mac App Store',
-    price: 'Free',
-    note: 'Expert add-on: one-time purchase, yours for life',
-    points: ['Month view, sidebar & reminders', 'All three appearances', 'Hotkey, menu bar & start at login'],
-    cta: 'Download free',
-    href: links.appStore,
-    provider: 'app_store',
-    featured: true,
-  },
-  {
-    name: 'Setapp',
-    price: 'Included',
-    note: 'At no extra cost with your Setapp membership',
-    points: ['Everything in WallCal', 'Expert Calendar add-on included', 'Try every feature before you commit'],
-    cta: 'Get it on Setapp',
-    href: links.setapp,
-    provider: 'setapp',
-    featured: false,
-  },
+  { name: 'Mac App Store', ...t.appStore, track: en.pricing.appStore.cta, href: links.appStore, provider: 'app_store', featured: true },
+  { name: 'Setapp', ...t.setapp, track: en.pricing.setapp.cta, href: links.setapp, provider: 'setapp', featured: false },
 ];
 ---
 
 <section id="get-wallcal" class="pt-24 md:pt-36 scroll-mt-24">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
-      <span class="eyebrow">Pricing</span>
-      <h2 class="mt-4 text-h2 font-semibold text-balance">Free to start. Your choice where.</h2>
+      <span class="eyebrow">{t.eyebrow}</span>
+      <h2 class="mt-4 text-h2 font-semibold text-balance">{t.title}</h2>
     </div>
 
     <div class="mt-14 grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
@@ -44,7 +30,7 @@ const options = [
           data-aos-delay={i * 100}
         >
           {o.featured && (
-            <span class="absolute -top-3 left-7 rounded-full bg-ink-950 text-white px-3 py-1 text-xs font-medium">Recommended</span>
+            <span class="absolute -top-3 left-7 rounded-full bg-ink-950 text-white px-3 py-1 text-xs font-medium">{t.recommended}</span>
           )}
           <h3 class="text-lg font-semibold">{o.name}</h3>
           <p class="mt-4 text-4xl font-semibold tracking-tight">{o.price}</p>
@@ -65,7 +51,7 @@ const options = [
             data-posthog-event="download_cta_clicked"
             data-posthog-location="pricing"
             data-posthog-provider={o.provider}
-            data-posthog-cta-text={o.cta}
+            data-posthog-cta-text={o.track}
           >{o.cta}</a>
         </div>
       ))}

@@ -1,30 +1,24 @@
 ---
 import Screenshot from '../Screenshot.astro';
+import { useLocalizePath, useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.url).features;
+const l = useLocalizePath(Astro.url);
 
 const appearances = [
-  { id: 'glass', file: 'nativeGlass', name: 'Native Glass', note: 'Liquid Glass that refracts your wallpaper' },
-  { id: 'transparent', file: 'transparent', name: 'Transparent', note: 'Just your events, floating on the wallpaper' },
-  { id: 'blurred', file: 'blurred', name: 'Blurred', note: 'A soft frosted panel for busy wallpapers' },
-];
-
-const extras = [
-  { text: 'Start at login' },
-  { text: 'Place it on any connected monitor' },
-  { text: 'Plays nice with other always-on-desktop apps' },
-  { text: 'English · Deutsch · 日本語 · 简体中文' },
-  { text: 'Pick which calendars & reminder lists show', addon: true },
-  { text: 'Hide either panel for a minimal layout', addon: true },
-  { text: '12- or 24-hour time, week starts Sunday or Monday', addon: true },
+  { id: 'glass', file: 'nativeGlass', ...t.appearance.glass },
+  { id: 'transparent', file: 'transparent', ...t.appearance.transparent },
+  { id: 'blurred', file: 'blurred', ...t.appearance.blurred },
 ];
 ---
 
 <section id="features" class="pt-24 md:pt-36 scroll-mt-24">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="max-w-2xl" data-aos="fade-up">
-      <span class="eyebrow">Features</span>
+      <span class="eyebrow">{t.eyebrow}</span>
       <h2 class="mt-4 text-h2 font-semibold text-balance">
-        Everything you need to see.
-        <span class="text-ink-300">Nothing you don’t.</span>
+        {t.titleA}
+        <span class="text-ink-300">{t.titleB}</span>
       </h2>
     </div>
 
@@ -33,22 +27,22 @@ const extras = [
       <!-- Month view -->
       <article class="card overflow-hidden lg:col-span-2 flex flex-col" data-aos="fade-up">
         <div class="p-7 md:p-9 pb-0 md:pb-0">
-          <h3 class="text-2xl font-semibold tracking-tight">The whole month, at a glance</h3>
-          <p class="mt-2 text-ink-500 max-w-md">Every event across every calendar, laid out on a clean month grid right on your desktop.</p>
+          <h3 class="text-2xl font-semibold tracking-tight">{t.month.title}</h3>
+          <p class="mt-2 text-ink-500 max-w-md">{t.month.body}</p>
         </div>
         <div class="mt-7 mx-7 md:mx-9 rounded-t-2xl overflow-hidden grow">
-          <Screenshot src="/my-assets/shots/month.jpg" alt="WallCal month view with a sidebar of upcoming events, on a Mac desktop" ratio="3700 / 2320" />
+          <Screenshot src="/my-assets/shots/month.jpg" alt={t.month.alt} ratio="3700 / 2320" />
         </div>
       </article>
 
       <!-- Sub calendar -->
       <article class="card overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="100">
         <div class="p-7 pb-0">
-          <h3 class="text-2xl font-semibold tracking-tight">Events &amp; reminders, side by side</h3>
-          <p class="mt-2 text-ink-500">A mini calendar with an event list next to it. Your to-dos from Reminders show up there too.</p>
+          <h3 class="text-2xl font-semibold tracking-tight">{t.sidebar.title}</h3>
+          <p class="mt-2 text-ink-500">{t.sidebar.body}</p>
         </div>
         <div class="mt-7 mx-7 rounded-t-2xl overflow-hidden grow">
-          <Screenshot src="/my-assets/shots/sidebar.jpg" alt="WallCal sidebar showing today's date and a mini calendar with event dots" ratio="4 / 5" />
+          <Screenshot src="/my-assets/shots/sidebar.jpg" alt={t.sidebar.alt} ratio="4 / 5" />
         </div>
       </article>
 
@@ -56,15 +50,15 @@ const extras = [
       <article class="card overflow-hidden flex flex-col" data-aos="fade-up">
         <div class="p-7 pb-0">
           <div class="flex items-center gap-2">
-            <h3 class="text-2xl font-semibold tracking-tight">Or a timeline of your week</h3>
+            <h3 class="text-2xl font-semibold tracking-tight">{t.weekly.title}</h3>
           </div>
-          <p class="mt-2 text-ink-500">Swap the month for a weekly agenda. Choose the visible hours and how many days ahead to show.</p>
-          <a href="/expert-calendar-addon" class="mt-3 inline-flex items-center gap-1.5 rounded-full bg-brand-50 text-brand-600 px-2.5 py-1 text-xs font-medium hover:bg-brand-100 transition" data-posthog-event="navigation_link_clicked" data-posthog-location="features_weekly" data-posthog-nav-label="Expert Calendar Addon">
-            Expert add-on <span aria-hidden="true">&rarr;</span>
+          <p class="mt-2 text-ink-500">{t.weekly.body}</p>
+          <a href={l('/expert-calendar-addon')} class="mt-3 inline-flex items-center gap-1.5 rounded-full bg-brand-50 text-brand-600 px-2.5 py-1 text-xs font-medium hover:bg-brand-100 transition" data-posthog-event="navigation_link_clicked" data-posthog-location="features_weekly" data-posthog-nav-label="Expert Calendar Addon">
+            {t.addonPill} <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
         <div class="mt-7 mx-7 rounded-t-2xl overflow-hidden grow">
-          <Screenshot src="/my-assets/shots/weekly.jpg" alt="WallCal weekly agenda timeline" ratio="1840 / 2300" />
+          <Screenshot src="/my-assets/shots/weekly.jpg" alt={t.weekly.alt} ratio="1840 / 2300" />
         </div>
       </article>
 
@@ -72,9 +66,9 @@ const extras = [
       <article class="card overflow-hidden lg:col-span-2" data-aos="fade-up" data-aos-delay="100" x-data="{ mode: 'glass' }">
         <div class="grid md:grid-cols-[1fr_1.25fr] gap-6 p-7 md:p-9">
           <div class="flex flex-col">
-            <h3 class="text-2xl font-semibold tracking-tight">Looks like it belongs on your Mac</h3>
-            <p class="mt-2 text-ink-500">Three appearances to match any wallpaper. Glass that refracts it, a clear overlay, or a soft blur.</p>
-            <div class="mt-6 flex flex-col gap-2" role="tablist" aria-label="Appearance">
+            <h3 class="text-2xl font-semibold tracking-tight">{t.appearance.title}</h3>
+            <p class="mt-2 text-ink-500">{t.appearance.body}</p>
+            <div class="mt-6 flex flex-col gap-2" role="tablist" aria-label={t.appearance.label}>
               {appearances.map((a) => (
                 <button
                   type="button"
@@ -95,7 +89,7 @@ const extras = [
           <div class="relative rounded-2xl overflow-hidden grid bg-ink-900">
             {appearances.map((a) => (
               <div class="[grid-area:1/1] rounded-2xl overflow-hidden" x-show={`mode === '${a.id}'`} x-transition.opacity.duration.300ms x-cloak={a.id !== 'glass' ? '' : undefined}>
-                <Screenshot src={`/my-assets/shots/appearance-${a.file}.jpg`} alt={`WallCal ${a.name} appearance`} ratio="4 / 3" class="h-full object-cover" />
+                <Screenshot src={`/my-assets/shots/appearance-${a.file}.jpg`} alt={t.appearance.alt(a.name)} ratio="4 / 3" class="h-full object-cover" />
               </div>
             ))}
           </div>
@@ -104,33 +98,33 @@ const extras = [
 
       <!-- Hotkey -->
       <article class="card p-7 md:p-9 flex flex-col" data-aos="fade-up">
-        <h3 class="text-2xl font-semibold tracking-tight">One hotkey to bring it forward</h3>
-        <p class="mt-2 text-ink-500">Pop WallCal above your windows to move or resize it — even drag it to another monitor. Click any other app and it slips back onto the desktop.</p>
+        <h3 class="text-2xl font-semibold tracking-tight">{t.hotkey.title}</h3>
+        <p class="mt-2 text-ink-500">{t.hotkey.body}</p>
         <div class="mt-auto pt-8 flex items-center gap-2" aria-hidden="true">
           <span class="keycap">⌃</span>
           <span class="keycap">⌥</span>
-          <span class="keycap min-w-16">Space</span>
+          <span class="keycap min-w-16">{t.hotkey.space}</span>
         </div>
-        <p class="mt-3 text-xs text-ink-500">Record any shortcut you like in Settings.</p>
+        <p class="mt-3 text-xs text-ink-500">{t.hotkey.note}</p>
       </article>
 
       <!-- Menu bar -->
       <article class="card p-7 md:p-9 flex flex-col" data-aos="fade-up" data-aos-delay="100">
-        <h3 class="text-2xl font-semibold tracking-tight">Lives in your menu bar</h3>
-        <p class="mt-2 text-ink-500">No Dock icon, no extra window. Jump between weeks or months, snap back to today and open Settings from one small icon.</p>
+        <h3 class="text-2xl font-semibold tracking-tight">{t.menubar.title}</h3>
+        <p class="mt-2 text-ink-500">{t.menubar.body}</p>
         <div class="mt-auto pt-8" aria-hidden="true">
           <div class="rounded-2xl bg-paper ring-1 ring-black/[0.06] p-2 text-sm">
             <div class="flex items-center justify-end gap-3 px-2 pb-2 text-ink-500 text-xs">
               <span class="flex items-center justify-center w-6 h-5 rounded-md bg-ink-950 text-white">
                 <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3"/></svg>
               </span>
-              <span>Mon 9:41</span>
+              <span>{t.menubar.clock}</span>
             </div>
             <div class="rounded-xl bg-white ring-1 ring-black/[0.06] shadow-sm py-1.5">
               <div class="flex items-center justify-between px-3 py-1.5 text-ink-700">
-                <span class="text-ink-500">&lsaquo;</span><span class="font-medium">Today</span><span class="text-ink-500">&rsaquo;</span>
+                <span class="text-ink-500">&lsaquo;</span><span class="font-medium">{t.menubar.today}</span><span class="text-ink-500">&rsaquo;</span>
               </div>
-              {['Toggle frontmost state / Resize', 'Revert to default position & size', 'Preferences…'].map((item, i) => (
+              {t.menubar.items.map((item, i) => (
                 <div class:list={['px-3 py-1.5 text-ink-700', i === 0 && 'mx-1.5 rounded-lg bg-brand-500 text-white']}>{item}</div>
               ))}
             </div>
@@ -140,14 +134,14 @@ const extras = [
 
       <!-- Extras -->
       <article class="card p-7 md:p-9" data-aos="fade-up" data-aos-delay="200">
-        <h3 class="text-2xl font-semibold tracking-tight">And the details you’d expect</h3>
+        <h3 class="text-2xl font-semibold tracking-tight">{t.extras.title}</h3>
         <ul class="mt-5 space-y-3">
-          {extras.map((e) => (
+          {t.extras.items.map((e) => (
             <li class="flex items-start gap-3 text-ink-700">
               <svg class="mt-0.5 w-5 h-5 shrink-0 text-brand-500" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 10.5 3.2 3.2L15 7" /></svg>
               <span>
                 {e.text}
-                {e.addon && <span class="ml-1 rounded-full bg-brand-50 text-brand-600 px-2 py-0.5 text-[11px] font-medium align-middle whitespace-nowrap">Expert</span>}
+                {e.addon && <span class="ml-1 rounded-full bg-brand-50 text-brand-600 px-2 py-0.5 text-[11px] font-medium align-middle whitespace-nowrap">{t.extras.badge}</span>}
               </span>
             </li>
           ))}

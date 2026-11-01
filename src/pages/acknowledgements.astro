@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
+import { useTranslations } from '../i18n';
+
+const t = useTranslations(Astro.url);
 
 const libraries = [
   { name: 'Defaults', repo: 'https://github.com/sindresorhus/Defaults', author: 'Sindre Sorhus' },
@@ -12,13 +15,13 @@ const libraries = [
   { name: 'appcenter-sdk-apple', repo: 'https://github.com/microsoft/appcenter-sdk-apple', author: 'Microsoft Corporation' },
 ];
 ---
-<BaseLayout title="Acknowledgements — WallCal" description="The open source projects WallCal is built with, and the people who made them.">
+<BaseLayout title={t.meta.ackTitle} description={t.meta.ackDescription}>
   <section class="relative isolate pt-36 pb-20 md:pt-44 md:pb-28">
     <div class="max-w-3xl mx-auto px-4 sm:px-6">
       <PageHeader
-        eyebrow="Open source"
-        title="Acknowledgements"
-        lead="WallCal is built with the help of the following open source projects. We are grateful to their authors."
+        eyebrow={t.ack.eyebrow}
+        title={t.ack.title}
+        lead={t.ack.lead}
       />
       <ul class="mt-12 card divide-y divide-black/[0.06] overflow-hidden" data-aos="fade-up" data-aos-delay="200">
         {libraries.map((lib) => (
@@ -26,10 +29,10 @@ const libraries = [
             <a class="group flex items-center justify-between gap-4 px-6 py-5 hover:bg-paper transition" href={lib.repo} target="_blank" rel="noopener noreferrer">
               <div>
                 <span class="text-[17px] font-medium text-ink-950 group-hover:text-brand-500 transition">{lib.name}</span>
-                <p class="text-sm text-ink-500">by {lib.author}</p>
+                <p class="text-sm text-ink-500">{t.ack.by(lib.author)}</p>
               </div>
               <span class="flex items-center gap-3">
-                <span class="text-xs font-medium bg-paper text-ink-700 rounded-full px-3 py-1 ring-1 ring-black/[0.06]">MIT License</span>
+                <span class="text-xs font-medium bg-paper text-ink-700 rounded-full px-3 py-1 ring-1 ring-black/[0.06]">{t.ack.license}</span>
                 <span class="text-ink-300 group-hover:text-ink-950 group-hover:translate-x-0.5 transition" aria-hidden="true">&rarr;</span>
               </span>
             </a>

@@ -4,22 +4,27 @@ import 'aos/dist/aos.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostHog from '../components/posthog.astro';
+import { getLocale, localeMeta, locales, localizePath, stripLocale, useTranslations } from '../i18n';
 
 interface Props {
   title: string;
   description?: string;
 }
 
-const {
-  title,
-  description = 'See your week at a glance, right on your Mac desktop. Calendars and reminders behind every window, in native Liquid Glass. Free on the Mac App Store.',
-} = Astro.props;
+const locale = getLocale(Astro.url);
+const t = useTranslations(Astro.url);
+const { title, description = t.meta.description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const ogImage = new URL('/my-assets/og.jpg', Astro.site).href;
-const ogImageAlt = 'WallCal month view on a Mac desktop, next to the headline "Your calendar, right on your wallpaper."';
+const basePath = stripLocale(Astro.url.pathname);
+const alternates = locales.map((l) => ({
+  hreflang: localeMeta[l].htmlLang,
+  href: new URL(localizePath(basePath, l), Astro.site).href,
+}));
+const ogImage = new URL(locale === 'en' ? '/my-assets/og.jpg' : `/my-assets/og-${locale}.jpg`, Astro.site).href;
+const ogImageAlt = t.meta.ogImageAlt;
 ---
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang={localeMeta[locale].htmlLang} class="scroll-smooth">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,10 +32,14 @@ const ogImageAlt = 'WallCal month view on a Mac desktop, next to the headline "Y
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
+  {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+  <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
   <meta name="theme-color" content="#f7f6f3" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="WallCal" />
   <meta property="og:url" content={canonical} />
+  <meta property="og:locale" content={localeMeta[locale].ogLocale} />
+  {locales.filter((l) => l !== locale).map((l) => <meta property="og:locale:alternate" content={localeMeta[l].ogLocale} />)}
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImage} />

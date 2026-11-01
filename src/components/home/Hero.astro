@@ -1,5 +1,8 @@
 ---
 import { links } from '../../lib/links';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.url).hero;
 ---
 
 <section class="relative isolate pt-32 md:pt-40">
@@ -12,19 +15,19 @@ import { links } from '../../lib/links';
     <div class="max-w-3xl mx-auto text-center">
       <div data-aos="fade-up">
         <span class="glass inline-flex items-center gap-2 rounded-full pl-1.5 pr-3.5 py-1.5 text-[13px] text-ink-700">
-          <span class="rounded-full bg-ink-950 text-white px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider">New</span>
-          Redesigned <span class="hidden sm:inline">with Liquid Glass</span> for macOS Tahoe
+          <span class="rounded-full bg-ink-950 text-white px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider">{t.badge}</span>
+          <span class="sm:hidden">{t.eyebrowShort}</span><span class="hidden sm:inline">{t.eyebrow}</span>
         </span>
       </div>
 
       <h1 class="mt-7 text-display font-semibold text-balance" data-aos="fade-up" data-aos-delay="80">
-        Your calendar,
-        <span class="font-serif italic font-normal tracking-[-0.02em] text-brand-500 whitespace-nowrap">right on</span>
-        your wallpaper.
+        {t.titleA}
+        <span class="font-serif italic font-normal tracking-[-0.02em] text-brand-500 whitespace-nowrap">{t.titleEm}</span>
+        {t.titleB}
       </h1>
 
       <p class="mt-6 text-lg md:text-xl text-ink-500 max-w-2xl mx-auto text-pretty" data-aos="fade-up" data-aos-delay="160">
-        WallCal pins your calendars and reminders to the Mac desktop. Your week is always there behind your windows — no app to open, nothing to switch to.
+        {t.lead}
       </p>
 
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3" data-aos="fade-up" data-aos-delay="240">
@@ -38,7 +41,7 @@ import { links } from '../../lib/links';
           data-posthog-provider="app_store"
           data-posthog-cta-text="App Store"
         >
-          Free on the Mac App Store
+          {t.ctaAppStore}
           <span aria-hidden="true">&rarr;</span>
         </a>
         <a
@@ -51,12 +54,12 @@ import { links } from '../../lib/links';
           data-posthog-provider="setapp"
           data-posthog-cta-text="Setapp"
         >
-          Get it on Setapp
+          {t.ctaSetapp}
         </a>
       </div>
 
       <p class="mt-5 text-sm text-ink-500" data-aos="fade-up" data-aos-delay="300">
-        Free to download · Expert add-on included with Setapp
+        {t.micro}
       </p>
     </div>
 
@@ -72,7 +75,7 @@ import { links } from '../../lib/links';
             playsinline
             preload="metadata"
             poster="/my-assets/video/wallcal-intro-poster.jpg"
-            aria-label="WallCal intro: month view, sidebar, weekly agenda and the three appearances on a Mac desktop"
+            aria-label={t.videoLabel}
             data-hero-video
           >
             <source src="/my-assets/video/wallcal-intro.webm" type="video/webm" />

@@ -1,10 +1,11 @@
 ---
 interface Props {
+  id: string;
   question: string;
   answer: string;
 }
 
-const { question, answer } = Astro.props;
+const { id, question, answer } = Astro.props;
 ---
 
 <div
@@ -17,6 +18,7 @@ const { question, answer } = Astro.props;
       class="flex items-center justify-between w-full text-left font-medium text-[17px] px-6 py-5"
       data-posthog-event="faq_item_toggled"
       data-posthog-question={question}
+      data-posthog-faq-id={id}
       @click="expanded = !expanded"
       :aria-expanded="expanded"
     >
