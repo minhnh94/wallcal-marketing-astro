@@ -35,3 +35,6 @@ public/sitemap.xml
 /.claude/skills/integration-astro-static
 /.omx
 /.posthog/skills
+
+# app capture work dir (capture-app-media skill)
+/.capture/
