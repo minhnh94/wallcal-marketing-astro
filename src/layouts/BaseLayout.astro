@@ -10,7 +10,11 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'WallCal - Desktop Calendar for Mac' } = Astro.props;
+const {
+  title,
+  description = 'WallCal puts your calendars and reminders right on your Mac desktop — always visible, never in the way.',
+} = Astro.props;
+const ogImage = new URL('/my-assets/twitter-card.png', Astro.site).href;
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -20,9 +24,15 @@ const { title, description = 'WallCal - Desktop Calendar for Mac' } = Astro.prop
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@WallCalApp" />
   <PostHog />
 </head>
-<body class="font-inter antialiased bg-gray-50 text-gray-900 tracking-tight">
+<body class="font-sans antialiased bg-paper text-ink-950">
   <div class="flex flex-col min-h-screen overflow-hidden supports-[overflow:clip]:overflow-clip">
     <Header />
     <main class="grow">

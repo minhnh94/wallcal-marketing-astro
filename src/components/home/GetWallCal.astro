@@ -1,0 +1,76 @@
+---
+import SetappBanner from '../SetappBanner.astro';
+import { links } from '../../lib/links';
+
+const options = [
+  {
+    name: 'Mac App Store',
+    price: 'Free',
+    note: 'Expert add-on: one-time purchase, yours for life',
+    points: ['Month view, sidebar & reminders', 'All three appearances', 'Hotkey, menu bar & start at login'],
+    cta: 'Download free',
+    href: links.appStore,
+    provider: 'app_store',
+    featured: true,
+  },
+  {
+    name: 'Setapp',
+    price: 'Included',
+    note: 'At no extra cost with your Setapp membership',
+    points: ['Everything in WallCal', 'Expert Calendar add-on included', 'Try every feature before you commit'],
+    cta: 'Get it on Setapp',
+    href: links.setapp,
+    provider: 'setapp',
+    featured: false,
+  },
+];
+---
+
+<section id="get-wallcal" class="pt-24 md:pt-36 scroll-mt-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="mt-4 text-h2 font-semibold text-balance">Free to start. Your choice where.</h2>
+    </div>
+
+    <div class="mt-14 grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+      {options.map((o, i) => (
+        <div
+          class:list={[
+            'relative rounded-[28px] p-7 md:p-8 flex flex-col',
+            o.featured ? 'bg-white ring-2 ring-ink-950 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.35)]' : 'card',
+          ]}
+          data-aos="fade-up"
+          data-aos-delay={i * 100}
+        >
+          {o.featured && (
+            <span class="absolute -top-3 left-7 rounded-full bg-ink-950 text-white px-3 py-1 text-xs font-medium">Recommended</span>
+          )}
+          <h3 class="text-lg font-semibold">{o.name}</h3>
+          <p class="mt-4 text-4xl font-semibold tracking-tight">{o.price}</p>
+          <p class="mt-1 text-sm text-ink-500">{o.note}</p>
+          <ul class="mt-6 mb-8 space-y-2.5 text-[15px] text-ink-700">
+            {o.points.map((p) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="mt-0.5 w-5 h-5 shrink-0 text-brand-500" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 10.5 3.2 3.2L15 7" /></svg>
+                {p}
+              </li>
+            ))}
+          </ul>
+          <a
+            class:list={['btn mt-auto w-full', o.featured ? 'btn-primary' : 'btn-glass']}
+            href={o.href}
+            target="_blank"
+            rel="nofollow noreferrer"
+            data-posthog-event="download_cta_clicked"
+            data-posthog-location="pricing"
+            data-posthog-provider={o.provider}
+            data-posthog-cta-text={o.cta}
+          >{o.cta}</a>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <SetappBanner />
+</section>

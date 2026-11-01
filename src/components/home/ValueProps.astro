@@ -1,0 +1,61 @@
+---
+const sources = ['iCloud', 'Google Calendar', 'Microsoft Exchange', 'Outlook.com', 'Yahoo', 'CalDAV', 'Subscribed calendars', 'Apple Reminders'];
+
+const props = [
+  {
+    title: 'Always in view',
+    body: 'Your schedule lives on the wallpaper, so a glance at the desktop is all it takes.',
+    icon: 'M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12s-3.5 6.5-9.5 6.5S2.5 12 2.5 12Z M12 14.75a2.75 2.75 0 1 0 0-5.5 2.75 2.75 0 0 0 0 5.5Z',
+  },
+  {
+    title: 'Never in the way',
+    body: 'WallCal stays behind every window. It never steals focus or clutters your Dock.',
+    icon: 'M4 7.5h11a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9.5a2 2 0 0 1 2-2Z M7 4h13a2 2 0 0 1 2 2v9',
+  },
+  {
+    title: 'Nothing to set up',
+    body: 'It reads the calendars and reminders already on your Mac. No new account, no sync service.',
+    icon: 'M5 12.5l4.5 4.5L19 7.5',
+  },
+];
+---
+
+<section class="pt-20 md:pt-28">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+
+    <!-- Works with -->
+    <div class="text-center" data-aos="fade-up">
+      <p class="text-sm text-ink-500">Shows everything from the accounts in macOS Calendar and Reminders</p>
+      <div class="relative mt-5 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+        <div class="flex w-max animate-marquee gap-3">
+          {[...sources, ...sources].map((s) => (
+            <span class="rounded-full bg-white ring-1 ring-black/[0.06] px-4 py-2 text-sm font-medium text-ink-700 whitespace-nowrap">{s}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Value props -->
+    <div class="mt-20 md:mt-28 grid md:grid-cols-[1.1fr_1fr] gap-10 md:gap-16 items-end">
+      <h2 class="text-h2 font-semibold text-balance" data-aos="fade-up">
+        Out of sight shouldn’t mean
+        <span class="font-serif italic font-normal text-brand-500">out of mind.</span>
+      </h2>
+      <p class="text-lg text-ink-500 text-pretty" data-aos="fade-up" data-aos-delay="100">
+        Calendar apps hide behind a click. Meetings slip, deadlines sneak up. WallCal keeps your day where your eyes already go — the desktop.
+      </p>
+    </div>
+
+    <div class="mt-12 grid sm:grid-cols-3 gap-4">
+      {props.map((p, i) => (
+        <div class="card p-7" data-aos="fade-up" data-aos-delay={i * 100}>
+          <span class="flex items-center justify-center w-11 h-11 rounded-2xl bg-brand-50 text-brand-500">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={p.icon} /></svg>
+          </span>
+          <h3 class="mt-5 text-lg font-semibold">{p.title}</h3>
+          <p class="mt-2 text-ink-500">{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

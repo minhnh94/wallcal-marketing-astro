@@ -1,68 +1,119 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { links } from '../lib/links';
 
+// Each clip is a real WallCal capture switching between the setting's values.
 const features = [
   {
+    clip: 'weekly-agenda',
     title: 'Weekly Agenda View',
-    description: 'Replace the month view with the weekly agenda view.',
-    gif: 'https://i.imgur.com/sxZBLru.gif',
-    alt: 'WeeklyAgenda WallCal',
+    description: 'Replace the month view with a timeline of your week.',
   },
   {
+    clip: 'time-range',
     title: 'Adjustable Time Range',
-    description: 'Change the visible time range while in week view mode.',
-    gif: 'https://i.imgur.com/s39T4MX.gif',
-    alt: 'VisiblePeriod WallCal',
+    description: 'Choose the hours the weekly agenda shows, so your day fills the view.',
   },
   {
+    clip: 'days-to-show',
     title: 'Variable Day Display',
-    description: 'Change the number of days displayed in week view mode (the leftmost day is today).',
-    gif: 'https://i.imgur.com/opclUZV.gif',
-    alt: 'DayNum WallCal',
+    description: 'Show anywhere from 1 to 7 days in the weekly agenda, starting today or at the start of the week.',
   },
   {
+    clip: 'calendar-filtering',
     title: 'Calendar Filtering',
-    description: 'Choose which calendar/reminder sets to be displayed on the calendar.',
-    gif: 'https://i.imgur.com/C8KOvE7.gif',
-    alt: 'ToggleCalendarSet WallCal',
+    description: 'Choose which calendars and reminder lists appear on WallCal.',
   },
   {
+    clip: 'view-toggle',
     title: 'View Toggle',
-    description: 'Completely hide the to-do list view or the calendar view.',
-    gif: 'https://i.imgur.com/UfuBAR9.gif',
-    alt: 'ToggleHiddenView WallCal',
+    description: 'Hide the sidebar or the main calendar for a more minimal desktop.',
   },
   {
-    title: 'Color Customization',
-    description: "Change the calendar's background color freely.",
-    gif: 'https://i.imgur.com/wznPnyF.gif',
-    alt: 'ChangeColor WallCal',
-  },
-  {
+    clip: 'time-format',
     title: 'Time Format Selection',
-    description: 'Set the hour indicator between 12-hour or 24-hour format.',
+    description: 'Switch between 12-hour and 24-hour time.',
+  },
+  {
+    clip: 'week-start',
+    title: 'Week Start Day',
+    description: 'Start your week on Sunday or Monday.',
   },
 ];
 ---
 <BaseLayout title="Expert Calendar Add-on - WallCal">
-  <section class="relative pt-32 pb-12 md:pt-40 md:pb-20">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6">
-      <h1 class="text-4xl md:text-5xl font-bold text-center mb-4" data-aos="zoom-y-out">Expert Calendar Add-on</h1>
-      <p class="text-center text-gray-600 mb-12" data-aos="zoom-y-out" data-aos-delay="150">
-        Unlock advanced features to customize your calendar experience.
-      </p>
-      <div class="space-y-10">
+  <section class="relative isolate pt-36 pb-12 md:pt-44 md:pb-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <PageHeader
+        eyebrow="Optional add-on"
+        title="Expert Calendar Add-on"
+        lead="Unlock advanced features to customize your calendar experience."
+      />
+
+      <div class="mt-14 grid md:grid-cols-2 gap-4">
         {features.map((feature, i) => (
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden" data-aos="zoom-y-out" data-aos-delay={i * 50}>
-            {feature.gif && (
-              <img src={feature.gif} alt={feature.alt} class="w-full" loading="lazy" />
-            )}
-            <div class="p-6">
-              <h2 class="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h2>
-              <p class="text-gray-600">{feature.description}</p>
+          <article class:list={['card overflow-hidden', i === 0 && 'md:col-span-2']} data-aos="fade-up" data-aos-delay={(i % 2) * 100}>
+            <div class="p-2 pb-0">
+              <video
+                class="w-full aspect-video rounded-[22px] bg-ink-900 object-cover"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster={`/my-assets/addon/${feature.clip}-poster.jpg`}
+                aria-label={`${feature.title} in WallCal`}
+                data-addon-clip
+              >
+                <source src={`/my-assets/addon/${feature.clip}.webm`} type="video/webm" />
+                <source src={`/my-assets/addon/${feature.clip}.mp4`} type="video/mp4" />
+              </video>
             </div>
-          </div>
+            <div class="p-6 md:p-7">
+              <span class="text-xs font-medium text-brand-500">{String(i + 1).padStart(2, '0')}</span>
+              <h2 class="mt-1 text-xl font-semibold tracking-tight">{feature.title}</h2>
+              <p class="mt-1.5 text-ink-500">{feature.description}</p>
+            </div>
+          </article>
         ))}
+      </div>
+
+      <script is:inline>
+        (() => {
+          // Respect reduced motion: show posters instead of looping clips.
+          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          document.querySelectorAll('[data-addon-clip]').forEach((v) => {
+            v.removeAttribute('autoplay');
+            v.pause();
+          });
+        })();
+      </script>
+
+      <div class="mt-14 text-center" data-aos="fade-up">
+        <p class="text-ink-500">A one-time in-app purchase for lifetime access, or included with Setapp at no extra cost.</p>
+        <div class="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            class="btn btn-primary w-full sm:w-auto"
+            href={links.appStore}
+            target="_blank"
+            rel="nofollow noreferrer"
+            data-posthog-event="download_cta_clicked"
+            data-posthog-location="addon_page"
+            data-posthog-provider="app_store"
+            data-posthog-cta-text="App Store"
+          >Get WallCal free</a>
+          <a
+            class="btn btn-glass w-full sm:w-auto"
+            href={links.setapp}
+            target="_blank"
+            rel="nofollow noreferrer"
+            data-posthog-event="download_cta_clicked"
+            data-posthog-location="addon_page"
+            data-posthog-provider="setapp"
+            data-posthog-cta-text="Setapp"
+          >Get it on Setapp</a>
+        </div>
       </div>
     </div>
   </section>

@@ -1,25 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
 ---
 <BaseLayout title="Contact Us - WallCal">
-  <section class="relative pt-32 pb-12 md:pt-40 md:pb-20">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-8" data-aos="zoom-y-out">Contact Us</h1>
-      <p class="text-lg text-gray-600 mb-10" data-aos="zoom-y-out" data-aos-delay="150">
-        If you purchased our macOS app WallCal/WallCal Lite and you encountered any troubles, or need support regarding a specific function, please don't hesitate to email us.
-      </p>
-      <div class="space-y-6" data-aos="zoom-y-out" data-aos-delay="300">
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-          <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500 mb-2">Support</h2>
-          <a
-            class="text-lg text-blue-600 hover:text-blue-700 transition"
-            href="mailto:support@wallcal.app"
-            data-posthog-event="support_email_clicked"
-            data-posthog-location="contact_page"
-            data-posthog-email="support@wallcal.app"
-          >
-            support@wallcal.app
-          </a>
+  <section class="relative isolate pt-36 pb-20 md:pt-44 md:pb-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <PageHeader
+        eyebrow="Support"
+        title="Contact Us"
+        lead="If you purchased our macOS app WallCal/WallCal Lite and you encountered any troubles, or need support regarding a specific function, please don't hesitate to email us."
+      />
+      <div class="mt-12 card p-8 md:p-10 text-center" data-aos="fade-up" data-aos-delay="200">
+        <h2 class="text-sm font-medium uppercase tracking-[0.14em] text-ink-500">Email support</h2>
+        <a
+          class="mt-3 inline-block text-2xl md:text-3xl font-semibold tracking-tight text-ink-950 hover:text-brand-500 transition"
+          href="mailto:support@wallcal.app"
+          data-posthog-event="support_email_clicked"
+          data-posthog-location="contact_page"
+          data-posthog-email="support@wallcal.app"
+        >
+          support@wallcal.app
+        </a>
+        <div class="mt-6">
+          <a class="btn btn-primary" href="mailto:support@wallcal.app" data-posthog-event="support_email_clicked" data-posthog-location="contact_page_button" data-posthog-email="support@wallcal.app">Write to us</a>
         </div>
       </div>
     </div>

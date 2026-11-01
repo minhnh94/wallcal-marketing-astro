@@ -1,40 +1,42 @@
-<section>
+---
+import { links } from '../lib/links';
+---
+
+<section class="pt-24 md:pt-32 pb-20 md:pb-28">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="py-12 md:py-20">
-      <div
-        class="rounded-2xl text-center relative overflow-hidden shadow-xl
-               before:absolute before:inset-0 before:rounded-2xl before:bg-gray-900
-               before:pointer-events-none before:-z-10"
-        data-aos="zoom-y-out"
-      >
-        <!-- Glow -->
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 -z-10" aria-hidden="true">
-          <div class="w-[480px] h-56 rounded-full border-[20px] border-blue-500 blur-3xl will-change-[filter]"></div>
-        </div>
-        <!-- Stripes -->
-        <div class="absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none -z-10" aria-hidden="true">
-          <img class="max-w-none" src="/images/stripes-dark.svg" width="768" height="432" alt="" />
-        </div>
-        <div class="py-12 md:py-20 px-4 md:px-12">
-          <h2 class="text-3xl md:text-4xl text-gray-200 font-bold mb-6 md:mb-12">
-            Get WallCal for your Mac
-          </h2>
-          <div class="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
-            <a
-              class="btn text-white bg-linear-to-t from-blue-600 to-blue-500 bg-[length:100%_100%] hover:bg-[length:100%_150%] bg-[bottom] shadow-sm group"
-              data-posthog-event="download_cta_clicked"
-              data-posthog-location="bottom_cta"
-              data-posthog-provider="app_store"
-              data-posthog-cta-text="Download now"
-              href="https://apps.apple.com/app/wallcal-wallpaper-calendar/id1581367286"
-              target="_blank"
-              rel="nofollow noreferrer"
-            >
-              <span class="relative inline-flex items-center">
-                Download now <span class="tracking-normal text-blue-300 group-hover:translate-x-0.5 transition-transform ml-1">&rarr;</span>
-              </span>
-            </a>
-          </div>
+    <div class="wallpaper relative overflow-hidden rounded-[32px] px-6 py-16 md:py-24 text-center" data-aos="fade-up">
+      <div class="glass relative mx-auto max-w-2xl rounded-[28px] px-6 py-12 md:px-12">
+        <img src="/my-assets/app-icon.png" alt="" width="72" height="72" class="mx-auto drop-shadow-lg" />
+        <h2 class="mt-6 text-h2 font-semibold text-balance">
+          Give your desktop
+          <span class="font-serif italic font-normal">something to do.</span>
+        </h2>
+        <p class="mt-4 text-lg text-ink-700">Free on the Mac App Store. Built for macOS Tahoe.</p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            class="btn btn-primary w-full sm:w-auto"
+            data-posthog-event="download_cta_clicked"
+            data-posthog-location="bottom_cta"
+            data-posthog-provider="app_store"
+            data-posthog-cta-text="Download now"
+            href={links.appStore}
+            target="_blank"
+            rel="nofollow noreferrer"
+          >
+            Download now <span aria-hidden="true">&rarr;</span>
+          </a>
+          <a
+            class="btn btn-glass w-full sm:w-auto"
+            data-posthog-event="download_cta_clicked"
+            data-posthog-location="bottom_cta"
+            data-posthog-provider="setapp"
+            data-posthog-cta-text="Setapp"
+            href={links.setapp}
+            target="_blank"
+            rel="nofollow noreferrer"
+          >
+            Get it on Setapp
+          </a>
         </div>
       </div>
     </div>

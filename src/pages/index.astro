@@ -1,77 +1,39 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroBackground from '../components/decorative/HeroBackground.astro';
-import Hero from '../components/Hero.astro';
-import FeatureShowcaseLeft from '../components/FeatureShowcaseLeft.astro';
-import FeatureShowcaseRight from '../components/FeatureShowcaseRight.astro';
-import FeatureGrid from '../components/FeatureGrid.astro';
-import SetappBanner from '../components/SetappBanner.astro';
+import Hero from '../components/home/Hero.astro';
+import ValueProps from '../components/home/ValueProps.astro';
+import FeatureBento from '../components/home/FeatureBento.astro';
+import HowItWorks from '../components/home/HowItWorks.astro';
+import ExpertAddon from '../components/home/ExpertAddon.astro';
+import GetWallCal from '../components/home/GetWallCal.astro';
 import FAQ from '../components/FAQ.astro';
 import BottomCTA from '../components/BottomCTA.astro';
 import { getFAQItems } from '../lib/notion';
 
 const faqItems = await getFAQItems();
 ---
-<BaseLayout title="WallCal - Desktop Calendar for Mac">
+<BaseLayout title="WallCal – Your calendar, right on your Mac wallpaper">
 
-  <!-- Hero -->
-  <section class="relative">
-    <HeroBackground />
-    <Hero />
-  </section>
+  <Hero />
+  <ValueProps />
+  <FeatureBento />
+  <HowItWorks />
+  <ExpertAddon />
 
-  <!-- Feature Showcase: Monthly Calendar (image left) -->
-  <FeatureShowcaseLeft
-    title="Your monthly calendar"
-    image="/my-assets/wallcal-monthly-view.png"
-    imageAlt="WallCal monthly calendar view"
-    features={[
-      "Display all events in the current month",
-      "Clean monthly calendar layout on your desktop",
-      "Quickly see your schedule at a glance",
-    ]}
-  />
+  <!-- Pricing + Setapp affiliate banner -->
+  <GetWallCal />
 
-  <!-- Feature Showcase: Today Agenda (image right) -->
-  <FeatureShowcaseRight
-    title="Your today agenda"
-    image="/my-assets/wallcal-today-agenda.png"
-    imageAlt="WallCal today agenda view"
-    features={[
-      "All your today events in a timeline",
-      "Customizable visible time range",
-      "Can display up to 7 days ahead",
-    ]}
-  />
-
-  <!-- Feature Showcase: To-do List (image left) -->
-  <FeatureShowcaseLeft
-    title="Your to-do list"
-    image="/my-assets/wallcal-todolist.png"
-    imageAlt="WallCal to-do list view"
-    features={[
-      "Mini calendar with indicators for days with to-dos",
-      "All to-dos in the current month, displayed as a list",
-    ]}
-  />
-
-  <!-- Feature Grid -->
-  <FeatureGrid />
-
-  <!-- Setapp Banner -->
-  <SetappBanner />
-
-  <!-- FAQ -->
   <FAQ items={faqItems} />
 
   <!-- Discussion -->
-  <section>
+  <section class="pt-16 md:pt-20">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <script async src="https://yappie.tsukie.com/embed/bfbb7df1-d2fe-46a2-8db7-fdcf2978e848.js"></script>
+      <div class="max-w-3xl mx-auto">
+        <script async src="https://yappie.tsukie.com/embed/bfbb7df1-d2fe-46a2-8db7-fdcf2978e848.js"></script>
+      </div>
     </div>
   </section>
 
-  <!-- Bottom CTA -->
   <BottomCTA />
 
 </BaseLayout>

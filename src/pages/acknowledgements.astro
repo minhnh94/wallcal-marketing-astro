@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
 
 const libraries = [
   { name: 'Defaults', repo: 'https://github.com/sindresorhus/Defaults', author: 'Sindre Sorhus' },
@@ -12,25 +13,29 @@ const libraries = [
 ];
 ---
 <BaseLayout title="Acknowledgements - WallCal">
-  <section class="relative pt-32 pb-12 md:pt-40 md:pb-20">
+  <section class="relative isolate pt-36 pb-20 md:pt-44 md:pb-28">
     <div class="max-w-3xl mx-auto px-4 sm:px-6">
-      <h1 class="text-4xl md:text-5xl font-bold text-center mb-12" data-aos="zoom-y-out">Acknowledgements</h1>
-      <p class="text-center text-gray-600 mb-10" data-aos="zoom-y-out" data-aos-delay="150">
-        WallCal is built with the help of the following open source projects. We are grateful to their authors.
-      </p>
-      <div class="space-y-4" data-aos="zoom-y-out" data-aos-delay="300">
+      <PageHeader
+        eyebrow="Open source"
+        title="Acknowledgements"
+        lead="WallCal is built with the help of the following open source projects. We are grateful to their authors."
+      />
+      <ul class="mt-12 card divide-y divide-black/[0.06] overflow-hidden" data-aos="fade-up" data-aos-delay="200">
         {libraries.map((lib) => (
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <div class="flex items-center justify-between flex-wrap gap-2">
+          <li>
+            <a class="group flex items-center justify-between gap-4 px-6 py-5 hover:bg-paper transition" href={lib.repo} target="_blank" rel="noopener noreferrer">
               <div>
-                <a class="text-lg font-semibold text-gray-900 hover:text-blue-600 transition" href={lib.repo} target="_blank" rel="noopener noreferrer">{lib.name}</a>
-                <p class="text-sm text-gray-500">by {lib.author}</p>
+                <span class="text-[17px] font-medium text-ink-950 group-hover:text-brand-500 transition">{lib.name}</span>
+                <p class="text-sm text-ink-500">by {lib.author}</p>
               </div>
-              <span class="text-xs font-mono bg-gray-100 text-gray-600 rounded-full px-3 py-1">MIT License</span>
-            </div>
-          </div>
+              <span class="flex items-center gap-3">
+                <span class="text-xs font-medium bg-paper text-ink-700 rounded-full px-3 py-1 ring-1 ring-black/[0.06]">MIT License</span>
+                <span class="text-ink-300 group-hover:text-ink-950 group-hover:translate-x-0.5 transition" aria-hidden="true">&rarr;</span>
+              </span>
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 </BaseLayout>

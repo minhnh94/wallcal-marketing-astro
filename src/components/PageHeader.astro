@@ -1,0 +1,16 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+}
+
+const { eyebrow, title, lead } = Astro.props;
+---
+
+<div class="relative text-center max-w-2xl mx-auto">
+  <div class="absolute left-1/2 top-[-260px] -translate-x-1/2 w-[900px] h-[420px] rounded-full wallpaper opacity-25 blur-[120px] -z-10 pointer-events-none" aria-hidden="true"></div>
+  {eyebrow && <span class="eyebrow" data-aos="fade-up">{eyebrow}</span>}
+  <h1 class="mt-4 text-h2 md:text-[3.75rem] font-semibold tracking-[-0.04em] leading-[1.05] text-balance" data-aos="fade-up" data-aos-delay="60">{title}</h1>
+  {lead && <p class="mt-5 text-lg text-ink-500 text-pretty" data-aos="fade-up" data-aos-delay="120">{lead}</p>}
+</div>

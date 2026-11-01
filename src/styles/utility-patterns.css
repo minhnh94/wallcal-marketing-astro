@@ -1,15 +1,55 @@
 /* Buttons */
 .btn,
 .btn-sm {
-    @apply text-sm font-medium inline-flex items-center justify-center rounded-lg whitespace-nowrap transition-all;
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-all duration-200;
 }
 
 .btn {
-    @apply px-4 py-[11px] shadow-lg;
+    @apply h-12 px-6 text-[15px];
 }
 
 .btn-sm {
-    @apply px-3 py-[5px] shadow-sm;
+    @apply h-9 px-4 text-sm;
+}
+
+.btn-primary {
+    @apply bg-ink-950 text-white shadow-[0_1px_0_rgba(255,255,255,0.15)_inset,0_8px_24px_-8px_rgba(11,11,15,0.55)] hover:bg-ink-900 hover:-translate-y-px;
+}
+
+.btn-brand {
+    @apply bg-brand-500 text-white shadow-[0_1px_0_rgba(255,255,255,0.25)_inset,0_8px_24px_-8px_rgba(229,69,44,0.7)] hover:bg-brand-600 hover:-translate-y-px;
+}
+
+.btn-glass {
+    @apply bg-white/70 text-ink-950 ring-1 ring-black/[0.06] backdrop-blur-md shadow-[0_1px_0_white_inset,0_6px_20px_-10px_rgba(0,0,0,0.25)] hover:bg-white hover:-translate-y-px;
+}
+
+/* Liquid-glass surface */
+.glass {
+    @apply bg-white/55 ring-1 ring-white/70 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_1px_0_rgba(255,255,255,0.9)_inset,0_20px_50px_-20px_rgba(20,20,40,0.25)];
+}
+
+.card {
+    @apply rounded-[28px] bg-white ring-1 ring-black/[0.06] shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_-24px_rgba(0,0,0,0.18)];
+}
+
+/* Section eyebrow */
+.eyebrow {
+    @apply inline-flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.14em] text-brand-600;
+}
+
+/* Desktop-wallpaper gradient used behind the product */
+.wallpaper {
+    background:
+        radial-gradient(60% 70% at 15% 20%, #ffb37a 0%, transparent 60%),
+        radial-gradient(55% 60% at 85% 15%, #ff7a8a 0%, transparent 60%),
+        radial-gradient(70% 80% at 80% 90%, #4bb4d6 0%, transparent 60%),
+        radial-gradient(60% 70% at 10% 95%, #6c5ce7 0%, transparent 65%),
+        linear-gradient(135deg, #f7a26b 0%, #c76ba8 50%, #3f7fc9 100%);
+}
+
+.keycap {
+    @apply inline-flex h-11 min-w-11 items-center justify-center rounded-xl bg-white px-3 text-lg font-medium text-ink-900 ring-1 ring-black/10 shadow-[0_2px_0_rgba(0,0,0,0.12),0_1px_0_white_inset];
 }
 
 /* Forms */
@@ -18,38 +58,4 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
-}
-
-.form-input,
-.form-textarea,
-.form-multiselect,
-.form-select,
-.form-checkbox,
-.form-radio {
-    @apply border border-gray-200 shadow-xs rounded-lg focus:ring-0 focus:ring-offset-0;
-}
-
-.form-input,
-.form-textarea,
-.form-multiselect,
-.form-select {
-    @apply bg-white text-sm py-2.5 px-4 focus:border-blue-300;
-}
-
-.form-input,
-.form-textarea {
-    @apply placeholder-gray-400;
-}
-
-.form-select {
-    @apply pr-10;
-}
-
-.form-checkbox,
-.form-radio {
-    @apply text-gray-800 checked:bg-blue-500 checked:border-transparent focus-visible:not-checked:border-blue-300;
-}
-
-.form-checkbox {
-    @apply rounded-xs;
 }

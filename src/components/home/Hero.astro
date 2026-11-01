@@ -1,0 +1,96 @@
+---
+import { links } from '../../lib/links';
+---
+
+<section class="relative isolate pt-32 md:pt-40">
+  <!-- Ambient wallpaper glow -->
+  <div class="absolute inset-x-0 top-0 h-[720px] -z-10 pointer-events-none" aria-hidden="true">
+    <div class="absolute left-1/2 top-[-180px] -translate-x-1/2 w-[1100px] h-[620px] rounded-full wallpaper opacity-30 blur-[120px]"></div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <div data-aos="fade-up">
+        <span class="glass inline-flex items-center gap-2 rounded-full pl-1.5 pr-3.5 py-1.5 text-[13px] text-ink-700">
+          <span class="rounded-full bg-ink-950 text-white px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider">New</span>
+          Redesigned <span class="hidden sm:inline">with Liquid Glass</span> for macOS Tahoe
+        </span>
+      </div>
+
+      <h1 class="mt-7 text-display font-semibold text-balance" data-aos="fade-up" data-aos-delay="80">
+        Your calendar,
+        <span class="font-serif italic font-normal tracking-[-0.02em] text-brand-500 whitespace-nowrap">right on</span>
+        your wallpaper.
+      </h1>
+
+      <p class="mt-6 text-lg md:text-xl text-ink-500 max-w-2xl mx-auto text-pretty" data-aos="fade-up" data-aos-delay="160">
+        WallCal pins your calendars and reminders to the Mac desktop. Your week is always there behind your windows — no app to open, nothing to switch to.
+      </p>
+
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3" data-aos="fade-up" data-aos-delay="240">
+        <a
+          class="btn btn-primary w-full sm:w-auto"
+          href={links.appStore}
+          target="_blank"
+          rel="nofollow noreferrer"
+          data-posthog-event="download_cta_clicked"
+          data-posthog-location="hero"
+          data-posthog-provider="app_store"
+          data-posthog-cta-text="App Store"
+        >
+          Free on the Mac App Store
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+        <a
+          class="btn btn-glass w-full sm:w-auto"
+          href={links.setapp}
+          target="_blank"
+          rel="nofollow noreferrer"
+          data-posthog-event="download_cta_clicked"
+          data-posthog-location="hero"
+          data-posthog-provider="setapp"
+          data-posthog-cta-text="Setapp"
+        >
+          Get it on Setapp
+        </a>
+      </div>
+
+      <p class="mt-5 text-sm text-ink-500" data-aos="fade-up" data-aos-delay="300">
+        Free to download · Expert add-on included with Setapp
+      </p>
+    </div>
+
+    <!-- Intro video: real captures of WallCal, under a minute -->
+    <div class="relative mt-16 md:mt-20" data-aos="fade-up" data-aos-delay="200">
+      <div class="relative rounded-[22px] md:rounded-[32px] p-1.5 md:p-2 bg-white/60 ring-1 ring-black/[0.06] shadow-[0_40px_120px_-40px_rgba(60,30,90,0.45)]">
+        <div class="relative overflow-hidden rounded-[17px] md:rounded-[25px] aspect-video bg-ink-900">
+          <video
+            class="absolute inset-0 w-full h-full object-cover"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="/my-assets/video/wallcal-intro-poster.jpg"
+            aria-label="WallCal intro: month view, sidebar, weekly agenda and the three appearances on a Mac desktop"
+            data-hero-video
+          >
+            <source src="/my-assets/video/wallcal-intro.webm" type="video/webm" />
+            <source src="/my-assets/video/wallcal-intro.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </div>
+    <script is:inline>
+      (() => {
+        // Respect reduced motion: show the poster with controls instead of autoplaying.
+        const video = document.querySelector('[data-hero-video]');
+        if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          video.removeAttribute('autoplay');
+          video.pause();
+          video.controls = true;
+        }
+      })();
+    </script>
+  </div>
+</section>

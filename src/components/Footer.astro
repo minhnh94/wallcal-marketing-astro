@@ -1,39 +1,107 @@
 ---
 import Logo from './Logo.astro';
+import { links } from '../lib/links';
+
+const columns = [
+  {
+    title: 'Product',
+    items: [
+      { label: 'Home', href: '/' },
+      { label: 'Features', href: '/#features' },
+      { label: 'Expert Calendar Add-on', href: '/expert-calendar-addon' },
+      { label: 'FAQ', href: '/#faq' },
+    ],
+  },
+  {
+    title: 'Download',
+    items: [
+      { label: 'Mac App Store', href: links.appStore, provider: 'app_store', external: true },
+      { label: 'Setapp', href: links.setapp, provider: 'setapp', external: true },    ],
+  },
+  {
+    title: 'Company',
+    items: [
+      { label: 'Contact Us', href: '/contact-us' },
+      { label: 'Acknowledgements', href: '/acknowledgements' },
+    ],
+  },
+];
 ---
 
-<footer>
+<footer class="relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 py-8 md:py-12 border-t border-gray-200">
+    <div class="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr] py-14 border-t border-black/[0.07]">
 
-      <!-- Logo -->
-      <Logo />
-
-      <!-- Contact -->
-      <p class="text-sm text-gray-600">
-        Contact us at <a class="text-gray-900 hover:underline transition" href="mailto:tsukie.studio@gmail.com" data-posthog-event="support_email_clicked" data-posthog-location="footer" data-posthog-email="support@wallcal.app">support@wallcal.app</a>
-      </p>
-
-      <!-- Social + Copyright -->
-      <div class="flex items-center gap-4">
-        <!-- Twitter/X icon -->
-        <a class="flex justify-center items-center text-blue-500 hover:text-blue-600 transition" href="https://twitter.com/WallCalApp" target="_blank" rel="nofollow noreferrer" aria-label="Twitter" data-posthog-event="social_link_clicked" data-posthog-location="footer" data-posthog-network="twitter">
-          <svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-            <path d="m13.063 9 3.495 4.475L20.601 9h2.454l-5.359 5.931L24 23h-4.938l-3.866-4.893L10.771 23H8.316l5.735-6.342L8 9h5.063Zm-.74 1.347h-1.457l8.875 11.232h1.36l-8.778-11.232Z"></path>
-          </svg>
+      <div class="space-y-4">
+        <Logo />
+        <p class="text-sm text-ink-500 max-w-xs">
+          Your calendars and reminders, at home on your Mac desktop.
+        </p>
+        <p class="text-sm text-ink-500">
+          Contact us at <a class="text-ink-950 hover:underline" href="mailto:tsukie.studio@gmail.com" data-posthog-event="support_email_clicked" data-posthog-location="footer" data-posthog-email="support@wallcal.app">support@wallcal.app</a>
+        </p>
+        <a
+          class="inline-flex items-center gap-2 text-sm text-ink-700 hover:text-ink-950 transition"
+          href={links.twitter}
+          target="_blank"
+          rel="nofollow noreferrer"
+          aria-label="Follow @WallCalApp on X"
+          data-posthog-event="social_link_clicked"
+          data-posthog-location="footer"
+          data-posthog-network="twitter"
+        >
+          <span class="flex items-center justify-center w-8 h-8 rounded-full bg-ink-950 text-white">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="m13.063 9 3.495 4.475L20.601 9h2.454l-5.359 5.931L24 23h-4.938l-3.866-4.893L10.771 23H8.316l5.735-6.342L8 9h5.063Zm-.74 1.347h-1.457l8.875 11.232h1.36l-8.778-11.232Z"></path>
+            </svg>
+          </span>
+          @WallCalApp
         </a>
-        <span class="text-sm text-gray-600">&copy; tsukie</span>
       </div>
 
+      {columns.map((col) => (
+        <div>
+          <h3 class="text-sm font-semibold text-ink-950 mb-4">{col.title}</h3>
+          <ul class="space-y-2.5 text-sm">
+            {col.items.map((item) => (
+              <li>
+                {'provider' in item ? (
+                  <a
+                    class="text-ink-500 hover:text-ink-950 transition"
+                    href={item.href}
+                    target="_blank"
+                    rel="nofollow noreferrer"
+                    data-posthog-event="download_cta_clicked"
+                    data-posthog-location="footer"
+                    data-posthog-provider={item.provider}
+                    data-posthog-cta-text={item.label}
+                  >{item.label}</a>
+                ) : (
+                  <a
+                    class="text-ink-500 hover:text-ink-950 transition"
+                    href={item.href}
+                    data-posthog-event="navigation_link_clicked"
+                    data-posthog-location="footer"
+                    data-posthog-nav-label={item.label}
+                  >{item.label}</a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-2 pb-10 text-xs text-ink-500">
+      <span>&copy; tsukie</span>
+      <span>Made for macOS</span>
     </div>
   </div>
 
-  <!-- Big text glow effect -->
-  <div class="relative -mt-16 h-60 w-full -z-10" aria-hidden="true">
-    <div class="absolute left-1/2 pointer-events-none -z-10 -translate-x-1/2 text-[348px] leading-none text-center font-bold before:content-['WallCal'] before:bg-linear-to-b before:from-gray-200 before:to-gray-100/30 before:to-80% before:text-transparent before:bg-clip-text after:content-['WallCal'] after:absolute after:inset-0 after:bg-gray-300/70 after:text-transparent after:bg-clip-text after:[text-shadow:0_1px_0_white] after:mix-blend-darken"></div>
-    <!-- Glow -->
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-2/3" aria-hidden="true">
-      <div class="w-56 h-56 rounded-full border-[20px] border-blue-700 blur-[80px] will-change-[filter]"></div>
+  <!-- Oversized wordmark -->
+  <div class="relative h-[18vw] max-h-56 w-full overflow-hidden pointer-events-none select-none" aria-hidden="true">
+    <div class="absolute inset-x-0 top-0 text-center font-semibold leading-none tracking-[-0.06em] text-[24vw] bg-linear-to-b from-black/[0.08] to-transparent bg-clip-text text-transparent">
+      WallCal
     </div>
   </div>
 </footer>
