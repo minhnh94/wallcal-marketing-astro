@@ -19,6 +19,8 @@ func requestAccess() {
 }
 
 func pickSource(for type: EKEntityType) -> EKSource {
+    // "On My Mac" rejects reminder lists; use the default reminders source (usually iCloud).
+    if type == .reminder, let def = store.defaultCalendarForNewReminders() { return def.source }
     let sources = store.sources
     if let local = sources.first(where: { $0.sourceType == .local }) { return local }
     // iCloud hides the local source; fall back to the default calendar's source.

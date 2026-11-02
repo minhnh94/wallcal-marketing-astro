@@ -74,7 +74,7 @@ const en = {
     sidebar: {
       title: 'Events & reminders, side by side',
       body: 'A mini calendar with an event list next to it. Your to-dos from Reminders show up there too.',
-      alt: 'WallCal sidebar showing today’s date and a mini calendar with event dots',
+      alt: 'WallCal sidebar with a mini calendar above a list of upcoming events and reminders',
     },
     weekly: {
       title: 'Or a timeline of your week',

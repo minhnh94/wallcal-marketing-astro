@@ -74,7 +74,7 @@ const de: Dict = {
     sidebar: {
       title: 'Termine & Erinnerungen nebeneinander',
       body: 'Ein Mini-Kalender mit einer Terminliste daneben. Deine To-dos aus Erinnerungen erscheinen dort auch.',
-      alt: 'WallCal-Seitenleiste mit dem heutigen Datum und einem Mini-Kalender mit Terminpunkten',
+      alt: 'WallCal-Seitenleiste mit einem Mini-Kalender über einer Liste anstehender Termine und Erinnerungen',
     },
     weekly: {
       title: 'Oder als Zeitleiste deiner Woche',
