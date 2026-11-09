@@ -194,7 +194,7 @@ const ja: Dict = {
   contact: {
     eyebrow: 'サポート',
     title: 'お問い合わせ',
-    lead: 'macOSアプリ WallCal/WallCal Lite をご購入いただき、不具合が発生した場合や特定の機能についてサポートが必要な場合は、お気軽にメールでご連絡ください。',
+    lead: 'macOSアプリ WallCal/WallCal Lite をご購入いただき、不具合が発生した場合や特定の機能についてサポートが必要な場合は、下記からご質問いただくか、メールでご連絡ください。',
     emailLabel: 'メールサポート',
     button: 'メールを送る',
   },

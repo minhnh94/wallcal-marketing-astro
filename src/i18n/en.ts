@@ -194,7 +194,7 @@ const en = {
   contact: {
     eyebrow: 'Support',
     title: 'Contact Us',
-    lead: 'If you purchased our macOS app WallCal/WallCal Lite and you encountered any troubles, or need support regarding a specific function, please don’t hesitate to email us.',
+    lead: 'If you purchased our macOS app WallCal/WallCal Lite and you encountered any troubles, or need support regarding a specific function, ask below or email us.',
     emailLabel: 'Email support',
     button: 'Write to us',
   },

@@ -194,7 +194,7 @@ const zh: Dict = {
   contact: {
     eyebrow: '支持',
     title: '联系我们',
-    lead: '如果你购买了我们的 macOS 应用 WallCal/WallCal Lite 并遇到任何问题，或需要某项功能的帮助，欢迎随时发邮件给我们。',
+    lead: '如果你购买了我们的 macOS 应用 WallCal/WallCal Lite 并遇到任何问题，或需要某项功能的帮助，欢迎在下方提问，或发邮件给我们。',
     emailLabel: '邮件支持',
     button: '写信给我们',
   },

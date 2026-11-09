@@ -14,7 +14,7 @@ const basePath = stripLocale(Astro.url.pathname);
 const nav = (['features', 'addon', 'pricing', 'faq', 'contact'] as const).map((key) => ({
   label: t.nav[key],
   track: en.nav[key],
-  href: l({ features: '/#features', addon: '/expert-calendar-addon', pricing: '/#get-wallcal', faq: '/#faq', contact: '/contact-us' }[key]),
+  href: l({ features: '/#features', addon: '/expert-calendar-addon', pricing: '/#get-wallcal', faq: '/#faq', contact: '/support' }[key]),
 }));
 ---
 

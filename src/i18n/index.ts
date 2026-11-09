@@ -27,7 +27,7 @@ export function useTranslations(url: URL) {
   return dictionaries[getLocale(url)];
 }
 
-/** Drop the locale prefix: '/de/contact-us/' -> '/contact-us/'. */
+/** Drop the locale prefix: '/de/support/' -> '/support/'. */
 export function stripLocale(pathname: string): string {
   const locale = getLocale(new URL(pathname, 'https://x'));
   return locale === defaultLocale ? pathname : pathname.slice(locale.length + 1) || '/';
