@@ -1,8 +1,10 @@
 ---
 import SetappBanner from '../SetappBanner.astro';
-import { links } from '../../lib/links';
+import { useLinks } from '../../lib/links';
 import { useTranslations } from '../../i18n';
 import en from '../../i18n/en';
+
+const links = useLinks(Astro.url);
 
 const t = useTranslations(Astro.url).pricing;
 

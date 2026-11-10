@@ -1,8 +1,10 @@
 ---
 import Logo from './Logo.astro';
-import { links } from '../lib/links';
+import { useLinks } from '../lib/links';
 import { useLocalizePath, useTranslations } from '../i18n';
 import en from '../i18n/en';
+
+const links = useLinks(Astro.url);
 
 const t = useTranslations(Astro.url);
 const l = useLocalizePath(Astro.url);

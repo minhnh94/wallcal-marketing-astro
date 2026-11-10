@@ -4,7 +4,7 @@ import 'aos/dist/aos.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostHog from '../components/posthog.astro';
-import { getLocale, localeMeta, locales, localizePath, stripLocale, useTranslations } from '../i18n';
+import { getLocale, localeMeta, locales, localizePath, prefixedLocales, stripLocale, useTranslations } from '../i18n';
 
 interface Props {
   title: string;
@@ -34,6 +34,32 @@ const ogImageAlt = t.meta.ogImageAlt;
   <link rel="canonical" href={canonical} />
   {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
   <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
+  {locale === 'en' && (
+    <script is:inline define:vars={{ supported: prefixedLocales }}>
+      // English pages only: send first-time visitors to their browser language if we have it.
+      // An explicit pick in the language switcher is remembered and always wins.
+      try {
+        var saved = localStorage.getItem('wallcal-locale');
+        if (!saved && !/bot|crawl|spider|slurp|preview/i.test(navigator.userAgent)) {
+          var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+          for (var i = 0; i < langs.length; i++) {
+            var code = String(langs[i]).toLowerCase().split('-')[0];
+            if (code === 'en') break;
+            if (supported.indexOf(code) !== -1) {
+              location.replace('/' + code + location.pathname + location.search + location.hash);
+              break;
+            }
+          }
+        }
+      } catch (e) {}
+    </script>
+  )}
+  <script is:inline>
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[data-posthog-event="language_switched"]');
+      if (a) try { localStorage.setItem('wallcal-locale', a.getAttribute('data-posthog-to')); } catch (err) {}
+    });
+  </script>
   <meta name="theme-color" content="#f7f6f3" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="WallCal" />

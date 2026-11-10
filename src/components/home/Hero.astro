@@ -1,6 +1,8 @@
 ---
-import { links } from '../../lib/links';
+import { useLinks } from '../../lib/links';
 import { useTranslations } from '../../i18n';
+
+const links = useLinks(Astro.url);
 
 const t = useTranslations(Astro.url).hero;
 ---
