@@ -197,6 +197,7 @@ const de: Dict = {
     lead: 'Du hast unsere macOS-App WallCal/WallCal Lite gekauft und hast Probleme oder brauchst Hilfe zu einer bestimmten Funktion? Frag uns unten oder schreib uns eine E-Mail.',
     emailLabel: 'E-Mail-Support',
     button: 'Schreib uns',
+    announcements: { title: 'Ankündigungen', pastTitle: 'Frühere Ankündigungen', none: 'Keine aktuellen Ankündigungen. Alles läuft normal.', resolved: 'Behoben', posted: 'Veröffentlicht', levels: { info: 'Info', warning: 'Bekanntes Problem', outage: 'Ausfall' } },
   },
   ack: {
     eyebrow: 'Open Source',

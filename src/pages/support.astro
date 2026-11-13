@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
+import Announcements from '../components/Announcements.astro';
 import { useTranslations } from '../i18n';
 
 const t = useTranslations(Astro.url);
@@ -13,6 +14,7 @@ const t = useTranslations(Astro.url);
         title={t.contact.title}
         lead={t.contact.lead}
       />
+      <Announcements />
       <div class="mt-12" data-aos="fade-up" data-aos-delay="100">
         <script async src="https://yappie.tsukie.com/embed/bfbb7df1-d2fe-46a2-8db7-fdcf2978e848.js"></script>
       </div>

@@ -197,6 +197,7 @@ const en = {
     lead: 'If you purchased our macOS app WallCal/WallCal Lite and you encountered any troubles, or need support regarding a specific function, ask below or email us.',
     emailLabel: 'Email support',
     button: 'Write to us',
+    announcements: { title: 'Announcements', pastTitle: 'Past announcements', none: 'No active announcements. Everything is running normally.', resolved: 'Resolved', posted: 'Posted', levels: { info: 'Info', warning: 'Known issue', outage: 'Outage' } },
   },
   ack: {
     eyebrow: 'Open source',

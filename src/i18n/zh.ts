@@ -197,6 +197,7 @@ const zh: Dict = {
     lead: '如果你购买了我们的 macOS 应用 WallCal/WallCal Lite 并遇到任何问题，或需要某项功能的帮助，欢迎在下方提问，或发邮件给我们。',
     emailLabel: '邮件支持',
     button: '写信给我们',
+    announcements: { title: '公告', pastTitle: '历史公告', none: '当前没有公告，一切运行正常。', resolved: '已解决', posted: '发布于', levels: { info: '通知', warning: '已知问题', outage: '服务中断' } },
   },
   ack: {
     eyebrow: '开源',

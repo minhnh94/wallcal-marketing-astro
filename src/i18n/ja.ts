@@ -197,6 +197,7 @@ const ja: Dict = {
     lead: 'macOSアプリ WallCal/WallCal Lite をご購入いただき、不具合が発生した場合や特定の機能についてサポートが必要な場合は、下記からご質問いただくか、メールでご連絡ください。',
     emailLabel: 'メールサポート',
     button: 'メールを送る',
+    announcements: { title: 'お知らせ', pastTitle: '過去のお知らせ', none: '現在お知らせはありません。すべて正常に動作しています。', resolved: '解決済み', posted: '掲載日', levels: { info: 'お知らせ', warning: '既知の問題', outage: '障害' } },
   },
   ack: {
     eyebrow: 'オープンソース',

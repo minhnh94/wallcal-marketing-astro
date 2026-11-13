@@ -1,0 +1,115 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { getLocale, localeMeta, defaultLocale, useTranslations } from '../i18n';
+
+type Entry = CollectionEntry<'announcements'>;
+
+const locale = getLocale(Astro.url);
+const t = useTranslations(Astro.url).contact.announcements;
+const fmt = new Intl.DateTimeFormat(localeMeta[locale].htmlLang, { dateStyle: 'medium', timeZone: 'UTC' });
+const monthFmt = new Intl.DateTimeFormat(localeMeta[locale].htmlLang, { year: 'numeric', month: 'long', timeZone: 'UTC' });
+
+// id is "<locale>/<slug>". Prefer this locale's file, fall back to English.
+const all = await getCollection('announcements', (e) => !e.data.draft);
+const bySlug = new Map<string, Entry>();
+for (const e of all) {
+  const [loc, ...rest] = e.id.split('/');
+  const slug = rest.join('/');
+  if (loc === locale || (loc === defaultLocale && !bySlug.has(slug))) bySlug.set(slug, e);
+}
+const items = await Promise.all(
+  [...bySlug.values()]
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+    .map(async (e) => ({ e, Content: (await render(e)).Content })),
+);
+const active = items.filter(({ e }) => !e.data.resolved);
+const past = items
+  .filter(({ e }) => e.data.resolved)
+  .sort((a, b) => b.e.data.resolved!.getTime() - a.e.data.resolved!.getTime());
+
+const groups = new Map<string, typeof past>();
+for (const item of past) {
+  const key = monthFmt.format(item.e.data.resolved!);
+  groups.set(key, [...(groups.get(key) ?? []), item]);
+}
+
+const badge: Record<Entry['data']['level'] | 'resolved', string> = {
+  info: 'bg-sky-50 text-sky-700 ring-sky-600/20',
+  warning: 'bg-amber-50 text-amber-800 ring-amber-600/25',
+  outage: 'bg-brand-50 text-brand-700 ring-brand-600/25',
+  resolved: 'bg-emerald-50 text-emerald-700 ring-emerald-600/20',
+};
+---
+<section class="mt-12" aria-labelledby="announcements-title" data-aos="fade-up" data-aos-delay="80">
+  <h2 id="announcements-title" class="text-sm font-medium uppercase tracking-[0.14em] text-ink-500">{t.title}</h2>
+
+  {active.length === 0 ? (
+    <p class="mt-4 card px-6 py-5 text-ink-500 flex items-center gap-3">
+      <span class="size-2 rounded-full bg-emerald-500" aria-hidden="true"></span>{t.none}
+    </p>
+  ) : (
+    <div class="mt-4 space-y-4">
+      {active.map(({ e, Content }) => (
+        <article class="card p-6 md:p-8">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-ink-500">
+            <span class:list={['rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset', badge[e.data.level]]}>{t.levels[e.data.level]}</span>
+            <time datetime={e.data.date.toISOString()}>{fmt.format(e.data.date)}</time>
+          </div>
+          <h3 class="mt-3 text-xl font-semibold tracking-tight text-ink-950">{e.data.title}</h3>
+          <div class="announcement-body mt-3"><Content /></div>
+          {e.data.updates.length > 0 && (
+            <ol class="mt-5 border-l border-black/10 pl-4 space-y-2 text-sm">
+              {e.data.updates.map((u) => (
+                <li><time class="font-medium text-ink-900" datetime={u.date.toISOString()}>{fmt.format(u.date)}</time> <span class="text-ink-700">— {u.text}</span></li>
+              ))}
+            </ol>
+          )}
+        </article>
+      ))}
+    </div>
+  )}
+
+  {past.length > 0 && (
+    <div class="mt-10">
+      <h2 class="text-sm font-medium uppercase tracking-[0.14em] text-ink-500">{t.pastTitle}</h2>
+      {[...groups].map(([month, list]) => (
+        <div class="mt-5">
+          <h3 class="text-sm font-semibold text-ink-900">{month}</h3>
+          <div class="mt-2 card divide-y divide-black/[0.06] overflow-hidden">
+            {list.map(({ e, Content }) => (
+              <details class="group">
+                <summary class="flex cursor-pointer list-none items-center gap-3 px-6 py-4 hover:bg-black/[0.02] [&::-webkit-details-marker]:hidden">
+                  <span class:list={['shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset', badge.resolved]}>{t.resolved}</span>
+                  <span class="flex-1 font-medium text-ink-950">{e.data.title}</span>
+                  <time class="shrink-0 text-sm text-ink-500" datetime={e.data.resolved!.toISOString()}>{fmt.format(e.data.resolved!)}</time>
+                  <svg class="size-4 shrink-0 text-ink-500 transition group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.17l3.71-3.94a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z"/></svg>
+                </summary>
+                <div class="px-6 pb-5">
+                  <p class="text-sm text-ink-500">{t.posted} {fmt.format(e.data.date)} · {t.levels[e.data.level]}</p>
+                  <div class="announcement-body mt-2"><Content /></div>
+                  {e.data.updates.length > 0 && (
+                    <ol class="mt-4 border-l border-black/10 pl-4 space-y-2 text-sm">
+                      {e.data.updates.map((u) => (
+                        <li><time class="font-medium text-ink-900" datetime={u.date.toISOString()}>{fmt.format(u.date)}</time> <span class="text-ink-700">— {u.text}</span></li>
+                      ))}
+                    </ol>
+                  )}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+</section>
+
+<style>
+  .announcement-body { color: var(--color-ink-700); line-height: 1.65; }
+  .announcement-body :global(> * + *) { margin-top: 0.75em; }
+  .announcement-body :global(a) { color: var(--color-brand-600); text-decoration: underline; text-underline-offset: 2px; }
+  .announcement-body :global(strong) { color: var(--color-ink-950); font-weight: 600; }
+  .announcement-body :global(ul) { list-style: disc; padding-left: 1.25em; }
+  .announcement-body :global(ol) { list-style: decimal; padding-left: 1.25em; }
+  .announcement-body :global(code) { font-size: 0.9em; background: rgb(0 0 0 / 0.05); padding: 0.1em 0.35em; border-radius: 6px; }
+</style>
