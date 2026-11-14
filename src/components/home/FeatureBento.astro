@@ -1,5 +1,6 @@
 ---
 import Screenshot from '../Screenshot.astro';
+import AddEditMock from '../AddEditMock.astro';
 import { useLocalizePath, useTranslations } from '../../i18n';
 
 const t = useTranslations(Astro.url).features;
@@ -53,9 +54,6 @@ const appearances = [
             <h3 class="text-2xl font-semibold tracking-tight">{t.weekly.title}</h3>
           </div>
           <p class="mt-2 text-ink-500">{t.weekly.body}</p>
-          <a href={l('/expert-calendar-addon')} class="mt-3 inline-flex items-center gap-1.5 rounded-full bg-brand-50 text-brand-600 px-2.5 py-1 text-xs font-medium hover:bg-brand-100 transition" data-posthog-event="navigation_link_clicked" data-posthog-location="features_weekly" data-posthog-nav-label="Expert Calendar Addon">
-            {t.addonPill} <span aria-hidden="true">&rarr;</span>
-          </a>
         </div>
         <div class="mt-7 mx-7 rounded-t-2xl overflow-hidden grow">
           <Screenshot src="/my-assets/shots/weekly.jpg" alt={t.weekly.alt} ratio="1840 / 2300" />
@@ -93,6 +91,21 @@ const appearances = [
               </div>
             ))}
           </div>
+        </div>
+      </article>
+
+      <!-- Add and edit -->
+      <article class="card overflow-hidden lg:col-span-3" data-aos="fade-up">
+        <div class="grid md:grid-cols-[1fr_1.25fr] gap-6 p-7 md:p-9 items-center">
+          <div class="flex flex-col">
+            <h3 class="text-2xl font-semibold tracking-tight">{t.edit.title}</h3>
+            <p class="mt-2 text-ink-500">{t.edit.body}</p>
+            <p class="mt-2 text-ink-500">{t.edit.switchNote}</p>
+            <a href={l('/expert-calendar-addon')} class="mt-4 self-start inline-flex items-center gap-1.5 rounded-full bg-brand-50 text-brand-600 px-2.5 py-1 text-xs font-medium hover:bg-brand-100 transition" data-posthog-event="navigation_link_clicked" data-posthog-location="features_edit" data-posthog-nav-label="Expert Calendar Addon">
+              {t.addonPill} <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+          <AddEditMock m={t.edit.mock} />
         </div>
       </article>
 

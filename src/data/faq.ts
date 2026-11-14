@@ -105,19 +105,19 @@ export const faq: FAQEntry[] = [
     id: 'edit-events',
     en: {
       question: 'Does WallCal support adding new events/reminders, or editing existing events/reminders?',
-      answer: 'Unfortunately, WallCal doesn’t support these actions at the moment. Please use Apple’s stock Calendar/Reminder app, or any other 3rd party apps which support this function to manipulate calendar events/reminders.',
+      answer: 'Yes. Double-click a day on the desktop (or click once while WallCal is in front) to add an event or to-do, and click an existing one to edit it. You can try the panel for free; saving and deleting need the Expert Calendar add-on. The pencil switch next to Today turns desktop clicks off.',
     },
     de: {
       question: 'Kann ich in WallCal neue Termine/Erinnerungen hinzufügen oder bestehende bearbeiten?',
-      answer: 'Leider unterstützt WallCal das derzeit nicht. Bitte nutze dafür Apples Kalender- bzw. Erinnerungen-App oder eine andere App, die diese Funktion bietet.',
+      answer: 'Ja. Doppelklicke auf dem Schreibtisch auf einen Tag (oder klicke einmal, wenn WallCal im Vordergrund ist), um einen Termin oder ein To-do hinzuzufügen, und klicke auf einen bestehenden Eintrag, um ihn zu bearbeiten. Das Fenster kannst du kostenlos ausprobieren; zum Speichern und Löschen brauchst du das Experten-Kalender-Add-on. Der Stift-Schalter neben „Heute“ schaltet Klicks auf dem Schreibtisch aus.',
     },
     ja: {
       question: 'WallCalで予定やリマインダーを追加・編集できますか？',
-      answer: '申し訳ありませんが、現在WallCalはこれらの操作に対応していません。予定やリマインダーの追加・編集には、Apple純正のカレンダー/リマインダーアプリや、この機能に対応した他社製アプリをご利用ください。',
+      answer: 'はい。デスクトップで日付をダブルクリック（WallCalが最前面ならシングルクリック）すると予定やTo-doを追加でき、既存の項目をクリックすると編集できます。パネルは無料で試せますが、保存と削除にはExpert Calendar拡張が必要です。「今日」の横にあるペンのスイッチで、デスクトップでのクリックをオフにできます。',
     },
     zh: {
       question: 'WallCal 支持添加新的事件/提醒事项，或编辑现有事件/提醒事项吗？',
-      answer: '很抱歉，WallCal 目前不支持这些操作。请使用 Apple 自带的日历/提醒事项应用，或其他支持该功能的第三方应用来管理日历事件和提醒事项。',
+      answer: '支持。在桌面上连按某一天（WallCal 置于最前时单击即可）即可添加事件或待办，点按已有项目即可编辑。面板可免费试用，保存和删除需要 Expert 日历插件。“今天”旁边的铅笔开关可关闭桌面点按。',
     },
   },
   {

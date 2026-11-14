@@ -6,7 +6,7 @@ const zh: Dict = {
     description: '在 Mac 桌面上一眼看清整周安排。日历和提醒事项常驻所有窗口之后，采用原生 Liquid Glass 设计。Mac App Store 免费下载。',
     ogImageAlt: 'Mac 桌面上的 WallCal 月视图，旁边是标题“你的日历，就在壁纸上。”',
     addonTitle: 'Expert 日历插件 — WallCal',
-    addonDescription: '周日程、自定义显示时间段、日历筛选等功能。一次购买永久使用，或通过 Setapp 获取。',
+    addonDescription: '在桌面上直接添加和编辑事件、自定义显示时间段、日历筛选等功能。一次购买永久使用，或通过 Setapp 获取。',
     contactTitle: '联系我们 — WallCal',
     contactDescription: '对 WallCal 或 WallCal Lite 有疑问？请发邮件至 support@wallcal.app，我们会尽力帮你。',
     ackTitle: '致谢 — WallCal',
@@ -78,8 +78,14 @@ const zh: Dict = {
     },
     weekly: {
       title: '或者，一周时间轴',
-      body: '把月视图换成周日程。自由选择显示的时间段，以及向后显示几天。',
+      body: '把月视图换成周日程，现已免费。使用 Expert 插件，还能选择显示的时间段和天数。',
       alt: 'WallCal 周日程时间轴',
+    },
+    edit: {
+      title: '点按之处，即可添加和编辑',
+      body: '在桌面上连按某一天即可添加事件或待办，点按已有项目即可修改。小面板会在点按处旁边打开，占位符会显示新项目将出现的位置。',
+      switchNote: '想让壁纸保持安静时，用铅笔开关即可关闭桌面点按。',
+      mock: { event: '事件', todo: '待办', title: '和 Sam 吃午饭', starts: '开始', when: '19日 周四 12:00', calendar: '工作', add: '添加', switchOn: '桌面编辑：开', standup: '站会', gym: '健身' },
     },
     addonPill: 'Expert 插件',
     appearance: {
@@ -133,7 +139,7 @@ const zh: Dict = {
     titleEm: '为规划达人而生。',
     body: 'WallCal 免费使用。想要更多掌控时，只需一次性 App 内购买即可永久解锁 Expert 日历插件，无需订阅。也可以通过 Setapp 直接使用。',
     perks: [
-      '用周日程替代月视图',
+      '在桌面上直接添加和编辑事件与待办',
       '设置显示的时间段和天数',
       '选择显示哪些日历和提醒列表',
       '隐藏侧边栏或主日历',
@@ -150,7 +156,7 @@ const zh: Dict = {
     appStore: {
       price: '免费',
       note: 'Expert 插件：一次购买，永久拥有',
-      points: ['月视图、侧边栏和提醒事项', '全部三种外观', '快捷键、菜单栏和登录时启动'],
+      points: ['月视图、周视图、侧边栏和提醒事项', '全部三种外观', '快捷键、菜单栏和登录时启动'],
       cta: '免费下载',
     },
     setapp: {
@@ -178,7 +184,7 @@ const zh: Dict = {
     title: 'Expert 日历插件',
     lead: '解锁高级功能，按你的方式定制日历。',
     features: {
-      'weekly-agenda': { title: '周日程视图', description: '用一周时间轴替代月视图。' },
+      'add-edit': { title: '在桌面上添加和编辑', description: '在点按位置旁弹出的小面板中创建和修改事件与待办，在桌面上或置于最前时均可使用。无需插件即可试用面板，保存需要插件。' },
       'time-range': { title: '可调时间段', description: '选择周日程显示的时间段，让一天铺满视图。' },
       'days-to-show': { title: '可变显示天数', description: '在周日程中显示 1 到 7 天，从今天或从一周的第一天开始。' },
       'calendar-filtering': { title: '日历筛选', description: '选择哪些日历和提醒列表显示在 WallCal 上。' },

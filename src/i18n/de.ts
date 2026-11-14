@@ -6,7 +6,7 @@ const de: Dict = {
     description: 'Deine Woche auf einen Blick, direkt auf dem Mac-Schreibtisch. Kalender und Erinnerungen hinter jedem Fenster, in nativem Liquid Glass. Kostenlos im Mac App Store.',
     ogImageAlt: 'WallCal-Monatsansicht auf einem Mac-Schreibtisch neben der Überschrift „Dein Kalender, direkt auf dem Hintergrundbild.“',
     addonTitle: 'Experten-Kalender-Add-on – WallCal',
-    addonDescription: 'Wochenagenda, eigene Uhrzeiten, Kalenderfilter und mehr. Einmaliger Kauf für dauerhaften Zugriff oder inklusive mit Setapp.',
+    addonDescription: 'Termine direkt auf dem Schreibtisch hinzufügen und bearbeiten, eigene Uhrzeiten, Kalenderfilter und mehr. Einmaliger Kauf für dauerhaften Zugriff oder inklusive mit Setapp.',
     contactTitle: 'Kontakt – WallCal',
     contactDescription: 'Fragen zu WallCal oder WallCal Lite? Schreib an support@wallcal.app – wir helfen dir.',
     ackTitle: 'Danksagungen – WallCal',
@@ -78,8 +78,14 @@ const de: Dict = {
     },
     weekly: {
       title: 'Oder als Zeitleiste deiner Woche',
-      body: 'Tausche den Monat gegen eine Wochenagenda. Wähle die angezeigten Uhrzeiten und wie viele Tage im Voraus du siehst.',
+      body: 'Tausche den Monat gegen eine Wochenagenda – jetzt kostenlos. Mit dem Experten-Add-on wählst du die angezeigten Uhrzeiten und wie viele Tage du siehst.',
       alt: 'WallCal-Wochenagenda als Zeitleiste',
+    },
+    edit: {
+      title: 'Hinzufügen & bearbeiten, genau dort, wo du klickst',
+      body: 'Doppelklicke auf dem Schreibtisch auf einen Tag, um einen Termin oder ein To-do hinzuzufügen, oder klicke auf einen Eintrag, um ihn zu ändern. Ein kleines Fenster öffnet sich neben dem Klick, und ein Platzhalter zeigt, wo der neue Eintrag landet.',
+      switchNote: 'Ein Stift-Schalter schaltet Klicks auf dem Schreibtisch aus, wenn dein Hintergrund einfach nur Hintergrund sein soll.',
+      mock: { event: 'Ereignis', todo: 'To-do', title: 'Mittagessen mit Sam', starts: 'Beginn', when: 'Do. 19., 12:00', calendar: 'Arbeit', add: 'Hinzufügen', switchOn: 'Bearbeiten auf dem Schreibtisch an', standup: 'Stand-up', gym: 'Training' },
     },
     addonPill: 'Experten-Add-on',
     appearance: {
@@ -133,7 +139,7 @@ const de: Dict = {
     titleEm: 'für Vielplaner.',
     body: 'WallCal ist kostenlos. Wenn du mehr Kontrolle willst, schalte das Experten-Kalender-Add-on mit einem einmaligen In-App-Kauf dauerhaft frei. Kein Abo. Oder nutze es inklusive mit Setapp.',
     perks: [
-      'Wochenagenda statt Monatsansicht',
+      'Termine & To-dos direkt auf dem Schreibtisch hinzufügen und bearbeiten',
       'Angezeigte Uhrzeiten und Anzahl der Tage festlegen',
       'Wähle, welche Kalender & Erinnerungslisten erscheinen',
       'Seitenleiste oder Hauptkalender ausblenden',
@@ -150,7 +156,7 @@ const de: Dict = {
     appStore: {
       price: 'Kostenlos',
       note: 'Experten-Add-on: einmaliger Kauf, dauerhaft deins',
-      points: ['Monatsansicht, Seitenleiste & Erinnerungen', 'Alle drei Darstellungen', 'Kurzbefehl, Menüleiste & Start bei Anmeldung'],
+      points: ['Monats- & Wochenansicht, Seitenleiste & Erinnerungen', 'Alle drei Darstellungen', 'Kurzbefehl, Menüleiste & Start bei Anmeldung'],
       cta: 'Kostenlos laden',
     },
     setapp: {
@@ -178,7 +184,7 @@ const de: Dict = {
     title: 'Experten-Kalender-Add-on',
     lead: 'Schalte erweiterte Funktionen frei und passe deinen Kalender ganz an dich an.',
     features: {
-      'weekly-agenda': { title: 'Wochenagenda', description: 'Ersetze die Monatsansicht durch eine Zeitleiste deiner Woche.' },
+      'add-edit': { title: 'Hinzufügen & Bearbeiten auf dem Schreibtisch', description: 'Erstelle und ändere Termine und To-dos in einem kleinen Fenster direkt neben deinem Klick – auf dem Schreibtisch oder im Vordergrund. Ausprobieren geht ohne Add-on, zum Speichern brauchst du es.' },
       'time-range': { title: 'Einstellbarer Zeitraum', description: 'Wähle die Stunden, die die Wochenagenda zeigt, damit dein Tag die Ansicht füllt.' },
       'days-to-show': { title: 'Variable Tagesanzahl', description: 'Zeige 1 bis 7 Tage in der Wochenagenda, ab heute oder ab Wochenbeginn.' },
       'calendar-filtering': { title: 'Kalenderfilter', description: 'Wähle, welche Kalender und Erinnerungslisten in WallCal erscheinen.' },

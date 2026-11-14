@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
+import AddEditMock from '../components/AddEditMock.astro';
 import { useLinks } from '../lib/links';
 import { useTranslations } from '../i18n';
 
@@ -9,8 +10,9 @@ const links = useLinks(Astro.url);
 const t = useTranslations(Astro.url);
 const p = t.addonPage;
 
-// Each clip is a real WallCal capture switching between the setting's values.
-const clips = ['weekly-agenda', 'time-range', 'days-to-show', 'calendar-filtering', 'view-toggle', 'time-format', 'week-start'] as const;
+// Each clip is a real WallCal capture switching between the setting's values. Adding and editing has no clip yet,
+// so it shows the drawn panel from the home page.
+const clips = ['add-edit', 'time-range', 'days-to-show', 'calendar-filtering', 'view-toggle', 'time-format', 'week-start'] as const;
 const features = clips.map((clip) => ({ clip, ...p.features[clip] }));
 ---
 <BaseLayout title={t.meta.addonTitle} description={t.meta.addonDescription}>
@@ -26,6 +28,9 @@ const features = clips.map((clip) => ({ clip, ...p.features[clip] }));
         {features.map((feature, i) => (
           <article class:list={['card overflow-hidden', i === 0 && 'md:col-span-2']} data-aos="fade-up" data-aos-delay={(i % 2) * 100}>
             <div class="p-2 pb-0">
+              {feature.clip === 'add-edit' ? (
+                <AddEditMock m={t.features.edit.mock} class="rounded-[22px]" />
+              ) : (
               <video
                 class="w-full aspect-video rounded-[22px] bg-ink-900 object-cover"
                 autoplay
@@ -40,6 +45,7 @@ const features = clips.map((clip) => ({ clip, ...p.features[clip] }));
                 <source src={`/my-assets/addon/${feature.clip}.mp4`} type="video/mp4" />
                 <source src={`/my-assets/addon/${feature.clip}.webm`} type="video/webm" />
               </video>
+              )}
             </div>
             <div class="p-6 md:p-7">
               <span class="text-xs font-medium text-brand-500">{String(i + 1).padStart(2, '0')}</span>

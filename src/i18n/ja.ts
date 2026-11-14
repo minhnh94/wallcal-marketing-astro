@@ -6,7 +6,7 @@ const ja: Dict = {
     description: '一週間の予定をひと目で、Macのデスクトップに。カレンダーとリマインダーをすべてのウインドウの背後に、ネイティブのLiquid Glassで。Mac App Storeで無料。',
     ogImageAlt: 'Macのデスクトップに表示されたWallCalの月表示と、見出し「カレンダーを、壁紙の上に。」',
     addonTitle: 'Expert Calendar 拡張 — WallCal',
-    addonDescription: '週間アジェンダ、表示時間帯の設定、カレンダーの絞り込みなど。一度の購入で永久に利用可能、またはSetappに付属。',
+    addonDescription: 'デスクトップで予定を追加・編集、表示時間帯の設定、カレンダーの絞り込みなど。一度の購入で永久に利用可能、またはSetappに付属。',
     contactTitle: 'お問い合わせ — WallCal',
     contactDescription: 'WallCalまたはWallCal Liteについてのご質問は、support@wallcal.app までメールでどうぞ。',
     ackTitle: '謝辞 — WallCal',
@@ -78,8 +78,14 @@ const ja: Dict = {
     },
     weekly: {
       title: '週のタイムラインでも',
-      body: '月表示を週間アジェンダに切り替え。表示する時間帯と、何日先まで表示するかを選べます。',
+      body: '月表示を週間アジェンダに切り替え。週間表示は無料になりました。Expert拡張では、表示する時間帯と日数も選べます。',
       alt: 'WallCalの週間アジェンダのタイムライン',
+    },
+    edit: {
+      title: 'クリックしたその場で追加・編集',
+      body: 'デスクトップで日付をダブルクリックすると予定やTo-doを追加でき、項目をクリックすると変更できます。クリックした横に小さなパネルが開き、新しい項目が入る場所にプレースホルダーが表示されます。',
+      switchNote: '壁紙として眺めるだけにしたいときは、ペンのスイッチでデスクトップでのクリックをオフにできます。',
+      mock: { event: 'イベント', todo: 'To-do', title: 'サムとランチ', starts: '開始', when: '19日(木) 12:00', calendar: '仕事', add: '追加', switchOn: 'デスクトップで編集：オン', standup: '朝会', gym: 'ジム' },
     },
     addonPill: 'Expert拡張',
     appearance: {
@@ -133,7 +139,7 @@ const ja: Dict = {
     titleEm: '計画好きのあなたに。',
     body: 'WallCalは無料です。もっと細かく設定したくなったら、一度きりのApp内課金でExpert Calendar拡張を永久に解放。サブスクリプションではありません。Setappなら追加料金なしで含まれます。',
     perks: [
-      '月表示の代わりに週間アジェンダ',
+      'デスクトップで予定とTo-doを追加・編集',
       '表示する時間帯と日数を設定',
       '表示するカレンダーとリマインダーリストを選択',
       'サイドバーまたはメインカレンダーを非表示',
@@ -150,7 +156,7 @@ const ja: Dict = {
     appStore: {
       price: '無料',
       note: 'Expert拡張：一度の購入で永久に利用可能',
-      points: ['月表示、サイドバー、リマインダー', '3つの外観すべて', 'ホットキー、メニューバー、ログイン時に起動'],
+      points: ['月表示・週表示、サイドバー、リマインダー', '3つの外観すべて', 'ホットキー、メニューバー、ログイン時に起動'],
       cta: '無料でダウンロード',
     },
     setapp: {
@@ -178,7 +184,7 @@ const ja: Dict = {
     title: 'Expert Calendar 拡張',
     lead: '高度な機能を解放して、カレンダーを思いどおりにカスタマイズ。',
     features: {
-      'weekly-agenda': { title: '週間アジェンダ表示', description: '月表示を、一週間のタイムラインに置き換えます。' },
+      'add-edit': { title: 'デスクトップで追加・編集', description: 'クリックした場所の横に開く小さなパネルで、予定やTo-doを作成・変更できます。デスクトップでも最前面でも使えます。パネルは拡張なしで試せますが、保存には拡張が必要です。' },
       'time-range': { title: '表示時間帯の調整', description: '週間アジェンダに表示する時間帯を選んで、一日をビュー全体に。' },
       'days-to-show': { title: '表示日数の変更', description: '週間アジェンダに1〜7日を表示。今日から、または週の始まりから。' },
       'calendar-filtering': { title: 'カレンダーの絞り込み', description: 'WallCalに表示するカレンダーとリマインダーリストを選べます。' },

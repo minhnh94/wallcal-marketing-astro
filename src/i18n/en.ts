@@ -6,7 +6,7 @@ const en = {
     description: 'See your week at a glance, right on your Mac desktop. Calendars and reminders behind every window, in native Liquid Glass. Free on the Mac App Store.',
     ogImageAlt: 'WallCal month view on a Mac desktop, next to the headline "Your calendar, right on your wallpaper."',
     addonTitle: 'Expert Calendar Add-on — WallCal',
-    addonDescription: 'Weekly agenda, custom visible hours, calendar filtering and more. A one-time purchase for lifetime access, or included with Setapp.',
+    addonDescription: 'Add and edit events right on your desktop, custom visible hours, calendar filtering and more. A one-time purchase for lifetime access, or included with Setapp.',
     contactTitle: 'Contact Us — WallCal',
     contactDescription: 'Questions about WallCal or WallCal Lite? Email support@wallcal.app and we’ll help.',
     ackTitle: 'Acknowledgements — WallCal',
@@ -78,8 +78,14 @@ const en = {
     },
     weekly: {
       title: 'Or a timeline of your week',
-      body: 'Swap the month for a weekly agenda. Choose the visible hours and how many days ahead to show.',
+      body: 'Swap the month for a weekly agenda, now free. With the Expert add-on, choose the visible hours and how many days to show.',
       alt: 'WallCal weekly agenda timeline',
+    },
+    edit: {
+      title: 'Add & edit, right where you click',
+      body: 'Double-click a day on your desktop to add an event or to-do, or click one to change it. A small panel opens beside the click, and a placeholder shows where the new item lands.',
+      switchNote: 'A pencil switch turns desktop clicks off whenever you want a hands-off wallpaper.',
+      mock: { event: 'Event', todo: 'To-do', title: 'Lunch with Sam', starts: 'Starts', when: 'Thu 19, 12:00', calendar: 'Work', add: 'Add', switchOn: 'Desktop editing on', standup: 'Standup', gym: 'Gym' },
     },
     addonPill: 'Expert add-on',
     appearance: {
@@ -133,7 +139,7 @@ const en = {
     titleEm: 'for power planners.',
     body: 'WallCal is free. When you want more control, unlock the Expert Calendar add-on with a one-time in-app purchase for lifetime access. No subscription. Or get it included with Setapp.',
     perks: [
-      'Weekly agenda view instead of the month',
+      'Add and edit events & to-dos on your desktop',
       'Set the visible hours and number of days',
       'Choose which calendars & reminder lists appear',
       'Hide the sidebar or the main calendar',
@@ -150,7 +156,7 @@ const en = {
     appStore: {
       price: 'Free',
       note: 'Expert add-on: one-time purchase, yours for life',
-      points: ['Month view, sidebar & reminders', 'All three appearances', 'Hotkey, menu bar & start at login'],
+      points: ['Month & week views, sidebar & reminders', 'All three appearances', 'Hotkey, menu bar & start at login'],
       cta: 'Download free',
     },
     setapp: {
@@ -178,7 +184,7 @@ const en = {
     title: 'Expert Calendar Add-on',
     lead: 'Unlock advanced features to customize your calendar experience.',
     features: {
-      'weekly-agenda': { title: 'Weekly Agenda View', description: 'Replace the month view with a timeline of your week.' },
+      'add-edit': { title: 'Add & Edit on the Desktop', description: 'Create and change events and to-dos from a small panel beside your click, on the desktop or in front. Try the panel without the add-on; saving needs it.' },
       'time-range': { title: 'Adjustable Time Range', description: 'Choose the hours the weekly agenda shows, so your day fills the view.' },
       'days-to-show': { title: 'Variable Day Display', description: 'Show anywhere from 1 to 7 days in the weekly agenda, starting today or at the start of the week.' },
       'calendar-filtering': { title: 'Calendar Filtering', description: 'Choose which calendars and reminder lists appear on WallCal.' },
