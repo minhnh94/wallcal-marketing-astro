@@ -27,22 +27,43 @@ Real captures of the running app, never mockups. Personal calendars stay hidden;
 
 ```bash
 S=.claude/skills/capture-app-media/scripts
-$S/build-tools.sh                          # add BUILD_APP=1 to compile the current WallCal source, or set APP=/path/WallCal.app
+W=.capture                                 # gitignored; env.sh's $WORK
+# Build from a clean export of WallCal main, so uncommitted work in the WallCal repo stays out of the shots
+rm -rf $W/src && mkdir -p $W/src && git -C ~/Self-help/Swift/WallCal archive main | tar -x -C $W/src
+BUILD_APP=1 WALLCAL_SRC=$PWD/$W/src $S/build-tools.sh
 source $S/env.sh
+defaults export app.minhnh.WallCal-setapp $WORK/prefs-backup.plist   # restore.sh puts these settings back
 democal list > $WORK/list.out              # BEFORE setup: these are the user's calendars that launch.sh hides
 democal setup $WORK/state.json             # creates demo calendars + events, writes their ids
-$S/capture.sh && $S/export.sh && $S/video.sh && $S/og.sh
+democal reminders $WORK/state.json         # optional, ask first: the Errands list syncs via iCloud (see Reminders below)
+$S/capture.sh                              # every state except the quick-edit panel
+# Quick-edit panel: see "Quick-edit shot" below; it writes $SHOTS/add-edit.png, which export.sh crops
+$S/export.sh && $S/video.sh && $S/og.sh
 $S/restore.sh
 ```
 
 Then look at every output before committing: read the JPGs, and pull a few frames from each video with `ffmpeg -vf select=…,tile`.
+
+## Quick-edit shot
+
+Computer use can't target the Debug build (an accessory app with no Dock icon isn't offered by `request_access`), so post the clicks yourself. The terminal needs Accessibility.
+
+1. Relaunch with the capture base args plus `-calendarViewMode monthly -quickEditLastEventCalendarID "<string>$WORK_ID</string>" -quickEditLastKind "<string>event</string>"`, where `WORK_ID` is the first id in `state.json`'s `events`. Otherwise the panel's calendar picker shows one of the user's real calendars.
+2. `osascript -e 'tell application "Finder" to activate'`. In background mode WallCal sees desktop clicks through a global monitor, so Finder must be frontmost. With the terminal in front, nothing happens.
+3. Double-click the empty lower part of the Nov 26 cell (point 1560,1090 for the `WIN` frame) with a CGEvent helper that sets `mouseEventClickState` 1 then 2.
+4. `osascript -e 'tell application "System Events" to keystroke "Coffee with Maya"'`, then `$BIN/sck shot $SHOTS/add-edit.png`.
+5. Don't press Add. `restore.sh` quits the app, which drops the draft.
 
 ## Gotchas (all hit in practice)
 
 - **Ask first.** This drives the user's real desktop and calendar database. Get their go-ahead. The first `DemoCal.app` run triggers the macOS Calendars/Reminders permission prompts, and so does every `build-tools.sh` run, because re-signing the bundle resets its access. A `democal` call that seems to hang is waiting on those prompts: approve them yourself with computer use instead of handing them back to the user. Calendar access from a bare CLI binary is refused, which is why the bundle and `open` exist.
 - **Personal data.** Never capture before the real calendars are hidden. Delete any capture that shows real events, names or the user's wallpaper (it may be copyrighted art).
 - **Reminders.** The "On My Mac" source rejects reminder lists ("That account does not support reminders"). `democal reminders` therefore creates its "Errands" list in the default reminders account (usually iCloud), which syncs to the user's devices until `restore.sh` deletes it. Ask before running it. Without it, the sidebar's event list shows no reminders.
-- **Overrides.** `-key value` arguments land in the argument domain as strings. Wrap typed values in plist XML (`'<true/>'`, `'<integer>7</integer>'`). Window frame overrides are ignored; place the window with `-designatedWindowScreen "<string>{json}</string>"` (see `WIN` in `env.sh`).
+- **Overrides.** `-key value` arguments land in the argument domain as strings. Wrap typed values in plist XML (`'<true/>'`, `'<integer>7</integer>'`). Place the window with both `-designatedWindowScreen "$WIN"` and `-"$FRAME_KEY" "$FRAME"` (see `env.sh`). At launch the app reads the frame autosave key, and it only applies `designatedWindowScreen` when a monitor changes; passing just one leaves the window at the user's saved spot.
+- **Debug build.** `build-tools.sh` builds the `WallCal-setapp` scheme: the process is `WallCal-setapp` (`PROC` in `env.sh`), but the bundle name is still "WallCal", so `sck` still matches it. It shares the settings domain `app.minhnh.WallCal-setapp` with an installed Setapp WallCal, so export that domain first (see Run); `restore.sh` imports it back.
+- **Shared screen.** Other Claude sessions may be recording the same screen or holding the computer-use lock. Message them before capturing; a TCC prompt or a relaunching WallCal would land in their footage.
+- **Builds.** `xcodebuild` once failed with "Too many open files in system", a transient spike; rerunning worked.
+- **SCK.** `sck shot` sometimes fails with error -3811, or returns a black backdrop right after bgwin starts. Check the contact sheet and retake those frames.
 - **Settings keys.** `calendarViewMode` monthly|weekly, `backgroundAppearance` nativeGlass|transparent|blurred, `isWeekViewNext7Days`, `agendaViewStartTime`/`EndTime`, `numberOfDaysInWeekView`, `newWeekStartsOn` (1 = Sun, 2 = Mon), `IsTimeFormat24Hour`, `isHidingTodolistView`, `isHidingCalendarView`, `CalendarDisplayState`/`ReminderDisplayState` (dict of id → bool). Check the app's Defaults keys if a shot looks unchanged.
 - **bgwin.**
   - Start it with `nohup … & disown`. A child process left on the shell hangs the Bash tool.

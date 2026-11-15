@@ -8,6 +8,6 @@ cal="<dict>"; for id in $(awk '$1=="event-cal"{print $2}' $WORK/list.out); do ca
 i=0; for id in $(ids events); do i=$((i+1)); [[ -n $ONLY_FIRST && $i -gt 1 ]] && v='<false/>' || v='<true/>'; cal+="<key>$id</key>$v"; done; cal+="</dict>"
 rem="<dict>"; for id in $(awk '$1=="reminder-cal"{print $2}' $WORK/list.out); do rem+="<key>$id</key><false/>"; done
 for id in $(ids reminders); do rem+="<key>$id</key><true/>"; done; rem+="</dict>"
-pkill -x WallCal; sleep 1
+pkill -x $PROC; sleep 1
 open -n $APP --args -isFirstTimeLaunch '<false/>' -CalendarDisplayState "$cal" -ReminderDisplayState "$rem" "$@"
 sleep 4

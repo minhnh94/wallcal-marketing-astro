@@ -1,0 +1,45 @@
+/* Drawn macOS scenes (src/components/mock). Everything inside a stage is sized in points:
+   1pt = var(--pt), which scales with the mock's width, so a scene keeps its proportions at any size. */
+
+@property --pt {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 1px;
+}
+
+.mk {
+  position: relative;
+  container-type: inline-size;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.mk-stage {
+  --pt: calc(100cqw / var(--vw));
+  --hair: max(0.5px, calc(0.5 * var(--pt)));
+  position: absolute;
+  left: calc(var(--vx) * -1 * var(--pt));
+  top: calc(var(--vy) * -1 * var(--pt));
+  width: calc(var(--sw) * var(--pt));
+  height: calc(var(--sh) * var(--pt));
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Hiragino Sans', 'PingFang SC', sans-serif;
+  line-height: 1.194;
+  -webkit-font-smoothing: antialiased;
+}
+.mk-stage * {
+  box-sizing: border-box;
+}
+
+.mk-abs {
+  position: absolute;
+}
+.mk-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}

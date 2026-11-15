@@ -85,7 +85,7 @@ const de: Dict = {
       title: 'Doppelklick. Fertig.',
       body: 'Doppelklicke auf dem Schreibtisch auf einen Tag, um einen Termin oder ein To-do hinzuzufügen, oder klicke auf einen Eintrag, um ihn zu ändern. Ein kleines Fenster öffnet sich neben dem Klick, und ein Platzhalter zeigt, wo der neue Eintrag landet.',
       switchNote: 'Ein Stift-Schalter schaltet Klicks auf dem Schreibtisch aus, wenn dein Hintergrund einfach nur Hintergrund sein soll.',
-      mock: { event: 'Ereignis', todo: 'To-do', title: 'Mittagessen mit Sam', starts: 'Beginn', when: 'Do. 19., 12:00', calendar: 'Arbeit', add: 'Hinzufügen', switchOn: 'Bearbeiten auf dem Schreibtisch an', standup: 'Stand-up', gym: 'Training' },
+      alt: 'WallCal auf dem Schreibtisch, daneben das Bearbeitungsfeld für einen neuen Termin',
     },
     addonPill: 'Experten-Add-on',
     appearance: {
@@ -105,10 +105,10 @@ const de: Dict = {
     },
     menubar: {
       title: 'Wohnt in der Menüleiste. Steht nie im Weg.',
-      body: 'Kein Dock-Symbol, kein zusätzliches Fenster. Zwischen Wochen oder Monaten springen, zurück zu heute, Einstellungen öffnen – alles über ein kleines Symbol.',
+      body: 'Kein Dock-Symbol, kein zusätzliches Fenster. In den Vordergrund holen, Größe und Position zurücksetzen, Einstellungen öffnen – alles über ein kleines Symbol.',
       clock: 'Mo. 9:41',
-      today: 'Heute',
-      items: ['Kalender in den Vordergrund stellen / Anpassen', 'Wiederherstellen der Standardposition und -größe', 'Einstellungen …'],
+      // The status item's menu, in the app's own words
+      menu: { toggle: 'Kalender in den Vordergrund stellen / Anpassen', revert: 'Wiederherstellen der Standardposition und -größe', preferences: 'Einstellungen ...', about: 'Über', faq: 'FAQ (Häufig gestellte Fragen)', support: 'Hilfe unter wallcal.app/support', quit: 'Beenden' },
     },
     extras: {
       title: 'Die kleinen Dinge. Erledigt.',

@@ -85,7 +85,7 @@ const ja: Dict = {
       title: 'ダブルクリックで、完了。',
       body: 'デスクトップで日付をダブルクリックすると予定やTo-doを追加でき、項目をクリックすると変更できます。クリックした横に小さなパネルが開き、新しい項目が入る場所にプレースホルダーが表示されます。',
       switchNote: '壁紙として眺めるだけにしたいときは、ペンのスイッチでデスクトップでのクリックをオフにできます。',
-      mock: { event: 'イベント', todo: 'To-do', title: 'サムとランチ', starts: '開始', when: '19日(木) 12:00', calendar: '仕事', add: '追加', switchOn: 'デスクトップで編集：オン', standup: '朝会', gym: 'ジム' },
+      alt: 'デスクトップのWallCalで、新しいイベントの横に開いたクイック編集パネル',
     },
     addonPill: 'Expert拡張',
     appearance: {
@@ -105,10 +105,10 @@ const ja: Dict = {
     },
     menubar: {
       title: 'メニューバーに常駐。邪魔はしない。',
-      body: 'Dockアイコンも、余計なウインドウもなし。週や月の移動、今日に戻る、設定を開く。すべて小さなアイコンひとつから。',
+      body: 'Dockアイコンも、余計なウインドウもなし。最前面に出す、位置とサイズを戻す、設定を開く。すべて小さなアイコンひとつから。',
       clock: '(月) 9:41',
-      today: '今日',
-      items: ['カレンダーを画面の最前にする・サイズ変更', 'カレンダーをデフォルト位置とサイズに戻す', '環境設定'],
+      // The status item's menu, in the app's own words
+      menu: { toggle: 'カレンダーを画面の最前にする・サイズ変更', revert: 'カレンダーをデフォルト位置とサイズに戻す', preferences: '環境設定', about: 'このアプリについて', faq: 'FAQ（よくある質問）', support: 'wallcal.app/supportでサポートを受ける', quit: '終了' },
     },
     extras: {
       title: '細かいところも、抜かりなく。',

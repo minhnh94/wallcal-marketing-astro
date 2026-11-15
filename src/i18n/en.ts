@@ -85,7 +85,7 @@ const en = {
       title: 'Double-click. Done.',
       body: 'Double-click a day on your desktop to add an event or to-do, or click one to change it. A small panel opens beside the click, and a placeholder shows where the new item lands.',
       switchNote: 'A pencil switch turns desktop clicks off whenever you want a hands-off wallpaper.',
-      mock: { event: 'Event', todo: 'To-do', title: 'Lunch with Sam', starts: 'Starts', when: 'Thu 19, 12:00', calendar: 'Work', add: 'Add', switchOn: 'Desktop editing on', standup: 'Standup', gym: 'Gym' },
+      alt: 'WallCal on the desktop with the quick-edit panel open beside a new event',
     },
     addonPill: 'Expert add-on',
     appearance: {
@@ -105,10 +105,10 @@ const en = {
     },
     menubar: {
       title: 'Lives in the menu bar. Stays out of your way.',
-      body: 'No Dock icon, no extra window. Jump between weeks or months, snap back to today and open Settings from one small icon.',
+      body: 'No Dock icon, no extra window. Bring it to the front, reset its size and place, or open Settings from one small icon.',
       clock: 'Mon 9:41',
-      today: 'Today',
-      items: ['Toggle frontmost state / Resize', 'Revert to default position & size', 'Preferences…'],
+      // The status item's menu, in the app's own words
+      menu: { toggle: 'Toggle frontmost state / Resize', revert: 'Revert to default position & size', preferences: 'Preferences...', about: 'About', faq: 'FAQ (Frequently asked questions)', support: 'Get help at wallcal.app/support', quit: 'Quit' },
     },
     extras: {
       title: 'The little things. Handled.',

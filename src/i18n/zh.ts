@@ -85,7 +85,7 @@ const zh: Dict = {
       title: '连按一下，搞定。',
       body: '在桌面上连按某一天即可添加事件或待办，点按已有项目即可修改。小面板会在点按处旁边打开，占位符会显示新项目将出现的位置。',
       switchNote: '想让壁纸保持安静时，用铅笔开关即可关闭桌面点按。',
-      mock: { event: '事件', todo: '待办', title: '和 Sam 吃午饭', starts: '开始', when: '19日 周四 12:00', calendar: '工作', add: '添加', switchOn: '桌面编辑：开', standup: '站会', gym: '健身' },
+      alt: '桌面上的 WallCal，新日程旁打开了快速编辑面板',
     },
     addonPill: 'Expert 插件',
     appearance: {
@@ -105,10 +105,10 @@ const zh: Dict = {
     },
     menubar: {
       title: '常驻菜单栏，从不碍事。',
-      body: '没有程序坞图标，没有多余窗口。切换周或月、回到今天、打开设置，一个小图标全部搞定。',
+      body: '没有程序坞图标，没有多余窗口。置于最前、恢复位置和尺寸、打开设置，一个小图标全部搞定。',
       clock: '周一 9:41',
-      today: '今天',
-      items: ['切换日历的最前显示状态/调整大小', '恢复到默认位置和尺寸', '偏好'],
+      // The status item's menu, in the app's own words
+      menu: { toggle: '切换日历的最前显示状态/调整大小', revert: '恢复到默认位置和尺寸', preferences: '偏好', about: '关于', faq: 'FAQ（常见问题）', support: '前往 wallcal.app/support 获取帮助', quit: '退出' },
     },
     extras: {
       title: '细节之处，一应俱全。',

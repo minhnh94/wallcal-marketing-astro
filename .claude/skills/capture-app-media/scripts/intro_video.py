@@ -44,7 +44,7 @@ def scene(name, img, dur, start, end, overlay=None):
     return name, dur
 
 
-window = rect(200, 150, 4720)          # WallCal window with a little wallpaper around it
+window = rect(198, 102, 4720)          # WallCal window with a little wallpaper around it
 sidebar = rect(330, 240, 1800)         # sidebar top + start of the month grid
 weekly_a = rect(320, 200, 3600)
 weekly_b = rect(1300, 560, 3600)

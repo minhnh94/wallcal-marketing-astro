@@ -7,9 +7,9 @@ SHOTS, OVERLAY, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
 FPS, HOLD, XF = 30, 1.9, 0.6
 os.makedirs(f"{OUT}/tmp", exist_ok=True)
 
-WINDOW = (4480, 2520, 320, 180)
-MAIN = (3700, 2081, 1040, 220)
-TIMES = (2000, 1125, 380, 900)
+WINDOW = (4480, 2520, 318, 170)
+MAIN = (3296, 1854, 1442, 270)
+TIMES = (2000, 1125, 860, 1500)
 HEADER = (2400, 1350, 380, 280)
 
 clips = {

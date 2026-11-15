@@ -1,0 +1,34 @@
+---
+// A drawn piece of the Mac screen. The stage is laid out in points; `view` is the part of it shown,
+// and the whole thing scales with its container's width.
+import Backdrop from './Backdrop.astro';
+
+interface Props {
+  /** Stage size in points. */
+  stage: [number, number];
+  /** The visible part of the stage: x, y, width, height in points. Defaults to all of it. */
+  view?: [number, number, number, number];
+  backdrop?: boolean;
+  /** Where the stage's top-left sits on the 2560×1440 backdrop. Defaults to centered. */
+  at?: [number, number];
+  /** Read out for the whole picture; without it the mock is hidden from assistive tech. */
+  label?: string;
+  class?: string;
+}
+const { stage, view = [0, 0, stage[0], stage[1]], backdrop = true, at, label, class: className } = Astro.props;
+const [sw, sh] = stage;
+const [vx, vy, vw, vh] = view;
+const [ax, ay] = at ?? [(2560 - sw) / 2, (1440 - sh) / 2];
+---
+<div
+  class:list={['mk', className]}
+  style={`aspect-ratio: ${vw} / ${vh}`}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+>
+  <div class="mk-stage" style={`--vw:${vw};--sw:${sw};--sh:${sh};--vx:${vx};--vy:${vy}`}>
+    {backdrop && <Backdrop region={[ax, ay, sw, sh]} />}
+    <slot />
+  </div>
+</div>

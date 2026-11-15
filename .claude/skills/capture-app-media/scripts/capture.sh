@@ -3,11 +3,11 @@
 source ${0:a:h}/env.sh
 bg() { pkill -x bgwin; sleep 0.5; (cd $BIN && nohup ./bgwin "$@" >/dev/null 2>&1 </dev/null & disown); sleep 2; $BIN/sck shot $SHOTS/_warm.png >/dev/null; }
 shot() { local out=$1; shift; $K/launch.sh "${base[@]}" "$@" && $BIN/sck shot $out; }
-base=(-backgroundAppearance nativeGlass -designatedWindowScreen "$WIN" -newWeekStartsOn '<integer>2</integer>' -IsTimeFormat24Hour '<true/>')
+base=(-backgroundAppearance nativeGlass -designatedWindowScreen "$WIN" -"$FRAME_KEY" "$FRAME" -newWeekStartsOn '<integer>2</integer>' -IsTimeFormat24Hour '<true/>')
 wk=(-calendarViewMode weekly -isWeekViewNext7Days '<true/>' -agendaViewStartTime '<integer>7</integer>' -agendaViewEndTime '<integer>21</integer>' -numberOfDaysInWeekView '<integer>7</integer>')
 
 bg
-pkill -x WallCal; sleep 1; $BIN/sck shot $SHOTS/backdrop.png       # empty backdrop for the video title/end cards
+pkill -x $PROC; sleep 1; $BIN/sck shot $SHOTS/backdrop.png       # empty backdrop for the video title/end cards
 shot $SHOTS/month-nativeGlass.png -calendarViewMode monthly
 shot $SHOTS/weekly-nativeGlass.png "${wk[@]}"
 

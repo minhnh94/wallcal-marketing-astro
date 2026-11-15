@@ -5,6 +5,7 @@ layer(base);
 
 /* Additional styles */
 @import './utility-patterns.css' layer(components);
+@import './mock.css';
 @import './theme.css';
 
 @theme {

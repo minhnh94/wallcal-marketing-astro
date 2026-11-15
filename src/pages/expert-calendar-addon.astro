@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
-import AddEditMock from '../components/AddEditMock.astro';
+import Screenshot from '../components/Screenshot.astro';
 import { useLinks } from '../lib/links';
 import { useTranslations } from '../i18n';
 
@@ -10,8 +10,7 @@ const links = useLinks(Astro.url);
 const t = useTranslations(Astro.url);
 const p = t.addonPage;
 
-// Each clip is a real WallCal capture switching between the setting's values. Adding and editing has no clip yet,
-// so it shows the drawn panel from the home page.
+// Each clip is a real WallCal capture switching between the setting's values. Adding and editing is a still of the panel.
 const clips = ['add-edit', 'time-range', 'days-to-show', 'calendar-filtering', 'view-toggle', 'time-format', 'week-start'] as const;
 const features = clips.map((clip) => ({ clip, ...p.features[clip] }));
 ---
@@ -29,7 +28,7 @@ const features = clips.map((clip) => ({ clip, ...p.features[clip] }));
           <article class:list={['card overflow-hidden', i === 0 && 'md:col-span-2']} data-aos="fade-up" data-aos-delay={(i % 2) * 100}>
             <div class="p-2 pb-0">
               {feature.clip === 'add-edit' ? (
-                <AddEditMock m={t.features.edit.mock} class="rounded-[22px]" />
+                <Screenshot src="/my-assets/shots/add-edit.jpg" alt={t.features.edit.alt} ratio="16 / 10" class="rounded-[22px]" />
               ) : (
               <video
                 class="w-full aspect-video rounded-[22px] bg-ink-900 object-cover"
