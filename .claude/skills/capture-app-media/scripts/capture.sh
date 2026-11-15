@@ -7,7 +7,6 @@ base=(-backgroundAppearance nativeGlass -designatedWindowScreen "$WIN" -"$FRAME_
 wk=(-calendarViewMode weekly -isWeekViewNext7Days '<true/>' -agendaViewStartTime '<integer>7</integer>' -agendaViewEndTime '<integer>21</integer>' -numberOfDaysInWeekView '<integer>7</integer>')
 
 bg
-pkill -x $PROC; sleep 1; $BIN/sck shot $SHOTS/backdrop.png       # empty backdrop for the video title/end cards
 shot $SHOTS/month-nativeGlass.png -calendarViewMode monthly
 shot $SHOTS/weekly-nativeGlass.png "${wk[@]}"
 

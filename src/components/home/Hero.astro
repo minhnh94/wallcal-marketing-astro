@@ -1,8 +1,9 @@
 ---
 import { useLinks } from '../../lib/links';
-import { useTranslations } from '../../i18n';
+import { getLocale, useTranslations } from '../../i18n';
 
 const links = useLinks(Astro.url);
+const video = `/my-assets/video/promo-${getLocale(Astro.url)}`;
 
 const t = useTranslations(Astro.url).hero;
 ---
@@ -65,36 +66,44 @@ const t = useTranslations(Astro.url).hero;
       </p>
     </div>
 
-    <!-- Intro video: real captures of WallCal, under a minute -->
+    <!-- Promo video (rendered in the WallCal repo, build/videos/renders), one per locale, with sound -->
     <div class="relative mt-16 md:mt-20" data-aos="fade-up" data-aos-delay="200">
       <div class="relative rounded-[22px] md:rounded-[32px] p-1.5 md:p-2 bg-white/60 ring-1 ring-black/[0.06] shadow-[0_40px_120px_-40px_rgba(60,30,90,0.45)]">
-        <div class="relative overflow-hidden rounded-[17px] md:rounded-[25px] aspect-video bg-ink-900">
+        <div class="group relative overflow-hidden rounded-[17px] md:rounded-[25px] aspect-video bg-ink-900" data-hero-player>
           <video
             class="absolute inset-0 w-full h-full object-cover"
-            autoplay
-            muted
-            loop
             playsinline
             preload="metadata"
-            poster="/my-assets/video/wallcal-intro-poster.jpg"
+            poster={`${video}-poster.jpg`}
             aria-label={t.videoLabel}
             data-hero-video
           >
-            <source src="/my-assets/video/wallcal-intro.webm" type="video/webm" />
-            <source src="/my-assets/video/wallcal-intro.mp4" type="video/mp4" />
+            <source src={`${video}.mp4`} type="video/mp4" />
           </video>
+          <button
+            type="button"
+            class="absolute inset-0 grid place-items-center bg-ink-950/10 transition-colors hover:bg-ink-950/20 focus-visible:outline-none"
+            aria-label={t.play}
+            data-hero-play
+          >
+            <span class="grid place-items-center size-16 md:size-20 rounded-full bg-white/90 text-ink-950 shadow-xl ring-1 ring-black/5 backdrop-blur transition-transform group-hover:scale-105 group-focus-within:ring-4 group-focus-within:ring-white/60">
+              <svg viewBox="0 0 24 24" class="size-7 md:size-8 translate-x-0.5" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.52.85l11.05-6.86a1 1 0 0 0 0-1.7L9.52 4.29A1 1 0 0 0 8 5.14Z" /></svg>
+            </span>
+          </button>
         </div>
       </div>
     </div>
     <script is:inline>
       (() => {
-        // Respect reduced motion: show the poster with controls instead of autoplaying.
+        // Poster with a play button; the first click plays with sound and hands over to the native controls.
         const video = document.querySelector('[data-hero-video]');
-        if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          video.removeAttribute('autoplay');
-          video.pause();
+        const play = document.querySelector('[data-hero-play]');
+        if (!video || !play) return;
+        play.addEventListener('click', () => {
+          play.remove();
           video.controls = true;
-        }
+          video.play();
+        });
       })();
     </script>
   </div>

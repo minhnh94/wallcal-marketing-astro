@@ -1,6 +1,6 @@
 ---
 name: capture-app-media
-description: Recapture WallCal product media for this landing page — screenshots, hero intro video, Expert add-on clips, OG cards — from the real macOS app with demo calendar data over a branded backdrop. Use when the app UI changed, when asked to retake screenshots/videos/GIFs, or to regenerate social preview images.
+description: Recapture WallCal product media for this landing page — screenshots, Expert add-on clips, OG cards, and the hero promo video — from the real macOS app with demo calendar data over a branded backdrop. Use when the app UI changed, when asked to retake screenshots/videos/GIFs, or to regenerate social preview images.
 ---
 
 # Capture WallCal media
@@ -17,9 +17,10 @@ Real captures of the running app, never mockups. Personal calendars stay hidden;
 | `bgwin.swift` | Full-screen gradient window at desktop level −1, standing in for the wallpaper. The `pattern` arg adds rings, stripes and dots so the glass, transparent and blurred appearances look clearly different. |
 | `sck.swift` | ScreenCaptureKit. `sck shot out.png` captures only the WallCal and bgwin windows at 2× (5120×2880 on a 2560×1440 display). `sck rec out.mov secs` records. |
 | `launch.sh` | Relaunches WallCal showing only the demo calendars, with setting overrides as arguments. |
-| `capture.sh` | Captures every state the site uses: month, weekly, nine add-on states, three pattern appearances, and the empty backdrop. |
+| `capture.sh` | Captures every state the site uses: month, weekly, nine add-on states, and three pattern appearances. |
 | `export.sh` | Crops the captures into `public/my-assets/shots/*.jpg`. |
-| `video.sh` | Renders caption overlays, `intro_video.py` (hero, ~35s) and `addon_clips.py` (7 looping clips), then copies MP4, WebM and posters into `public/my-assets/{video,addon}`. |
+| `video.sh` | Renders `addon_clips.py` (7 looping clips with caption overlays), then copies MP4, WebM and posters into `public/my-assets/addon`. |
+| `promo.sh` | Hero video. Re-encodes the WallCal repo's promo renders (`build/videos/renders/<locale>/wallcal-promo-<locale>.mp4`, made by that repo's App Store video pipeline) to `public/my-assets/video/promo-{en,de,ja,zh}.mp4` with sound, plus a poster from 2.6s. The hero plays it with native controls. |
 | `og.sh` / `og.swift` | Renders the 1200×630 social cards for en/de/ja/zh. |
 | `restore.sh` | Deletes the demo calendars, stops the helpers and relaunches WallCal with no overrides. |
 
@@ -39,6 +40,7 @@ democal reminders $WORK/state.json         # optional, ask first: the Errands li
 $S/capture.sh                              # every state except the quick-edit panel
 # Quick-edit panel: see "Quick-edit shot" below; it writes $SHOTS/add-edit.png, which export.sh crops
 $S/export.sh && $S/video.sh && $S/og.sh
+$S/promo.sh                                # only when the WallCal repo has new promo renders
 $S/restore.sh
 ```
 
@@ -69,7 +71,7 @@ Computer use can't target the Debug build (an accessory app with no Dock icon is
   - Start it with `nohup … & disown`. A child process left on the shell hangs the Bash tool.
   - The first capture after a restart can come out black. `capture.sh` takes a throwaway `_warm.png` first.
   - `sck` matches windows by owning app name ("WallCal", "bgwin"), not window title.
-- **Crops.** The crop values in `export.sh`, `intro_video.py` and `addon_clips.py` assume the `WIN` frame on a 2560×1440@2× main display. On another display, or if the app layout changes, re-derive them from a downscaled preview of the raw PNGs. As of Nov 2026 the sidebar sits inside the main capture, left of the month grid, and the month/weekly crops are stale (only `sidebar.jpg` was re-derived). `sidebar.jpg` is 2:3 to match its bento card: it runs from the month name through the mini calendar into the event list, leaving out the big date header, because the whole sidebar is about 1:2.2.
+- **Crops.** The crop values in `export.sh` and `addon_clips.py` assume the `WIN` frame on a 2560×1440@2× main display. On another display, or if the app layout changes, re-derive them from a downscaled preview of the raw PNGs. `sidebar.jpg` is 2:3 to match its bento card: it runs from the month name through the mini calendar into the event list, leaving out the big date header, because the whole sidebar is about 1:2.2.
 - **Text size.** The app scales text with window size (relative to 1100×700, clamped 1–2.5×, times `calendarTextSize`). Small windows give tiny text on the site, so keep the large `WIN`.
 - **Encoders.** Local ffmpeg has `libx264` and `libvpx-vp9` but no `libwebp`, so the site uses MP4 + WebM `<video>` instead of GIF/WebP.
 - **Localized media.** Captures are English UI. For a localized set, add (untested) `-AppleLanguages '(de)'` (or ja, zh-Hans) to the launch args, write to a per-locale folder, and give the overlay captions in `video.sh` / `addon_clips.py` translated text.

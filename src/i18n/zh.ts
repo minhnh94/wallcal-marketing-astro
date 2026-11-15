@@ -48,7 +48,8 @@ const zh: Dict = {
     ctaAppStore: '在 Mac App Store 免费下载',
     ctaSetapp: '通过 Setapp 获取',
     micro: '免费下载 · Setapp 已包含 Expert 插件',
-    videoLabel: 'WallCal 介绍：Mac 桌面上的月视图、侧边栏、周日程和三种外观',
+    videoLabel: '30 秒了解 WallCal：月视图和周视图、直接在桌面添加和编辑、布局以及三种外观',
+    play: '播放视频',
   },
   valueProps: {
     worksWith: '显示 macOS 日历与提醒事项中所有账户的内容',

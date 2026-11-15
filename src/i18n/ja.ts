@@ -48,7 +48,8 @@ const ja: Dict = {
     ctaAppStore: 'Mac App Storeで無料',
     ctaSetapp: 'Setappで入手',
     micro: '無料でダウンロード · SetappならExpert拡張付き',
-    videoLabel: 'WallCal紹介動画：Macのデスクトップでの月表示、サイドバー、週間アジェンダ、3つの外観',
+    videoLabel: '30秒でわかるWallCal：月表示と週表示、デスクトップからの追加と編集、レイアウト、3つの外観',
+    play: '動画を再生',
   },
   valueProps: {
     worksWith: 'macOSのカレンダーとリマインダーに登録されたアカウントの内容をすべて表示',

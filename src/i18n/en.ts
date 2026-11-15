@@ -48,7 +48,8 @@ const en = {
     ctaAppStore: 'Free on the Mac App Store',
     ctaSetapp: 'Get it on Setapp',
     micro: 'Free to download · Expert add-on included with Setapp',
-    videoLabel: 'WallCal intro: month view, sidebar, weekly agenda and the three appearances on a Mac desktop',
+    videoLabel: 'WallCal in 30 seconds: month and week views, adding and editing from the desktop, layout and the three appearances',
+    play: 'Play video',
   },
   valueProps: {
     worksWith: 'Shows everything from the accounts in macOS Calendar and Reminders',

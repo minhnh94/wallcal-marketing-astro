@@ -48,7 +48,8 @@ const de: Dict = {
     ctaAppStore: 'Kostenlos im Mac App Store',
     ctaSetapp: 'Bei Setapp holen',
     micro: 'Kostenloser Download · Experten-Add-on in Setapp inklusive',
-    videoLabel: 'WallCal-Intro: Monatsansicht, Seitenleiste, Wochenagenda und die drei Darstellungen auf einem Mac-Schreibtisch',
+    videoLabel: 'WallCal in 30 Sekunden: Monats- und Wochenansicht, Hinzufügen und Bearbeiten direkt auf dem Schreibtisch, Layout und die drei Darstellungen',
+    play: 'Video abspielen',
   },
   valueProps: {
     worksWith: 'Zeigt alles aus den Accounts in Kalender und Erinnerungen von macOS',
