@@ -39,24 +39,32 @@ const en = {
   },
   hero: {
     badge: 'New',
-    eyebrow: 'Redesigned with Liquid Glass for macOS Tahoe',
-    eyebrowShort: 'Redesigned for macOS Tahoe',
-    titleA: 'Your windows come and go.',
-    titleEm: 'Your week',
-    titleB: 'stays on show.',
-    lead: 'Your calendars and reminders, pinned to the desktop. Behind every window. No app to open. Nothing to switch to.',
+    eyebrow: 'Redesigned for macOS Tahoe',
+    titleA: 'Your calendar.',
+    titleEm: 'On your wallpaper.',
+    lead: 'Windows come and go. Your week stays on show.',
     ctaAppStore: 'Free on the Mac App Store',
     ctaSetapp: 'Get it on Setapp',
-    micro: 'Free to download · Expert add-on included with Setapp',
+    micro: 'Free · No account · Works with iCloud, Google & Outlook',
+    // Store ratings as of 2026-11-15. When they change, update every locale.
+    ratingAppStore: '4/5 · 300+ reviews on the Mac App Store',
+    ratingSetapp: '89% positive · 200+ reviews on Setapp',
+    sendToMac: 'On your phone? Send it to your Mac.',
     videoLabel: 'WallCal in 30 seconds: month and week views, adding and editing from the desktop, layout and the three appearances',
-    play: 'Play video',
+    play: 'Watch with sound',
+  },
+  // Phones only: the sticky bar, and the share sheet that sends the App Store link to the visitor's Mac.
+  mobileCta: {
+    appStore: 'App Store',
+    send: 'Send to my Mac',
+    shareText: 'WallCal: your calendar, on your Mac wallpaper. Free on the Mac App Store.',
   },
   valueProps: {
     worksWith: 'Shows everything from the accounts in macOS Calendar and Reminders',
     sources: ['iCloud', 'Google Calendar', 'Microsoft Exchange', 'Outlook.com', 'Yahoo', 'CalDAV', 'Subscribed calendars', 'Apple Reminders'],
     titleA: 'Out of sight, out of mind?',
     titleEm: 'Not this time.',
-    lead: 'Calendar apps hide a click away. Meetings slip. Deadlines creep. WallCal keeps your day where your eyes already go: the desktop.',
+    lead: 'Calendar apps hide. Meetings slip. Deadlines creep. WallCal keeps your day in sight.',
     props: [
       { title: 'Always in view', body: 'Your schedule lives on the wallpaper. One glance. That’s it.' },
       { title: 'Never in the way', body: 'Behind every window. Never steals focus. Never in your Dock.' },
@@ -69,29 +77,29 @@ const en = {
     titleB: 'None of the noise.',
     month: {
       title: 'The whole month. One glance.',
-      body: 'Every event across every calendar, laid out on a clean month grid right on your desktop.',
+      body: 'Every event, every calendar. One clean grid on your desktop.',
       alt: 'WallCal month view with a sidebar of upcoming events, on a Mac desktop',
     },
     sidebar: {
       title: 'Events and reminders. Side by side.',
-      body: 'A mini calendar with an event list next to it. Your to-dos from Reminders show up there too.',
+      body: 'A mini calendar, your event list, and your Reminders to-dos.',
       alt: 'WallCal sidebar with a mini calendar above a list of upcoming events and reminders',
     },
     weekly: {
       title: 'Or zoom in on the week.',
-      body: 'Swap the month for a weekly agenda, now free. With the Expert add-on, choose the visible hours and how many days to show.',
+      body: 'Your week, hour by hour. The Expert add-on sets the hours and days.',
       alt: 'WallCal weekly agenda timeline',
     },
     edit: {
       title: 'Double-click. Done.',
-      body: 'Double-click a day on your desktop to add an event or to-do, or click one to change it. A small panel opens beside the click, and a placeholder shows where the new item lands.',
-      switchNote: 'A pencil switch turns desktop clicks off whenever you want a hands-off wallpaper.',
+      body: 'Double-click a day to add. Click an event to change it.',
+      switchNote: 'Flip the pencil off when you want hands off.',
       alt: 'WallCal on the desktop with the quick-edit panel open beside a new event',
     },
     addonPill: 'Expert add-on',
     appearance: {
       title: 'Glass, clear or frosted. Your call.',
-      body: 'Three appearances to match any wallpaper. Glass that refracts it, a clear overlay, or a soft blur.',
+      body: 'Three looks for any wallpaper.',
       label: 'Appearance',
       glass: { name: 'Native Glass', note: 'Liquid Glass that refracts your wallpaper' },
       transparent: { name: 'Transparent', note: 'Just your events, floating on the wallpaper' },
@@ -100,13 +108,13 @@ const en = {
     },
     hotkey: {
       title: 'One key. Front and center.',
-      body: 'Pop WallCal above your windows to move or resize it — even drag it to another monitor. Click any other app and it slips back onto the desktop.',
+      body: 'Pop it forward. Move it, size it. Click away, it slides back.',
       space: 'Space',
       note: 'Record any shortcut you like in Settings.',
     },
     menubar: {
       title: 'Lives in the menu bar. Stays out of your way.',
-      body: 'No Dock icon, no extra window. Bring it to the front, reset its size and place, or open Settings from one small icon.',
+      body: 'No Dock icon. No extra window. One small icon runs it all.',
       clock: 'Mon 9:41',
       // The status item's menu, in the app's own words
       menu: { toggle: 'Toggle frontmost state / Resize', revert: 'Revert to default position & size', preferences: 'Preferences...', about: 'About', faq: 'FAQ (Frequently asked questions)', support: 'Get help at wallcal.app/support', quit: 'Quit' },
@@ -131,7 +139,7 @@ const en = {
     steps: [
       { title: 'Install and allow access', body: 'Grant Calendar and Reminders access when macOS asks. Your existing accounts show up instantly.' },
       { title: 'Make room for your day', body: 'Bring WallCal to the front from the menu bar, drag it into place and resize its edges.' },
-      { title: 'Make it yours', body: 'Choose an appearance, your calendars and a layout in Settings. Then forget it’s there — until you need it.' },
+      { title: 'Make it yours', body: 'Choose an appearance, your calendars and a layout in Settings.' },
     ],
   },
   expert: {
@@ -152,7 +160,7 @@ const en = {
   },
   pricing: {
     eyebrow: 'Pricing',
-    title: 'Free to start. Your call where.',
+    title: 'Free to start. Pay once for more.',
     recommended: 'Recommended',
     appStore: {
       price: 'Free',
