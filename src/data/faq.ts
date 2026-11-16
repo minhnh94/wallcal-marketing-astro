@@ -1,29 +1,28 @@
 import type { Locale } from '../i18n';
 
 // FAQ shown on every home page. Edit all four languages together.
-// Order: questions people ask before downloading first, support questions last.
 // Menu and settings names match the app's localized strings and macOS 26.
 type QA = { question: string; answer: string };
 export type FAQEntry = { id: string } & Record<Locale, QA>;
 
 export const faq: FAQEntry[] = [
   {
-    id: 'subscription',
+    id: 'restore-purchase',
     en: {
-      question: 'Is WallCal a subscription or one-time purchase?',
-      answer: 'Currently, WallCal offers features as distinct add-ons, which necessitate a one-time in-app purchase for lifetime access. New features may be introduced as separate add-ons and sold individually. For Setapp users, WallCal is available at no extra cost.',
+      question: 'Why can’t I restore my purchase although I did make the purchase before?',
+      answer: 'Please verify if you’re signing in to the Mac App Store with the Apple ID you used to make the in-app purchase.',
     },
     de: {
-      question: 'Ist WallCal ein Abo oder ein Einmalkauf?',
-      answer: 'Derzeit bietet WallCal Funktionen als einzelne Add-ons an, die per einmaligem In-App-Kauf dauerhaft freigeschaltet werden. Neue Funktionen können als separate Add-ons erscheinen und einzeln verkauft werden. Für Setapp-Nutzer ist WallCal ohne Aufpreis enthalten.',
+      question: 'Warum kann ich meinen Kauf nicht wiederherstellen, obwohl ich ihn bereits getätigt habe?',
+      answer: 'Bitte prüfe, ob du im Mac App Store mit der Apple-ID angemeldet bist, mit der du den In-App-Kauf getätigt hast.',
     },
     ja: {
-      question: 'WallCalはサブスクリプションですか？買い切りですか？',
-      answer: '現在WallCalは、機能ごとに個別の拡張として提供しており、一度きりのApp内課金で永久に利用できます。新しい機能は別の拡張として追加され、個別に販売される場合があります。Setappユーザーは追加料金なしでWallCalを利用できます。',
+      question: '以前に購入したのに、購入を復元できないのはなぜですか？',
+      answer: 'App内課金を行ったときと同じApple IDで、Mac App Storeにサインインしているかご確認ください。',
     },
     zh: {
-      question: 'WallCal 是订阅制还是一次性购买？',
-      answer: '目前 WallCal 以独立插件的形式提供功能，只需一次性 App 内购买即可永久使用。新功能可能会以单独的插件推出并单独销售。Setapp 用户无需额外付费即可使用 WallCal。',
+      question: '我之前已经购买过，为什么无法恢复购买？',
+      answer: '请确认你在 Mac App Store 登录的 Apple ID 与进行 App 内购买时使用的是同一个。',
     },
   },
   {
@@ -46,9 +45,47 @@ export const faq: FAQEntry[] = [
     },
   },
   {
+    id: 'subscription',
+    en: {
+      question: 'Is WallCal a subscription or one-time purchase?',
+      answer: 'Currently, WallCal offers features as distinct add-ons, which necessitate a one-time in-app purchase for lifetime access. New features may be introduced as separate add-ons and sold individually. For Setapp users, WallCal is available at no extra cost.',
+    },
+    de: {
+      question: 'Ist WallCal ein Abo oder ein Einmalkauf?',
+      answer: 'Derzeit bietet WallCal Funktionen als einzelne Add-ons an, die per einmaligem In-App-Kauf dauerhaft freigeschaltet werden. Neue Funktionen können als separate Add-ons erscheinen und einzeln verkauft werden. Für Setapp-Nutzer ist WallCal ohne Aufpreis enthalten.',
+    },
+    ja: {
+      question: 'WallCalはサブスクリプションですか？買い切りですか？',
+      answer: '現在WallCalは、機能ごとに個別の拡張として提供しており、一度きりのApp内課金で永久に利用できます。新しい機能は別の拡張として追加され、個別に販売される場合があります。Setappユーザーは追加料金なしでWallCalを利用できます。',
+    },
+    zh: {
+      question: 'WallCal 是订阅制还是一次性购买？',
+      answer: '目前 WallCal 以独立插件的形式提供功能，只需一次性 App 内购买即可永久使用。新功能可能会以单独的插件推出并单独销售。Setapp 用户无需额外付费即可使用 WallCal。',
+    },
+  },
+  {
+    id: 'no-events',
+    en: {
+      question: 'I don’t see any events or reminders being shown on WallCal?',
+      answer: 'Please check if you already granted calendar or reminder access permission to WallCal in System Settings > Privacy & Security > Calendars (or Reminders).',
+    },
+    de: {
+      question: 'In WallCal werden keine Termine oder Erinnerungen angezeigt?',
+      answer: 'Bitte prüfe unter Systemeinstellungen > Datenschutz & Sicherheit > Kalender (bzw. Erinnerungen), ob du WallCal den Zugriff erlaubt hast.',
+    },
+    ja: {
+      question: 'WallCalに予定やリマインダーが表示されません。',
+      answer: '「システム設定」>「プライバシーとセキュリティ」>「カレンダー」（または「リマインダー」）で、WallCalへのアクセスを許可しているかご確認ください。',
+    },
+    zh: {
+      question: 'WallCal 上没有显示任何事件或提醒事项？',
+      answer: '请在“系统设置”>“隐私与安全性”>“日历”（或“提醒事项”）中确认已授予 WallCal 访问权限。',
+    },
+  },
+  {
     id: 'free-trial',
     en: {
-      question: 'Is there a free trial for the add-on?',
+      question: 'Do you offer add-on function’s free trial?',
       answer: 'For now we cannot offer in-app free trial, but you can take a look at each add-on’s feature description and preview before making purchase! Alternatively you can try WallCal for free through Setapp (please scroll up to see the Setapp link). Please contact us at support@wallcal.app if you still have any question or concern.',
     },
     de: {
@@ -157,44 +194,6 @@ export const faq: FAQEntry[] = [
     zh: {
       question: '在哪里可以打开 WallCal 设置？',
       answer: '在菜单栏中找到 WallCal 图标，所有设置都从这里进入。',
-    },
-  },
-  {
-    id: 'no-events',
-    en: {
-      question: 'I don’t see any events or reminders being shown on WallCal?',
-      answer: 'Please check if you already granted calendar or reminder access permission to WallCal in System Settings > Privacy & Security > Calendars (or Reminders).',
-    },
-    de: {
-      question: 'In WallCal werden keine Termine oder Erinnerungen angezeigt?',
-      answer: 'Bitte prüfe unter Systemeinstellungen > Datenschutz & Sicherheit > Kalender (bzw. Erinnerungen), ob du WallCal den Zugriff erlaubt hast.',
-    },
-    ja: {
-      question: 'WallCalに予定やリマインダーが表示されません。',
-      answer: '「システム設定」>「プライバシーとセキュリティ」>「カレンダー」（または「リマインダー」）で、WallCalへのアクセスを許可しているかご確認ください。',
-    },
-    zh: {
-      question: 'WallCal 上没有显示任何事件或提醒事项？',
-      answer: '请在“系统设置”>“隐私与安全性”>“日历”（或“提醒事项”）中确认已授予 WallCal 访问权限。',
-    },
-  },
-  {
-    id: 'restore-purchase',
-    en: {
-      question: 'Why can’t I restore my purchase although I did make the purchase before?',
-      answer: 'Please verify if you’re signing in to the Mac App Store with the Apple ID you used to make the in-app purchase.',
-    },
-    de: {
-      question: 'Warum kann ich meinen Kauf nicht wiederherstellen, obwohl ich ihn bereits getätigt habe?',
-      answer: 'Bitte prüfe, ob du im Mac App Store mit der Apple-ID angemeldet bist, mit der du den In-App-Kauf getätigt hast.',
-    },
-    ja: {
-      question: '以前に購入したのに、購入を復元できないのはなぜですか？',
-      answer: 'App内課金を行ったときと同じApple IDで、Mac App Storeにサインインしているかご確認ください。',
-    },
-    zh: {
-      question: '我之前已经购买过，为什么无法恢复购买？',
-      answer: '请确认你在 Mac App Store 登录的 Apple ID 与进行 App 内购买时使用的是同一个。',
     },
   },
 ];

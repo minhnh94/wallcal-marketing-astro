@@ -20,7 +20,7 @@ Real captures of the running app, never mockups. Personal calendars stay hidden;
 | `capture.sh` | Captures every state the site uses: month, weekly, nine add-on states, and three pattern appearances. |
 | `export.sh` | Crops the captures into `public/my-assets/shots/*.jpg`. |
 | `video.sh` | Renders `addon_clips.py` (7 looping clips with caption overlays), then copies MP4, WebM and posters into `public/my-assets/addon`. |
-| `promo.sh` | Hero video. Re-encodes the WallCal repo's promo renders (`build/videos/renders/<locale>/wallcal-promo-<locale>.mp4`, made by that repo's App Store video pipeline) to `public/my-assets/video/promo-{en,de,ja,zh}.mp4` with sound, plus a poster from 2.6s and a silent ~10 s loop (`promo-*-loop.mp4`, built by `hero_loop.py`): every caption beat except glass/clear/blurred, without the title and end cards, each caption about 1.3 s. `hero_loop.py` finds the captions in each render, so it follows timing changes; it stops if a render doesn't have the expected 8 captions. The hero autoplays the loop; its "Watch with sound" button swaps in the full video with native controls. |
+| `promo.sh` | Hero video. Re-encodes the WallCal repo's one video (`build/videos/renders/<locale>/wallcal-preview-<locale>.mp4`, its App Store preview, made by that repo's `promo-video` pipeline) to `public/my-assets/video/promo-{en,de,ja,zh}.mp4` with sound, plus a poster from 2.6s. The hero autoplays it muted on a loop; "Watch with sound" restarts it with sound and native controls. |
 | `og.sh` / `og.swift` | Renders the 1200×630 social cards for en/de/ja/zh. |
 | `restore.sh` | Deletes the demo calendars, stops the helpers and relaunches WallCal with no overrides. |
 
