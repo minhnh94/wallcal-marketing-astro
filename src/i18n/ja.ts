@@ -50,8 +50,14 @@ const ja: Dict = {
     micro: '無料でダウンロード · SetappならExpert拡張付き',
     ratingAppStore: 'Mac App Storeで4/5 · 300件以上のレビュー',
     ratingSetapp: 'Setappで89%が高評価 · 200件以上のレビュー',
+    sendToMac: 'スマホで見ているなら、Macに送ろう。',
     videoLabel: '30秒でわかるWallCal：月表示と週表示、デスクトップからの追加と編集、レイアウト、3つの外観',
     play: '音声付きで見る',
+  },
+  mobileCta: {
+    appStore: 'App Store',
+    send: 'Macに送る',
+    shareText: 'WallCal：カレンダーを、Macの壁紙に。Mac App Storeで無料。',
   },
   valueProps: {
     worksWith: 'macOSのカレンダーとリマインダーに登録されたアカウントの内容をすべて表示',

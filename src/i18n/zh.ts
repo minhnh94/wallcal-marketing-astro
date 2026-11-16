@@ -50,8 +50,14 @@ const zh: Dict = {
     micro: '免费下载 · Setapp 已包含 Expert 插件',
     ratingAppStore: 'Mac App Store 评分 4/5 · 300+ 条评价',
     ratingSetapp: 'Setapp 好评率 89% · 200+ 条评价',
+    sendToMac: '在用手机？发送到你的 Mac。',
     videoLabel: '30 秒了解 WallCal：月视图和周视图、直接在桌面添加和编辑、布局以及三种外观',
     play: '开声音观看',
+  },
+  mobileCta: {
+    appStore: 'App Store',
+    send: '发送到我的 Mac',
+    shareText: 'WallCal：把日历放上 Mac 壁纸。Mac App Store 免费下载。',
   },
   valueProps: {
     worksWith: '显示 macOS 日历与提醒事项中所有账户的内容',

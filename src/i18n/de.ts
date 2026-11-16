@@ -50,8 +50,14 @@ const de: Dict = {
     micro: 'Kostenloser Download · Experten-Add-on in Setapp inklusive',
     ratingAppStore: '4/5 · über 300 Bewertungen im Mac App Store',
     ratingSetapp: '89 % positiv · über 200 Bewertungen bei Setapp',
+    sendToMac: 'Am Handy? Schick es an deinen Mac.',
     videoLabel: 'WallCal in 30 Sekunden: Monats- und Wochenansicht, Hinzufügen und Bearbeiten direkt auf dem Schreibtisch, Layout und die drei Darstellungen',
     play: 'Mit Ton ansehen',
+  },
+  mobileCta: {
+    appStore: 'App Store',
+    send: 'An meinen Mac senden',
+    shareText: 'WallCal: dein Kalender auf dem Hintergrundbild deines Mac. Kostenlos im Mac App Store.',
   },
   valueProps: {
     worksWith: 'Zeigt alles aus den Accounts in Kalender und Erinnerungen von macOS',

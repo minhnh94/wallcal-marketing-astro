@@ -51,8 +51,15 @@ const en = {
     // Store ratings as of 2026-11-15. When they change, update every locale.
     ratingAppStore: '4/5 · 300+ reviews on the Mac App Store',
     ratingSetapp: '89% positive · 200+ reviews on Setapp',
+    sendToMac: 'On your phone? Send it to your Mac.',
     videoLabel: 'WallCal in 30 seconds: month and week views, adding and editing from the desktop, layout and the three appearances',
     play: 'Watch with sound',
+  },
+  // Phones only: the sticky bar, and the share sheet that sends the App Store link to the visitor's Mac.
+  mobileCta: {
+    appStore: 'App Store',
+    send: 'Send to my Mac',
+    shareText: 'WallCal: your calendar, on your Mac wallpaper. Free on the Mac App Store.',
   },
   valueProps: {
     worksWith: 'Shows everything from the accounts in macOS Calendar and Reminders',
